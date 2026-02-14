@@ -1,0 +1,592 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		13833666A8D80AC34B6EE26F /* ToggleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E9E9111521DC6F32708B1E /* ToggleCardView.swift */; };
+		26A75E3EFB5A0C71B1B1C92B /* MainToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5792663BFDEA63B2945189 /* MainToggleView.swift */; };
+		2A0F840EB48396EAF0FB23CD /* QuickToggleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ED24096563CBD82679B39E /* QuickToggleApp.swift */; };
+		2BE9BA9B43D0DF585149C5D8 /* ToggleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C9134777371AB18B6AE3B7 /* ToggleViewModel.swift */; };
+		437218C08273CB2C10454AA0 /* ProfilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934F190AB7107D6B24662F7E /* ProfilesView.swift */; };
+		47E178D5548BB9D7DB432E0B /* RadioServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E4BB78603A395E73842447 /* RadioServiceType.swift */; };
+		4A422496BEDECE86449F5015 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C53190FEAA9E1B687D84B10 /* ContentView.swift */; };
+		4B0627A0491DB90C87A263BB /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F70AF1A4713AF2F0FAE7DD /* HistoryView.swift */; };
+		5B32769C5318C5D4DC7F7F0D /* ToggleHistoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88244E352DCE593CBE87467 /* ToggleHistoryEntry.swift */; };
+		5B5356C36F271445AB23493E /* ToggleIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003A5F44999CF6E4FF590C2 /* ToggleIntents.swift */; };
+		5ED11EB7C4D42362DDA23426 /* QuickToggleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C015067E78313A877E37B4D7 /* QuickToggleWidget.swift */; };
+		6876EC2AA508203CF8465254 /* RadioControlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E202446107C04C0D6ED918 /* RadioControlService.swift */; };
+		696E7F90AE8D01691D949F55 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1655DE15FFD24B5EAE04FF02 /* ProfileViewModel.swift */; };
+		6BFCCE32B157A2362CE8CB98 /* ScheduledAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD7BDA81D5FA853B0BD737C /* ScheduledAction.swift */; };
+		6F2763C7F446D420C3F4025B /* QuickToggleWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 44AD730585E4292E78B1F27B /* QuickToggleWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		71F22E5D36493D6F4FD11398 /* BatterySavingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693D616367CEEACF8043129B /* BatterySavingView.swift */; };
+		733C4083EA6546C3375B178E /* ServiceProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3588D5A3429F77EC2A680D9 /* ServiceProfile.swift */; };
+		73DF0613F11FCEB8DBAE79DD /* QuickToggleWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190751EAC3DCE5B381407953 /* QuickToggleWidgetBundle.swift */; };
+		82E3E8598F7B7A48EA9E9285 /* ControlCenterWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BB75ECE010FDCB6A478F97 /* ControlCenterWidgets.swift */; };
+		896CD9E38A8E807E259D3DA2 /* BatteryMonitorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C0B71D76D102935EA8703A /* BatteryMonitorService.swift */; };
+		930D85B61BCC8DE34A48829D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F903E37DF19A5477693F34 /* SettingsView.swift */; };
+		96B6D62F94D637CF3E910237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBCE989CCF1FFCAE0E73D6D9 /* Assets.xcassets */; };
+		B5A3042A5ED994C3CB6EB5D6 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE23004AC4E6BC4F0763ACCB /* Color+Extensions.swift */; };
+		B8DD19D693F9B0FAC43B95EF /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AE95E8E28648465CB2743 /* ScheduleViewModel.swift */; };
+		D7832DC83C8E5C79D1CEB7A2 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCECF6A612B5639CB4C869C /* NotificationService.swift */; };
+		E914362EF4CD280119C88157 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D638EAAAA9812A300BF2DBAB /* ScheduleView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DD9BA75FDDA015C8D75CAD78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F49FD60FF338B7CBCC024F3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCEDB9049279EB79E24E5C0B;
+			remoteInfo = QuickToggleWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		827C63A99BDE437D5F0E71F9 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6F2763C7F446D420C3F4025B /* QuickToggleWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		10BB75ECE010FDCB6A478F97 /* ControlCenterWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlCenterWidgets.swift; sourceTree = "<group>"; };
+		1655DE15FFD24B5EAE04FF02 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		190751EAC3DCE5B381407953 /* QuickToggleWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickToggleWidgetBundle.swift; sourceTree = "<group>"; };
+		19E4BB78603A395E73842447 /* RadioServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioServiceType.swift; sourceTree = "<group>"; };
+		2003A5F44999CF6E4FF590C2 /* ToggleIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleIntents.swift; sourceTree = "<group>"; };
+		44AD730585E4292E78B1F27B /* QuickToggleWidgetExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = QuickToggleWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AD5BD5D7E11AE6FE593ED1A /* QuickToggleWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickToggleWidget.entitlements; sourceTree = "<group>"; };
+		63C9134777371AB18B6AE3B7 /* ToggleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleViewModel.swift; sourceTree = "<group>"; };
+		63F903E37DF19A5477693F34 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		693D616367CEEACF8043129B /* BatterySavingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatterySavingView.swift; sourceTree = "<group>"; };
+		7C53190FEAA9E1B687D84B10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		81E202446107C04C0D6ED918 /* RadioControlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioControlService.swift; sourceTree = "<group>"; };
+		856AE95E8E28648465CB2743 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
+		85E6A1E75A3D801D03D9CBF0 /* QuickToggle.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = QuickToggle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		934F190AB7107D6B24662F7E /* ProfilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilesView.swift; sourceTree = "<group>"; };
+		BCE783626E0634CCAEDCD1EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C015067E78313A877E37B4D7 /* QuickToggleWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickToggleWidget.swift; sourceTree = "<group>"; };
+		C0C0B71D76D102935EA8703A /* BatteryMonitorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryMonitorService.swift; sourceTree = "<group>"; };
+		C9F70AF1A4713AF2F0FAE7DD /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		CC5792663BFDEA63B2945189 /* MainToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainToggleView.swift; sourceTree = "<group>"; };
+		D638EAAAA9812A300BF2DBAB /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
+		D6ED24096563CBD82679B39E /* QuickToggleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickToggleApp.swift; sourceTree = "<group>"; };
+		D8CFF4247E65A74CB91ACE39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D8E9E9111521DC6F32708B1E /* ToggleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleCardView.swift; sourceTree = "<group>"; };
+		DAD7BDA81D5FA853B0BD737C /* ScheduledAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledAction.swift; sourceTree = "<group>"; };
+		E84085CB6685EF2A8BA60D6B /* QuickToggle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickToggle.entitlements; sourceTree = "<group>"; };
+		E88244E352DCE593CBE87467 /* ToggleHistoryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleHistoryEntry.swift; sourceTree = "<group>"; };
+		EBCE989CCF1FFCAE0E73D6D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ECCECF6A612B5639CB4C869C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		EE23004AC4E6BC4F0763ACCB /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
+		F3588D5A3429F77EC2A680D9 /* ServiceProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProfile.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1080E582D811BCB5688C0979 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				10BB75ECE010FDCB6A478F97 /* ControlCenterWidgets.swift */,
+				2003A5F44999CF6E4FF590C2 /* ToggleIntents.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
+		1AF83F695442A10A960B042A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				D8E9E9111521DC6F32708B1E /* ToggleCardView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		1B6880458CEC0EB4AFCF8851 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1655DE15FFD24B5EAE04FF02 /* ProfileViewModel.swift */,
+				856AE95E8E28648465CB2743 /* ScheduleViewModel.swift */,
+				63C9134777371AB18B6AE3B7 /* ToggleViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		37F91734605D5040C6639A7C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C0C0B71D76D102935EA8703A /* BatteryMonitorService.swift */,
+				ECCECF6A612B5639CB4C869C /* NotificationService.swift */,
+				81E202446107C04C0D6ED918 /* RadioControlService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		87813A24D344234FA9507165 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				19E4BB78603A395E73842447 /* RadioServiceType.swift */,
+				DAD7BDA81D5FA853B0BD737C /* ScheduledAction.swift */,
+				F3588D5A3429F77EC2A680D9 /* ServiceProfile.swift */,
+				E88244E352DCE593CBE87467 /* ToggleHistoryEntry.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A2DB4A276F0BC90F69F18370 /* QuickToggle */ = {
+			isa = PBXGroup;
+			children = (
+				EBCE989CCF1FFCAE0E73D6D9 /* Assets.xcassets */,
+				7C53190FEAA9E1B687D84B10 /* ContentView.swift */,
+				D8CFF4247E65A74CB91ACE39 /* Info.plist */,
+				E84085CB6685EF2A8BA60D6B /* QuickToggle.entitlements */,
+				D6ED24096563CBD82679B39E /* QuickToggleApp.swift */,
+				FF7EEC14C18C393BD45670BC /* Extensions */,
+				1080E582D811BCB5688C0979 /* Intents */,
+				87813A24D344234FA9507165 /* Models */,
+				37F91734605D5040C6639A7C /* Services */,
+				1B6880458CEC0EB4AFCF8851 /* ViewModels */,
+				DD0CE857E093C1CBF057EB94 /* Views */,
+			);
+			path = QuickToggle;
+			sourceTree = "<group>";
+		};
+		B012D2A9037A01B00F737B5E /* QuickToggleWidget */ = {
+			isa = PBXGroup;
+			children = (
+				BCE783626E0634CCAEDCD1EB /* Info.plist */,
+				4AD5BD5D7E11AE6FE593ED1A /* QuickToggleWidget.entitlements */,
+				C015067E78313A877E37B4D7 /* QuickToggleWidget.swift */,
+				190751EAC3DCE5B381407953 /* QuickToggleWidgetBundle.swift */,
+			);
+			path = QuickToggleWidget;
+			sourceTree = "<group>";
+		};
+		BCA178FDC583D599D3BC812B = {
+			isa = PBXGroup;
+			children = (
+				A2DB4A276F0BC90F69F18370 /* QuickToggle */,
+				B012D2A9037A01B00F737B5E /* QuickToggleWidget */,
+				F304481E8CDEA4F4EE5FF428 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DD0CE857E093C1CBF057EB94 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				693D616367CEEACF8043129B /* BatterySavingView.swift */,
+				C9F70AF1A4713AF2F0FAE7DD /* HistoryView.swift */,
+				CC5792663BFDEA63B2945189 /* MainToggleView.swift */,
+				934F190AB7107D6B24662F7E /* ProfilesView.swift */,
+				D638EAAAA9812A300BF2DBAB /* ScheduleView.swift */,
+				63F903E37DF19A5477693F34 /* SettingsView.swift */,
+				1AF83F695442A10A960B042A /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F304481E8CDEA4F4EE5FF428 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				85E6A1E75A3D801D03D9CBF0 /* QuickToggle.app */,
+				44AD730585E4292E78B1F27B /* QuickToggleWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF7EEC14C18C393BD45670BC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EE23004AC4E6BC4F0763ACCB /* Color+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5522F9F12D8D058EC8315F20 /* QuickToggle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 736F89DC945C2C2B81A7445B /* Build configuration list for PBXNativeTarget "QuickToggle" */;
+			buildPhases = (
+				DE589DB8558C8FA272043895 /* Sources */,
+				9E533EC21ADC2A09F4EB8B7A /* Resources */,
+				827C63A99BDE437D5F0E71F9 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				304DCB26864408D725D551BD /* PBXTargetDependency */,
+			);
+			name = QuickToggle;
+			packageProductDependencies = (
+			);
+			productName = QuickToggle;
+			productReference = 85E6A1E75A3D801D03D9CBF0 /* QuickToggle.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BCEDB9049279EB79E24E5C0B /* QuickToggleWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5A0AB5CCEE4E8C578E2FD82B /* Build configuration list for PBXNativeTarget "QuickToggleWidgetExtension" */;
+			buildPhases = (
+				03C834AC1788B49750DE1A7A /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuickToggleWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = QuickToggleWidgetExtension;
+			productReference = 44AD730585E4292E78B1F27B /* QuickToggleWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F49FD60FF338B7CBCC024F3B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					5522F9F12D8D058EC8315F20 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					BCEDB9049279EB79E24E5C0B = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 4D108AD5F1523C9631CE45D3 /* Build configuration list for PBXProject "QuickToggle" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = BCA178FDC583D599D3BC812B;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5522F9F12D8D058EC8315F20 /* QuickToggle */,
+				BCEDB9049279EB79E24E5C0B /* QuickToggleWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9E533EC21ADC2A09F4EB8B7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96B6D62F94D637CF3E910237 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		03C834AC1788B49750DE1A7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5ED11EB7C4D42362DDA23426 /* QuickToggleWidget.swift in Sources */,
+				73DF0613F11FCEB8DBAE79DD /* QuickToggleWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE589DB8558C8FA272043895 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				896CD9E38A8E807E259D3DA2 /* BatteryMonitorService.swift in Sources */,
+				71F22E5D36493D6F4FD11398 /* BatterySavingView.swift in Sources */,
+				B5A3042A5ED994C3CB6EB5D6 /* Color+Extensions.swift in Sources */,
+				4A422496BEDECE86449F5015 /* ContentView.swift in Sources */,
+				82E3E8598F7B7A48EA9E9285 /* ControlCenterWidgets.swift in Sources */,
+				4B0627A0491DB90C87A263BB /* HistoryView.swift in Sources */,
+				26A75E3EFB5A0C71B1B1C92B /* MainToggleView.swift in Sources */,
+				D7832DC83C8E5C79D1CEB7A2 /* NotificationService.swift in Sources */,
+				696E7F90AE8D01691D949F55 /* ProfileViewModel.swift in Sources */,
+				437218C08273CB2C10454AA0 /* ProfilesView.swift in Sources */,
+				2A0F840EB48396EAF0FB23CD /* QuickToggleApp.swift in Sources */,
+				6876EC2AA508203CF8465254 /* RadioControlService.swift in Sources */,
+				47E178D5548BB9D7DB432E0B /* RadioServiceType.swift in Sources */,
+				E914362EF4CD280119C88157 /* ScheduleView.swift in Sources */,
+				B8DD19D693F9B0FAC43B95EF /* ScheduleViewModel.swift in Sources */,
+				6BFCCE32B157A2362CE8CB98 /* ScheduledAction.swift in Sources */,
+				733C4083EA6546C3375B178E /* ServiceProfile.swift in Sources */,
+				930D85B61BCC8DE34A48829D /* SettingsView.swift in Sources */,
+				13833666A8D80AC34B6EE26F /* ToggleCardView.swift in Sources */,
+				5B32769C5318C5D4DC7F7F0D /* ToggleHistoryEntry.swift in Sources */,
+				5B5356C36F271445AB23493E /* ToggleIntents.swift in Sources */,
+				2BE9BA9B43D0DF585149C5D8 /* ToggleViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		304DCB26864408D725D551BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCEDB9049279EB79E24E5C0B /* QuickToggleWidgetExtension */;
+			targetProxy = DD9BA75FDDA015C8D75CAD78 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		050C98090339B686896AE58F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		1F0747F6358D8DDBED934DC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = QuickToggle/QuickToggle.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = QuickToggle/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.quicktoggle.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3A7AA93132E2F3C2630036FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = QuickToggle/QuickToggle.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = QuickToggle/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.quicktoggle.app;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		745AA47D33AC43F8F80F25AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = QuickToggleWidget/QuickToggleWidget.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = QuickToggleWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.quicktoggle.app.widget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B925EE78416C80F4196125E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = QuickToggleWidget/QuickToggleWidget.entitlements;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = QuickToggleWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.quicktoggle.app.widget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BE0EF8C85DA169ACF6BF7E5C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4D108AD5F1523C9631CE45D3 /* Build configuration list for PBXProject "QuickToggle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				050C98090339B686896AE58F /* Debug */,
+				BE0EF8C85DA169ACF6BF7E5C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5A0AB5CCEE4E8C578E2FD82B /* Build configuration list for PBXNativeTarget "QuickToggleWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B925EE78416C80F4196125E6 /* Debug */,
+				745AA47D33AC43F8F80F25AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		736F89DC945C2C2B81A7445B /* Build configuration list for PBXNativeTarget "QuickToggle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F0747F6358D8DDBED934DC2 /* Debug */,
+				3A7AA93132E2F3C2630036FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F49FD60FF338B7CBCC024F3B /* Project object */;
+}

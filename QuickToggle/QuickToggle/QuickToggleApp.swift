@@ -1,0 +1,83 @@
+import SwiftUI
+import SwiftData
+import UserNotifications
+
+@main
+struct QuickToggleApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
+    var sharedModelContainer: ModelContainer = {
+        let schema = Schema([
+            ToggleHistoryEntry.self,
+            ServiceProfile.self,
+            ScheduledAction.self
+        ])
+        let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        do {
+            return try ModelContainer(for: schema, configurations: [config])
+        } catch {
+            fatalError("Não foi possível criar ModelContainer: \(error)")
+        }
+    }()
+
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .modelContainer(sharedModelContainer)
+        }
+    }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+    ) -> Bool {
+        UNUserNotificationCenter.current().delegate = self
+        NotificationService.shared.requestPermission()
+        handlePendingToggleAction()
+        return true
+    }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        handlePendingToggleAction()
+    }
+
+    /// Verifica se há ação pendente do Widget e redireciona aos Ajustes
+    private func handlePendingToggleAction() {
+        guard let defaults = UserDefaults(suiteName: "group.com.quicktoggle.shared"),
+              let action = defaults.string(forKey: "pending_toggle_action"),
+              let service = RadioServiceType(rawValue: action) else { return }
+
+        // Limpar a ação pendente
+        defaults.removeObject(forKey: "pending_toggle_action")
+
+        // Pequeno delay para garantir que o app está visível
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            RadioControlService.shared.openSettings(for: service)
+        }
+    }
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        completionHandler([.banner, .sound, .badge])
+    }
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        let actionID = response.notification.request.content.categoryIdentifier
+        if actionID == "TOGGLE_REMINDER" {
+            let serviceRaw = response.notification.request.content.userInfo["service"] as? String ?? ""
+            if let service = RadioServiceType(rawValue: serviceRaw) {
+                RadioControlService.shared.openSettings(for: service)
+            }
+        }
+        completionHandler()
+    }
+}
