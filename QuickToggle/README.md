@@ -1,230 +1,186 @@
-# QuickToggle
+<p align="center">
+  <img src="QuickToggle/QuickToggle/Assets.xcassets/AppIcon.appiconset/icon_1024.png" width="128" height="128" style="border-radius: 22px;" alt="QuickToggle Icon">
+</p>
 
-Aplicativo iOS para controle rápido de Wi-Fi, Bluetooth e Serviços de Localização com o mínimo de toques possível.
+<h1 align="center">QuickToggle</h1>
+
+<p align="center">
+  <strong>Controle rápido de Wi-Fi, Bluetooth e GPS no iOS</strong>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/iOS-17%2B-blue?logo=apple" alt="iOS 17+">
+  <img src="https://img.shields.io/badge/Swift-5.9-orange?logo=swift" alt="Swift 5.9">
+  <img src="https://img.shields.io/badge/SwiftUI-blue?logo=swift" alt="SwiftUI">
+  <img src="https://img.shields.io/badge/SwiftData-green?logo=apple" alt="SwiftData">
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
+</p>
+
+---
+
+## Screenshots
+
+<p align="center">
+  <img src="AppStore/screenshots/01_appstore.png" width="170" alt="Controles">
+  &nbsp;
+  <img src="AppStore/screenshots/02_appstore.png" width="170" alt="Perfis">
+  &nbsp;
+  <img src="AppStore/screenshots/03_appstore.png" width="170" alt="Agenda">
+  &nbsp;
+  <img src="AppStore/screenshots/04_appstore.png" width="170" alt="Histórico">
+  &nbsp;
+  <img src="AppStore/screenshots/05_appstore.png" width="170" alt="Ajustes">
+</p>
+
+---
 
 ## Funcionalidades
 
-### Controles Principais
-- **Wi-Fi**: Redireciona diretamente aos Ajustes de Wi-Fi (1 toque)
-- **Bluetooth**: Redireciona diretamente aos Ajustes de Bluetooth (1 toque)
-- **Localização/GPS**: Redireciona diretamente a Privacidade > Localização (1 toque)
-- **Desligar Tudo**: Botão para acessar rapidamente os ajustes de todos os serviços
-- **Ligar Tudo**: Botão para religar todos os serviços
+### Controle Rápido
+- Toggles para **Wi-Fi**, **Bluetooth** e **Localização** com indicadores em tempo real
+- Botões **Desligar Tudo** e **Ligar Tudo**
+- Monitoramento de bateria integrado
+- Alerta de bateria baixa com sugestões de economia
 
-### Atalhos para Ajustes (URL Schemes)
-O app abre a **seção exata** dos Ajustes do iOS para cada serviço:
-- Wi-Fi: `App-prefs:WIFI`
-- Bluetooth: `App-prefs:Bluetooth`
-- Localização: `App-prefs:Privacy&path=LOCATION`
-- Ajustes gerais: Fallback via `UIApplication.openSettingsURLString`
+### Perfis Inteligentes
+- **4 perfis pré-configurados**: Avião Plus, Economia, Privacidade, Tudo Ligado
+- Crie perfis personalizados com ícone e nome
+- Aplique configurações com um único toque
 
-### Agendamento por Horário
-- Agendar lembretes para ligar/desligar serviços em horários específicos
-- Repetição por dias da semana (dias úteis, fim de semana, todos os dias)
-- Presets rápidos: "GPS à noite", "Bluetooth no trabalho", etc.
-- Notificações com ação direta para abrir Ajustes
+### Agendamentos Automáticos
+- Agende quando desligar/ligar cada serviço
+- **4 presets rápidos**: GPS à noite, Bluetooth no trabalho, Wi-Fi ao dormir, Tudo ligado de manhã
+- Repetição por dias da semana
+- Notificações nos horários agendados
 
-### Economia de Bateria
-- Monitoramento de nível de bateria em tempo real
-- Estimativa de economia ao desligar cada serviço (mAh/hora, %/hora)
-- Sugestão automática quando bateria está baixa (< 30%)
-- Detecção de Modo Economia de Energia do iOS
-- Dicas de economia de bateria
+### Histórico Completo
+- Registro de todas as alterações realizadas
+- Contadores: ligados, desligados, total
+- Filtro por serviço, data e origem (manual, perfil, agendamento)
 
-### Perfis/Presets
-- **Avião Plus**: Desliga Wi-Fi + Bluetooth + GPS
-- **Privacidade**: Desliga GPS + Wi-Fi, mantém Bluetooth
-- **Economia**: Desliga Bluetooth + GPS, mantém Wi-Fi
-- **Tudo Ligado**: Liga todos os serviços
-- Perfis customizáveis pelo usuário
-- Seletor de ícones para cada perfil
+### 14+ Atalhos para Ajustes do iOS
+- Wi-Fi, Bluetooth, Localização
+- Limpar Safari, Bateria, Dados Celulares
+- Foco, Notificações, Tela e Brilho
+- Sons e Hápticos, VPN, Armazenamento, Senhas
 
-### Siri e Atalhos (App Intents)
-Comandos de voz disponíveis:
-- "Hey Siri, Desligar Tudo no QuickToggle"
-- "Hey Siri, Ligar Tudo no QuickToggle"
-- "Hey Siri, Alternar Wi-Fi no QuickToggle"
-- "Hey Siri, Alternar Bluetooth no QuickToggle"
-- "Hey Siri, Alternar Localização no QuickToggle"
-- "Hey Siri, Modo Privacidade no QuickToggle"
-- "Hey Siri, Economia de Bateria no QuickToggle"
+### Siri e Shortcuts
+- Comandos de voz: *"Hey Siri, desligar Wi-Fi"*
+- App Intents para integração com Atalhos
+- Control Center Widgets (iOS 18+)
 
-### Widget (WidgetKit)
-- **Widget Pequeno**: Indicadores de estado dos 3 serviços
-- **Widget Médio**: 3 botões interativos lado a lado (iOS 17+)
-- **Widget Grande**: Lista detalhada com impacto na bateria
-- **Lock Screen Circular**: Contador de serviços ativos
-- **Lock Screen Retangular**: Status resumido
-
-### Control Center (iOS 18+)
-- Controles customizados para Wi-Fi, Bluetooth e GPS no Control Center
-
-### Histórico
-- Registro de todas as ações (ligar/desligar)
-- Filtro por serviço
-- Agrupamento por data
-- Estatísticas (total ligados, desligados)
-- Fonte da ação (manual, perfil, agendado, atalho, widget)
-
-### Interface
-- Design minimalista estilo iOS nativo
-- Suporte completo a Dark Mode
-- Glassmorphism e SF Symbols
-- Haptic feedback nos toggles
-- Animações suaves (spring)
-- VoiceOver e Dynamic Type (Acessibilidade)
-- Português (Brasil) como idioma primário
-
-## Requisitos
-- iOS 17.0+
-- Xcode 15.0+
-- Swift 5.9+
-
-## Configuração do Projeto no Xcode
-
-### 1. Criar o projeto
-1. Abra o Xcode
-2. **File > New > Project**
-3. Selecione **App** (iOS)
-4. Configure:
-   - Product Name: `QuickToggle`
-   - Team: Seu time de desenvolvimento
-   - Organization Identifier: `com.quicktoggle`
-   - Interface: **SwiftUI**
-   - Storage: **SwiftData**
-   - Language: **Swift**
-5. Salve em `/Users/Ale/ControltAll/QuickToggle/`
-
-### 2. Adicionar os arquivos
-1. No Xcode, arraste todas as pastas de código para o projeto:
-   - `Models/`
-   - `ViewModels/`
-   - `Views/`
-   - `Services/`
-   - `Intents/`
-   - `Extensions/`
-2. Substitua `QuickToggleApp.swift` e `ContentView.swift` pelos fornecidos
-
-### 3. Adicionar Widget Extension
-1. **File > New > Target**
-2. Selecione **Widget Extension**
-3. Product Name: `QuickToggleWidget`
-4. Desmarque "Include Configuration App Intent"
-5. Copie os arquivos de `QuickToggleWidget/` para o target
-
-### 4. Configurar App Group
-1. Selecione o target **QuickToggle**
-2. **Signing & Capabilities > + Capability > App Groups**
-3. Adicione: `group.com.quicktoggle.shared`
-4. Repita para o target **QuickToggleWidget**
-
-### 5. Configurar Capabilities
-No target principal, adicione:
-- **App Groups**: `group.com.quicktoggle.shared`
-- **Background Modes**: Background fetch (opcional)
-
-### 6. Info.plist
-O `Info.plist` já inclui:
-- `NSLocationWhenInUseUsageDescription`
-- `NSLocationAlwaysUsageDescription`
-- `NSBluetoothAlwaysUsageDescription`
-- `NSLocalNetworkUsageDescription`
-- `LSApplicationQueriesSchemes`: prefs, App-prefs, shortcuts
-
-### 7. Build e Run
-1. Selecione um dispositivo iOS ou simulador (iOS 17+)
-2. **Cmd + R** para compilar e executar
+---
 
 ## Arquitetura
 
+O projeto segue o padrão **MVVM** com **SwiftUI** + **SwiftData**:
+
 ```
 QuickToggle/
-├── QuickToggleApp.swift          # Entry point + AppDelegate
-├── ContentView.swift             # TabView principal
 ├── Models/
-│   ├── RadioServiceType.swift    # Enum dos serviços (Wi-Fi, BT, GPS)
-│   ├── ServiceProfile.swift      # Perfis (SwiftData)
-│   ├── ToggleHistoryEntry.swift  # Histórico (SwiftData)
-│   └── ScheduledAction.swift     # Ações agendadas (SwiftData)
+│   ├── RadioServiceType.swift        # Enum dos serviços (Wi-Fi, BT, GPS)
+│   ├── ServiceProfile.swift          # Modelo de perfil (SwiftData)
+│   ├── ScheduledAction.swift         # Modelo de agendamento (SwiftData)
+│   └── ToggleHistoryEntry.swift      # Modelo de histórico (SwiftData)
 ├── ViewModels/
-│   ├── ToggleViewModel.swift     # VM principal
-│   ├── ProfileViewModel.swift    # VM de perfis
-│   └── ScheduleViewModel.swift   # VM de agendamento
+│   ├── ToggleViewModel.swift         # Lógica principal de controle
+│   ├── ProfileViewModel.swift        # Gerenciamento de perfis
+│   └── ScheduleViewModel.swift       # Gerenciamento de agendamentos
 ├── Views/
-│   ├── MainToggleView.swift      # Tela principal
-│   ├── Components/
-│   │   └── ToggleCardView.swift  # Card de toggle
-│   ├── ProfilesView.swift        # Tela de perfis
-│   ├── ScheduleView.swift        # Tela de agendamento
-│   ├── HistoryView.swift         # Tela de histórico
-│   ├── SettingsView.swift        # Tela de ajustes
-│   └── BatterySavingView.swift   # Economia de bateria
+│   ├── MainToggleView.swift          # Tela principal de controles
+│   ├── ProfilesView.swift            # Tela de perfis
+│   ├── ScheduleView.swift            # Tela de agendamentos
+│   ├── HistoryView.swift             # Tela de histórico
+│   ├── SettingsView.swift            # Tela de ajustes e atalhos
+│   ├── BatterySavingView.swift       # Detalhes de economia de bateria
+│   └── Components/
+│       └── ToggleCardView.swift      # Card de toggle reutilizável
 ├── Services/
-│   ├── RadioControlService.swift # Serviço de controle dos rádios
-│   ├── NotificationService.swift # Notificações locais
-│   └── BatteryMonitorService.swift # Monitor de bateria
+│   ├── RadioControlService.swift     # Controle de rádios e URL schemes
+│   ├── BatteryMonitorService.swift   # Monitoramento de bateria
+│   └── NotificationService.swift     # Notificações locais
 ├── Intents/
-│   ├── ToggleIntents.swift       # App Intents para Siri/Atalhos
-│   └── ControlCenterWidgets.swift # Widgets do Control Center (iOS 18+)
-└── Extensions/
-    └── Color+Extensions.swift    # Extensões visuais
-
-QuickToggleWidget/
-├── QuickToggleWidget.swift       # Widget principal
-└── QuickToggleWidgetBundle.swift  # Bundle do widget
+│   ├── ToggleIntents.swift           # App Intents para Siri/Shortcuts
+│   └── ControlCenterWidgets.swift    # Widgets do Control Center
+├── Extensions/
+│   └── Color+Extensions.swift        # Extensões de cores
+├── ContentView.swift                 # TabView principal + URL handling
+└── QuickToggleApp.swift              # Entry point
 ```
 
-## Limitações Conhecidas do iOS
-
-### Wi-Fi
-- **Limitação**: Apps de terceiros NÃO podem desligar Wi-Fi diretamente
-- **API disponível**: `NEHotspotConfiguration` (apenas configura redes específicas)
-- **Solução**: Redirecionamento ao painel `App-prefs:WIFI`
-
-### Bluetooth
-- **Limitação**: `CoreBluetooth` permite detectar estado, mas não controlar globalmente
-- **API disponível**: `CBCentralManager` (apenas detecção de estado)
-- **Solução**: Redirecionamento ao painel `App-prefs:Bluetooth`
-
-### Localização/GPS
-- **Limitação**: `CLLocationManager` controla apenas permissão do próprio app
-- **API disponível**: Apenas permissões por app, não controle global
-- **Solução**: Redirecionamento a `App-prefs:Privacy&path=LOCATION`
-
-### URL Schemes (App-prefs:)
-- **Risco**: Apple pode restringir `App-prefs:` a qualquer momento
-- **Fallback**: Se não funcionar, abre `UIApplication.openSettingsURLString`
-- **App Store**: É uma área cinza — pode ser aceito ou rejeitado na revisão
-
-### Controle Real
-Para controle verdadeiramente direto, as alternativas são:
-1. **MDM (Mobile Device Management)** — Apenas enterprise
-2. **Guided Access** — Cenários controlados
-3. **Jailbreak** — Fora do escopo (não recomendado)
-
-## Considerações de App Store
-
-- Nenhuma API privada é utilizada
-- Todos os frameworks são públicos: CoreBluetooth, CoreLocation, WidgetKit, AppIntents
-- O uso de `App-prefs:` é documentado como URL Scheme (área cinza)
-- As permissões são justificadas com descrições claras
-- O app segue as App Store Review Guidelines
-- Se `App-prefs:` for rejeitado, o fallback abre os Ajustes gerais
+---
 
 ## Tecnologias
 
 | Tecnologia | Uso |
 |---|---|
-| SwiftUI | Interface do usuário |
-| SwiftData | Persistência (histórico, perfis, agendamentos) |
-| CoreBluetooth | Detecção de estado do Bluetooth |
-| CoreLocation | Detecção de estado da Localização |
-| NetworkExtension | Detecção de rede Wi-Fi |
-| WidgetKit | Widgets de tela inicial e Lock Screen |
-| AppIntents | Integração com Siri e Atalhos |
-| UserNotifications | Notificações agendadas |
-| UIKit | Haptic feedback, bateria, URL handling |
+| **SwiftUI** | Interface do usuário |
+| **SwiftData** | Persistência (perfis, agendamentos, histórico) |
+| **CoreBluetooth** | Detecção de estado do Bluetooth |
+| **CoreLocation** | Detecção de estado da Localização |
+| **AppIntents** | Integração com Siri e Atalhos |
+| **WidgetKit** | Widgets de tela inicial e Control Center |
+| **UserNotifications** | Notificações agendadas |
+
+---
+
+## URL Schemes
+
+O app suporta deep linking via `quicktoggle://`:
+
+| URL | Ação |
+|-----|------|
+| `quicktoggle://tab/toggles` | Abrir tab Controles |
+| `quicktoggle://tab/profiles` | Abrir tab Perfis |
+| `quicktoggle://tab/schedule` | Abrir tab Agenda |
+| `quicktoggle://tab/history` | Abrir tab Histórico |
+| `quicktoggle://tab/settings` | Abrir tab Ajustes |
+| `quicktoggle://profile/economia` | Aplicar perfil por nome |
+| `quicktoggle://create-profile?name=X&wifi=on&bt=off&gps=off&icon=star.fill` | Criar perfil |
+| `quicktoggle://create-schedule?name=X&service=wifi&action=off&hour=23&minute=0&days=1,2,3` | Criar agendamento |
+| `quicktoggle://preset/0` | Aplicar preset rápido (0-3) |
+| `quicktoggle://open-settings/wifi` | Abrir seção dos Ajustes do iOS |
+| `quicktoggle://battery` | Tela de economia de bateria |
+
+---
+
+## Limitações do iOS
+
+> Apps no iOS **não podem** ligar/desligar Wi-Fi, Bluetooth ou GPS diretamente. Esta é uma restrição de segurança da Apple.
+
+| Serviço | Limitação | Solução |
+|---|---|---|
+| **Wi-Fi** | `NEHotspotConfiguration` apenas configura redes, não desliga Wi-Fi | Redireciona a `App-prefs:WIFI` |
+| **Bluetooth** | `CoreBluetooth` detecta estado, não controla globalmente | Redireciona a `App-prefs:Bluetooth` |
+| **Localização** | `CLLocationManager` controla permissão do app, não GPS global | Redireciona a `App-prefs:Privacy&path=LOCATION` |
+
+**iOS 26+**: A Apple removeu deep linking para seções específicas dos Ajustes. O app abre a página principal.
+
+---
+
+## Build
+
+```bash
+git clone https://github.com/AleCyriaco/QuickToggle.git
+cd QuickToggle/QuickToggle
+open QuickToggle.xcodeproj
+```
+
+Selecione um dispositivo iOS 17+ e pressione **Cmd + R**.
+
+### Requisitos
+- iOS 17.0+
+- Xcode 16.0+
+- Swift 5.9+
+
+---
+
+## Privacidade
+
+O QuickToggle **não coleta nenhum dado pessoal**. Tudo funciona localmente no dispositivo. Veja a [Politica de Privacidade](PRIVACY.md).
+
+---
 
 ## Licença
 
-Projeto pessoal. Todos os direitos reservados.
+MIT License - veja [LICENSE](LICENSE) para detalhes.
