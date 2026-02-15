@@ -1,26 +1,28 @@
 import SwiftUI
 import UIKit
 
-/// Tela de configuração para instalar Apple Shortcuts via arquivos .shortcut
+/// Tela de configuração para instalar Apple Shortcuts automaticamente via import URL
 struct ShortcutSetupView: View {
     @AppStorage("shortcutsInstalled") private var shortcutsInstalled = false
     @Environment(\.dismiss) private var dismiss
     @State private var installedName: String?
-    @State private var errorMessage: String?
 
-    private let shortcuts: [(name: String, url: String, icon: String, color: Color, description: String)] = [
-        ("GPS", "settings-navigation://com.apple.Settings.PrivacyAndSecurity/LOCATION", "location.fill", .red, String(localized: "Localização nos Ajustes")),
-        ("WiFi", "settings-navigation://com.apple.Settings.WiFi", "wifi", .green, String(localized: "Wi-Fi nos Ajustes")),
-        ("Bluetooth", "settings-navigation://com.apple.Settings.Bluetooth", "dot.radiowaves.left.and.right", .blue, String(localized: "Bluetooth nos Ajustes")),
-        ("Safari", "settings-navigation://com.apple.Settings.Apps/com.apple.mobilesafari#CLEAR_HISTORY_AND_DATA", "safari", .blue, String(localized: "Limpar histórico Safari")),
-        ("Bateria", "settings-navigation://com.apple.Settings.Battery", "battery.100percent", .green, String(localized: "Saúde da bateria")),
-        ("DadosCelulares", "settings-navigation://com.apple.Settings.Cellular", "antenna.radiowaves.left.and.right", .teal, String(localized: "Dados móveis")),
-        ("Foco", "settings-navigation://com.apple.Settings.Focus", "moon.fill", .indigo, String(localized: "Não Perturbe")),
-        ("Notificacoes", "settings-navigation://com.apple.Settings.Notifications", "bell.badge.fill", .red, String(localized: "Notificações")),
-        ("TelaeBrilho", "settings-navigation://com.apple.Settings.Display", "sun.max.fill", .orange, "Display & Brightness"),
-        ("VPN", "settings-navigation://com.apple.Settings#com.apple.Settings.VPN", "lock.shield.fill", .purple, "VPN"),
-        ("Armazenamento", "settings-navigation://com.apple.Settings.General/STORAGE_MGMT", "internaldrive.fill", .gray, String(localized: "Armazenamento")),
-        ("Senhas", "settings-navigation://com.apple.Settings.Apps/com.apple.Passwords", "key.fill", .gray, String(localized: "Senhas")),
+    /// Base URL dos arquivos .shortcut hospedados no GitHub
+    private let baseURL = "https://raw.githubusercontent.com/AleCyriaco/QuickToggle/main/QuickToggle/QuickToggle"
+
+    private let shortcuts: [(name: String, fileName: String, icon: String, color: Color, description: String)] = [
+        ("WiFi", "WiFi", "wifi", .green, String(localized: "Wi-Fi nos Ajustes")),
+        ("Bluetooth", "Bluetooth", "dot.radiowaves.left.and.right", .blue, String(localized: "Bluetooth nos Ajustes")),
+        ("GPS", "GPS", "location.fill", .red, String(localized: "Localização nos Ajustes")),
+        ("Safari", "Safari", "safari", .blue, String(localized: "Limpar histórico Safari")),
+        ("Bateria", "Bateria", "battery.100percent", .green, String(localized: "Saúde da bateria")),
+        ("DadosCelulares", "DadosCelulares", "antenna.radiowaves.left.and.right", .teal, String(localized: "Dados móveis")),
+        ("Foco", "Foco", "moon.fill", .indigo, String(localized: "Não Perturbe")),
+        ("Notificacoes", "Notificacoes", "bell.badge.fill", .red, String(localized: "Notificações")),
+        ("TelaeBrilho", "TelaeBrilho", "sun.max.fill", .orange, "Display & Brightness"),
+        ("VPN", "VPN", "lock.shield.fill", .purple, "VPN"),
+        ("Armazenamento", "Armazenamento", "internaldrive.fill", .gray, String(localized: "Armazenamento")),
+        ("Senhas", "Senhas", "key.fill", .gray, String(localized: "Senhas")),
     ]
 
     var body: some View {
@@ -29,21 +31,21 @@ struct ShortcutSetupView: View {
                 // Instruções
                 Section {
                     VStack(alignment: .leading, spacing: 12) {
-                        Label("Como funciona", systemImage: "info.circle.fill")
+                        Label(String(localized: "Como funciona"), systemImage: "info.circle.fill")
                             .font(.headline)
                             .foregroundStyle(.blue)
 
                         VStack(alignment: .leading, spacing: 8) {
-                            stepRow(number: "1", text: String(localized: "step_1_install"))
-                            stepRow(number: "2", text: String(localized: "step_2_install"))
-                            stepRow(number: "3", text: String(localized: "step_3_install"))
+                            stepRow(number: "1", text: String(localized: "step_1_auto"))
+                            stepRow(number: "2", text: String(localized: "step_2_auto"))
+                            stepRow(number: "3", text: String(localized: "step_3_auto"))
                         }
                     }
                     .padding(.vertical, 4)
                 }
 
                 // Essenciais
-                Section("Essenciais") {
+                Section(String(localized: "Essenciais")) {
                     ForEach(shortcuts.prefix(4), id: \.name) { shortcut in
                         shortcutRow(shortcut)
                     }
@@ -56,34 +58,37 @@ struct ShortcutSetupView: View {
                     }
                 }
 
+                // Instalar todos
+                Section {
+                    Button {
+                        installAll()
+                    } label: {
+                        Label(String(localized: "Instalar Todos"), systemImage: "square.and.arrow.down.on.square")
+                            .frame(maxWidth: .infinity)
+                            .font(.headline)
+                    }
+                }
+
                 Section {
                     Button {
                         shortcutsInstalled = true
                         dismiss()
                     } label: {
-                        Text("Concluir")
+                        Text(String(localized: "Concluir"))
                             .frame(maxWidth: .infinity)
                             .font(.headline)
                     }
                 }
             }
-            .navigationTitle("Setup Atalhos")
+            .navigationTitle(String(localized: "Setup Atalhos"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Pular") {
+                    Button(String(localized: "Pular")) {
                         shortcutsInstalled = true
                         dismiss()
                     }
                 }
-            }
-            .alert("Erro", isPresented: .init(
-                get: { errorMessage != nil },
-                set: { if !$0 { errorMessage = nil } }
-            )) {
-                Button("OK") { errorMessage = nil }
-            } message: {
-                Text(errorMessage ?? "")
             }
         }
     }
@@ -101,7 +106,7 @@ struct ShortcutSetupView: View {
         }
     }
 
-    private func shortcutRow(_ shortcut: (name: String, url: String, icon: String, color: Color, description: String)) -> some View {
+    private func shortcutRow(_ shortcut: (name: String, fileName: String, icon: String, color: Color, description: String)) -> some View {
         HStack(spacing: 12) {
             Image(systemName: shortcut.icon)
                 .foregroundStyle(shortcut.color)
@@ -125,7 +130,7 @@ struct ShortcutSetupView: View {
             Spacer()
 
             Button {
-                installShortcut(name: shortcut.name)
+                installShortcut(shortcut)
             } label: {
                 Label(String(localized: "Instalar"), systemImage: "square.and.arrow.down")
                     .font(.caption2.weight(.semibold))
@@ -137,51 +142,37 @@ struct ShortcutSetupView: View {
         }
     }
 
-    private func installShortcut(name: String) {
-        // Buscar o arquivo .shortcut no bundle
-        guard let fileURL = Bundle.main.url(forResource: name, withExtension: "shortcut") else {
-            errorMessage = String(localized: "Arquivo não encontrado: \(name).shortcut")
-            return
+    private func installShortcut(_ shortcut: (name: String, fileName: String, icon: String, color: Color, description: String)) {
+        let fileURL = "\(baseURL)/\(shortcut.fileName).shortcut"
+        guard let encodedURL = fileURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let encodedName = shortcut.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+
+        let importURLString = "shortcuts://import-shortcut/?url=\(encodedURL)&name=\(encodedName)"
+
+        if let url = URL(string: importURLString) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
 
-        // Copiar para pasta temporária para garantir acesso
-        let tempDir = FileManager.default.temporaryDirectory
-        let tempURL = tempDir.appendingPathComponent("\(name).shortcut")
-
-        try? FileManager.default.removeItem(at: tempURL)
-        do {
-            try FileManager.default.copyItem(at: fileURL, to: tempURL)
-        } catch {
-            errorMessage = String(localized: "Erro ao preparar arquivo")
-            return
+        // Salvar nome do atalho no UserDefaults
+        let storageKey: String
+        switch shortcut.name {
+        case "WiFi": storageKey = "shortcutName_wifi"
+        case "Bluetooth": storageKey = "shortcutName_bluetooth"
+        case "GPS": storageKey = "shortcutName_location"
+        default: storageKey = "shortcutName_\(shortcut.fileName.lowercased())"
         }
+        UserDefaults.standard.set(shortcut.name, forKey: storageKey)
 
-        // Usar UIDocumentInteractionController para abrir no Shortcuts
-        DispatchQueue.main.async {
-            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                  let rootVC = windowScene.windows.first?.rootViewController else { return }
+        withAnimation {
+            installedName = shortcut.name
+        }
+    }
 
-            // Encontrar o VC mais ao topo
-            var topVC = rootVC
-            while let presented = topVC.presentedViewController {
-                topVC = presented
-            }
-
-            let controller = UIDocumentInteractionController(url: tempURL)
-            controller.uti = "com.apple.shortcuts.workflow"
-            controller.name = "\(name).shortcut"
-
-            if !controller.presentOpenInMenu(from: .zero, in: topVC.view, animated: true) {
-                // Fallback: tentar presentPreview
-                if !controller.presentPreview(animated: true) {
-                    // Último fallback: abrir via share sheet
-                    let activityVC = UIActivityViewController(activityItems: [tempURL], applicationActivities: nil)
-                    topVC.present(activityVC, animated: true)
-                }
-            }
-
-            withAnimation {
-                installedName = name
+    private func installAll() {
+        // Instalar o primeiro, depois os demais com delay
+        for (index, shortcut) in shortcuts.prefix(4).enumerated() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 1.5) {
+                installShortcut(shortcut)
             }
         }
     }

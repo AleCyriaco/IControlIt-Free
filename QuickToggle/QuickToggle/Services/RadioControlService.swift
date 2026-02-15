@@ -114,10 +114,12 @@ final class RadioControlService: NSObject, ObservableObject {
 
     /// Abre os Ajustes do iOS para o serviço especificado.
     ///
-    /// Usa settings-navigation:// (iOS 26+) que funciona diretamente de apps.
-    /// Ref: https://github.com/paralevel/ios-settings-urls
+    /// Usa Apple Shortcuts como intermediário para garantir deep linking no iOS 26+.
+    /// O nome do atalho é configurável pelo usuário em Ajustes > Nomes dos Atalhos.
     func openSettings(for service: RadioServiceType) {
-        openDirectURL(service.settingsURLScheme)
+        let storageKey = "shortcutName_\(service.rawValue)"
+        let shortcutName = UserDefaults.standard.string(forKey: storageKey) ?? service.shortcutName
+        openViaShortcut(name: shortcutName, fallbackURL: service.settingsURLScheme)
     }
 
     /// Abre uma URL de Ajustes via Apple Shortcuts para garantir deep linking no iOS 26+
@@ -139,19 +141,11 @@ final class RadioControlService: NSObject, ObservableObject {
         }
     }
 
-    /// Abre URL diretamente (funciona em iOS 17-25, vai pra raiz no iOS 26+)
+    /// Abre URL diretamente (settings-navigation:// ou qualquer URL)
     func openDirectURL(_ urlString: String) {
-        let allURLs = [urlString]
-        guard let url = URL(string: allURLs[0]) else {
-            openSettingsFallback()
-            return
-        }
+        guard let url = URL(string: urlString) else { return }
         DispatchQueue.main.async {
-            UIApplication.shared.open(url, options: [:]) { success in
-                if !success {
-                    self.openSettingsFallback()
-                }
-            }
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 

@@ -10,6 +10,10 @@ struct SettingsView: View {
     @AppStorage("lowBatteryThreshold") private var lowBatteryThreshold = 20.0
     @AppStorage("hapticFeedback") private var hapticFeedback = true
     @AppStorage("autoOpenSettings") private var autoOpenSettings = true
+    @AppStorage("shortcutName_wifi") private var shortcutNameWifi = "WiFi"
+    @AppStorage("shortcutName_bluetooth") private var shortcutNameBluetooth = "Bluetooth"
+    @AppStorage("shortcutName_location") private var shortcutNameGPS = "GPS"
+    @AppStorage("shortcutName_safari") private var shortcutNameSafari = "Safari"
 
     var body: some View {
         NavigationStack {
@@ -40,10 +44,10 @@ struct SettingsView: View {
                 } header: {
                     Text("Atalhos Rápidos")
                 } footer: {
-                    Text("Acesse diretamente a seção exata nos Ajustes do iOS para cada serviço.")
+                    Text("Abre via Apple Shortcuts. Configure os atalhos em Setup Atalhos.")
                 }
 
-                // Mais atalhos para seções dos Ajustes do iOS
+                // Mais atalhos via Shortcuts
                 Section {
                     settingsShortcut(
                         title: "Limpar Safari",
@@ -51,7 +55,8 @@ struct SettingsView: View {
                         icon: "safari",
                         color: .blue,
                         service: nil,
-                        customURL: "settings-navigation://com.apple.Settings.Apps/com.apple.mobilesafari#CLEAR_HISTORY_AND_DATA"
+                        shortcutStorageKey: "shortcutName_safari",
+                        defaultShortcutName: "Safari"
                     )
                     settingsShortcut(
                         title: "Bateria",
@@ -59,7 +64,8 @@ struct SettingsView: View {
                         icon: "battery.100percent",
                         color: .green,
                         service: nil,
-                        customURL: "settings-navigation://com.apple.Settings.Battery"
+                        shortcutStorageKey: "shortcutName_bateria",
+                        defaultShortcutName: "Bateria"
                     )
                     settingsShortcut(
                         title: "Dados Celulares",
@@ -67,7 +73,8 @@ struct SettingsView: View {
                         icon: "antenna.radiowaves.left.and.right",
                         color: Color.teal,
                         service: nil,
-                        customURL: "settings-navigation://com.apple.Settings.Cellular"
+                        shortcutStorageKey: "shortcutName_dadoscelulares",
+                        defaultShortcutName: "DadosCelulares"
                     )
                     settingsShortcut(
                         title: "Foco",
@@ -75,7 +82,8 @@ struct SettingsView: View {
                         icon: "moon.fill",
                         color: .indigo,
                         service: nil,
-                        customURL: "settings-navigation://com.apple.Settings.Focus"
+                        shortcutStorageKey: "shortcutName_foco",
+                        defaultShortcutName: "Foco"
                     )
                     settingsShortcut(
                         title: "Notificações",
@@ -83,7 +91,8 @@ struct SettingsView: View {
                         icon: "bell.badge.fill",
                         color: .red,
                         service: nil,
-                        customURL: "settings-navigation://com.apple.Settings.Notifications"
+                        shortcutStorageKey: "shortcutName_notificacoes",
+                        defaultShortcutName: "Notificacoes"
                     )
                     settingsShortcut(
                         title: "Tela e Brilho",
@@ -91,15 +100,8 @@ struct SettingsView: View {
                         icon: "sun.max.fill",
                         color: .orange,
                         service: nil,
-                        customURL: "settings-navigation://com.apple.Settings.Display"
-                    )
-                    settingsShortcut(
-                        title: "Sons e Hápticos",
-                        subtitle: "Volume, toques e vibrações",
-                        icon: "speaker.wave.3.fill",
-                        color: .pink,
-                        service: nil,
-                        customURL: "settings-navigation://com.apple.Settings.Sounds"
+                        shortcutStorageKey: "shortcutName_telaebrilho",
+                        defaultShortcutName: "TelaeBrilho"
                     )
                     settingsShortcut(
                         title: "VPN",
@@ -107,7 +109,8 @@ struct SettingsView: View {
                         icon: "lock.shield.fill",
                         color: .purple,
                         service: nil,
-                        customURL: "settings-navigation://com.apple.Settings#com.apple.Settings.VPN"
+                        shortcutStorageKey: "shortcutName_vpn",
+                        defaultShortcutName: "VPN"
                     )
                     settingsShortcut(
                         title: "Armazenamento",
@@ -115,7 +118,8 @@ struct SettingsView: View {
                         icon: "internaldrive.fill",
                         color: .gray,
                         service: nil,
-                        customURL: "settings-navigation://com.apple.Settings.General/STORAGE_MGMT"
+                        shortcutStorageKey: "shortcutName_armazenamento",
+                        defaultShortcutName: "Armazenamento"
                     )
                     settingsShortcut(
                         title: "Senhas",
@@ -123,20 +127,13 @@ struct SettingsView: View {
                         icon: "key.fill",
                         color: .gray,
                         service: nil,
-                        customURL: "settings-navigation://com.apple.Settings.Apps/com.apple.Passwords"
-                    )
-                    settingsShortcut(
-                        title: "Ajustes gerais",
-                        subtitle: "Abrir Ajustes do iOS",
-                        icon: "gear",
-                        color: .gray,
-                        service: nil,
-                        customURL: "settings-navigation://com.apple.Settings"
+                        shortcutStorageKey: "shortcutName_senhas",
+                        defaultShortcutName: "Senhas"
                     )
                 } header: {
                     Text("Mais Atalhos")
                 } footer: {
-                    Text("Atalhos para seções específicas dos Ajustes do iOS. No iOS 26+, alguns podem abrir na página principal.")
+                    Text("Abre via Apple Shortcuts. Crie os atalhos no Setup Atalhos.")
                 }
 
                 // Economia de bateria
@@ -280,54 +277,29 @@ struct SettingsView: View {
                     Text("Siri e Atalhos")
                 }
 
-                // Configurar Atalhos (deep link no iOS 26+)
+                // Nomes dos Atalhos (renomear para casar com Shortcuts do usuário)
                 Section {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("No iOS 26+, apps não conseguem abrir seções específicas dos Ajustes diretamente. A solução é criar Atalhos no app Atalhos da Apple.")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                    shortcutNameRow(label: "Wi-Fi", binding: $shortcutNameWifi)
+                    shortcutNameRow(label: "Bluetooth", binding: $shortcutNameBluetooth)
+                    shortcutNameRow(label: "GPS", binding: $shortcutNameGPS)
+                    shortcutNameRow(label: "Safari", binding: $shortcutNameSafari)
+                } header: {
+                    Text("Nomes dos Atalhos")
+                } footer: {
+                    Text("Os nomes devem corresponder exatamente aos atalhos criados no app Atalhos da Apple.")
+                }
 
-                        Text("Crie um atalho para cada serviço com a ação \"Abrir URL\":")
-                            .font(.caption.weight(.medium))
-                    }
-                    .padding(.vertical, 4)
-
-                    ForEach(shortcutConfigs, id: \.name) { config in
-                        HStack(spacing: 12) {
-                            Image(systemName: config.icon)
-                                .foregroundStyle(config.color)
-                                .frame(width: 24)
-
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(config.name)
-                                    .font(.body.weight(.medium))
-                                Text(config.url)
-                                    .font(.caption2)
-                                    .foregroundStyle(.secondary)
-                                    .lineLimit(1)
-                            }
-
-                            Spacer()
-
-                            Button {
-                                UIPasteboard.general.string = config.url
-                            } label: {
-                                Image(systemName: "doc.on.doc")
-                                    .font(.caption)
-                                    .foregroundStyle(.blue)
-                            }
-                        }
-                    }
-
+                // Configurar Atalhos
+                Section {
                     Button {
                         showShortcutSetup = true
                     } label: {
-                        Label("Reinstalar Atalhos", systemImage: "arrow.triangle.2.circlepath")
+                        Label("Configurar Atalhos", systemImage: "square.and.arrow.down")
                     }
                 } header: {
                     Text("Configurar Deep Links")
                 } footer: {
-                    Text("Toque no ícone de copiar para copiar a URL. No app Atalhos, crie um atalho com o nome exato e adicione a ação \"Abrir URL\" com a URL copiada.")
+                    Text("Crie atalhos no app Atalhos da Apple com a ação \"Abrir URL\" para acessar seções dos Ajustes.")
                 }
 
                 // Sobre
@@ -353,17 +325,6 @@ struct SettingsView: View {
         }
     }
 
-    // MARK: - Shortcut Configs
-
-    private var shortcutConfigs: [(name: String, url: String, icon: String, color: Color)] {
-        [
-            ("WiFi", "settings-navigation://com.apple.Settings.WiFi", "wifi", .green),
-            ("Bluetooth", "settings-navigation://com.apple.Settings.Bluetooth", "dot.radiowaves.left.and.right", .blue),
-            ("GPS", "settings-navigation://com.apple.Settings.PrivacyAndSecurity/LOCATION", "location.fill", .red),
-            ("Safari", "settings-navigation://com.apple.Settings.Apps/com.apple.mobilesafari#CLEAR_HISTORY_AND_DATA", "safari", .blue),
-        ]
-    }
-
     // MARK: - Settings Shortcut Row
 
     private func settingsShortcut(
@@ -372,18 +333,15 @@ struct SettingsView: View {
         icon: String,
         color: Color,
         service: RadioServiceType?,
-        customURL: String? = nil,
-        shortcutName: String? = nil
+        shortcutStorageKey: String? = nil,
+        defaultShortcutName: String? = nil
     ) -> some View {
         Button {
-            if let shortcutName = shortcutName, let customURL = customURL {
-                RadioControlService.shared.openViaShortcut(name: shortcutName, fallbackURL: customURL)
-            } else if let customURL = customURL, let url = URL(string: customURL) {
-                UIApplication.shared.open(url)
-            } else if let service = service {
+            if let service = service {
                 RadioControlService.shared.openSettings(for: service)
-            } else {
-                RadioControlService.shared.openSettingsFallback()
+            } else if let storageKey = shortcutStorageKey, let defaultName = defaultShortcutName {
+                let name = UserDefaults.standard.string(forKey: storageKey) ?? defaultName
+                RadioControlService.shared.openViaShortcut(name: name, fallbackURL: "")
             }
         } label: {
             HStack(spacing: 12) {
@@ -406,6 +364,19 @@ struct SettingsView: View {
                     .font(.caption)
                     .foregroundStyle(.blue)
             }
+        }
+    }
+
+    // MARK: - Shortcut Name Row
+
+    private func shortcutNameRow(label: String, binding: Binding<String>) -> some View {
+        HStack {
+            Text(label)
+            Spacer()
+            TextField(label, text: binding)
+                .multilineTextAlignment(.trailing)
+                .foregroundStyle(.blue)
+                .frame(maxWidth: 150)
         }
     }
 

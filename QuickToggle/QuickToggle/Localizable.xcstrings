@@ -1084,47 +1084,57 @@
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Location settings" } }
       }
     },
-    "step_1_install" : {
+    "step_1_auto" : {
       "localizations" : {
         "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Toque \"Instalar\" no atalho desejado" } },
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap \"Install\" on the desired shortcut" } }
       }
     },
-    "step_2_install" : {
+    "step_2_auto" : {
       "localizations" : {
-        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "O app Atalhos vai abrir para adicionar o atalho" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "The Shortcuts app will open to add the shortcut" } }
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "O app Atalhos abre com o atalho pronto. Toque \"Adicionar Atalho\"" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "The Shortcuts app opens with the shortcut ready. Tap \"Add Shortcut\"" } }
       }
     },
-    "step_3_install" : {
+    "step_3_auto" : {
       "localizations" : {
-        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Confirme a instalação e pronto!" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Confirm the installation and you're done!" } }
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Pronto! O atalho já funciona nos controles do QuickToggle" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Done! The shortcut now works with QuickToggle controls" } }
       }
     },
-    "Instalado!" : {
+    "Instalar Todos" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Installed!" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Install All" } }
       }
     },
-    "Instalar" : {
+    "Nomes dos Atalhos" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Install" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Shortcut Names" } }
       }
     },
-    "Arquivo não encontrado: %@" : {
+    "Os nomes devem corresponder exatamente aos atalhos criados no app Atalhos da Apple." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "File not found: %@" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Names must match exactly the shortcuts created in Apple's Shortcuts app." } }
       }
     },
-    "Erro ao preparar arquivo" : {
+    "Configurar Atalhos" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Error preparing file" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Configure Shortcuts" } }
       }
     },
-    "Erro" : {
+    "Crie atalhos no app Atalhos da Apple com a ação \"Abrir URL\" para acessar seções dos Ajustes." : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Error" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Create shortcuts in Apple's Shortcuts app with the \"Open URL\" action to access Settings sections." } }
+      }
+    },
+    "Abre via Apple Shortcuts. Configure os atalhos em Setup Atalhos." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Opens via Apple Shortcuts. Configure shortcuts in Shortcut Setup." } }
+      }
+    },
+    "Abre via Apple Shortcuts. Crie os atalhos no Setup Atalhos." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Opens via Apple Shortcuts. Create shortcuts in Shortcut Setup." } }
       }
     },
     "Alertar quando bateria atingir %lld%%" : {
