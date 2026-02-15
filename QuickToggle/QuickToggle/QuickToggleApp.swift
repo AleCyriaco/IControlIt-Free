@@ -20,10 +20,19 @@ struct QuickToggleApp: App {
         }
     }()
 
+    @AppStorage("shortcutsInstalled") private var shortcutsInstalled = false
+
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .modelContainer(sharedModelContainer)
+                .sheet(isPresented: .init(
+                    get: { !shortcutsInstalled },
+                    set: { if !$0 { shortcutsInstalled = true } }
+                )) {
+                    ShortcutSetupView()
+                        .interactiveDismissDisabled(false)
+                }
         }
     }
 }

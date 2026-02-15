@@ -37,7 +37,7 @@ final class ServiceProfile {
     static var defaultProfiles: [ServiceProfile] {
         [
             ServiceProfile(
-                name: "Avião Plus",
+                name: String(localized: "Avião Plus"),
                 icon: "airplane",
                 wifiEnabled: false,
                 bluetoothEnabled: false,
@@ -46,7 +46,7 @@ final class ServiceProfile {
                 order: 0
             ),
             ServiceProfile(
-                name: "Privacidade",
+                name: String(localized: "Privacidade"),
                 icon: "lock.shield.fill",
                 wifiEnabled: false,
                 bluetoothEnabled: true,
@@ -55,7 +55,7 @@ final class ServiceProfile {
                 order: 1
             ),
             ServiceProfile(
-                name: "Economia",
+                name: String(localized: "Economia"),
                 icon: "battery.75percent",
                 wifiEnabled: true,
                 bluetoothEnabled: false,
@@ -64,7 +64,7 @@ final class ServiceProfile {
                 order: 2
             ),
             ServiceProfile(
-                name: "Tudo Ligado",
+                name: String(localized: "Tudo Ligado"),
                 icon: "antenna.radiowaves.left.and.right",
                 wifiEnabled: true,
                 bluetoothEnabled: true,

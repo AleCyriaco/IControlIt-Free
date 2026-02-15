@@ -46,7 +46,7 @@ struct ScheduleView: View {
                                     Text(preset.name)
                                         .font(.subheadline.weight(.medium))
                                         .foregroundStyle(.primary)
-                                    Text("\(preset.action == .on ? "Ligar" : "Desligar") \(preset.service.displayName) às \(String(format: "%02d:%02d", preset.hour, preset.minute))")
+                                    Text("\(preset.action == .on ? String(localized: "Ligar") : String(localized: "Desligar")) \(preset.service.displayName) \(String(format: "%02d:%02d", preset.hour, preset.minute))")
                                         .font(.caption)
                                         .foregroundStyle(.secondary)
                                 }

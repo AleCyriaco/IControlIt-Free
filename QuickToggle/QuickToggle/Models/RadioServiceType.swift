@@ -12,7 +12,7 @@ enum RadioServiceType: String, CaseIterable, Codable, Identifiable {
         switch self {
         case .wifi: return "Wi-Fi"
         case .bluetooth: return "Bluetooth"
-        case .location: return "Localização"
+        case .location: return String(localized: "Localização")
         }
     }
 
@@ -41,13 +41,12 @@ enum RadioServiceType: String, CaseIterable, Codable, Identifiable {
     }
 
     /// URL Schemes para abrir a seção exata dos Ajustes do iOS.
-    /// Tenta App-prefs: (funciona no simulador e maioria dos devices),
-    /// depois prefs:root= e App-prefs:root= como fallback.
+    /// Usa prefs:root= como primário (mesmo formato do app Atalhos da Apple).
     var settingsURLScheme: String {
         switch self {
-        case .wifi: return "App-prefs:WIFI"
-        case .bluetooth: return "App-prefs:Bluetooth"
-        case .location: return "App-prefs:Privacy&path=LOCATION"
+        case .wifi: return "prefs:root=WIFI"
+        case .bluetooth: return "prefs:root=Bluetooth"
+        case .location: return "prefs:root=Privacy&path=LOCATION"
         }
     }
 
@@ -55,11 +54,11 @@ enum RadioServiceType: String, CaseIterable, Codable, Identifiable {
     var settingsURLFallbacks: [String] {
         switch self {
         case .wifi:
-            return ["prefs:root=WIFI", "App-prefs:root=WIFI"]
+            return ["App-prefs:WIFI", "App-prefs:root=WIFI"]
         case .bluetooth:
-            return ["prefs:root=Bluetooth", "App-prefs:root=Bluetooth"]
+            return ["App-prefs:Bluetooth", "App-prefs:root=Bluetooth"]
         case .location:
-            return ["prefs:root=Privacy&path=LOCATION", "App-prefs:root=Privacy&path=LOCATION"]
+            return ["App-prefs:Privacy&path=LOCATION", "App-prefs:root=Privacy&path=LOCATION"]
         }
     }
 
@@ -68,11 +67,20 @@ enum RadioServiceType: String, CaseIterable, Codable, Identifiable {
         return "App-prefs:root"
     }
 
+    /// Nome do Apple Shortcut que faz deep link para esta seção dos Ajustes
+    var shortcutName: String {
+        switch self {
+        case .wifi: return "WiFi"
+        case .bluetooth: return "Bluetooth"
+        case .location: return "GPS"
+        }
+    }
+
     var shortcutPhrase: String {
         switch self {
-        case .wifi: return "Alternar Wi-Fi"
-        case .bluetooth: return "Alternar Bluetooth"
-        case .location: return "Alternar Localização"
+        case .wifi: return String(localized: "Alternar Wi-Fi")
+        case .bluetooth: return String(localized: "Alternar Bluetooth")
+        case .location: return String(localized: "Alternar Localização")
         }
     }
 
@@ -97,6 +105,14 @@ enum BatteryImpact: String, Codable {
     case low = "Baixo"
     case medium = "Médio"
     case high = "Alto"
+
+    var displayName: String {
+        switch self {
+        case .low: return String(localized: "Baixo")
+        case .medium: return String(localized: "Médio")
+        case .high: return String(localized: "Alto")
+        }
+    }
 
     var color: Color {
         switch self {

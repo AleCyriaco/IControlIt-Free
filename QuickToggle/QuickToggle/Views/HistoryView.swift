@@ -164,17 +164,16 @@ struct HistoryView: View {
     }
 
     private func formatDate(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "pt_BR")
-
         if Calendar.current.isDateInToday(date) {
-            return "Hoje"
+            return String(localized: "Hoje")
         } else if Calendar.current.isDateInYesterday(date) {
-            return "Ontem"
+            return String(localized: "Ontem")
         }
 
-        formatter.dateFormat = "EEEE, d 'de' MMMM"
-        return formatter.string(from: date).capitalized
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateStyle = .long
+        return formatter.string(from: date)
     }
 
     private func clearHistory() {

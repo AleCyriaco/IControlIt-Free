@@ -40,7 +40,7 @@ struct ToggleCardView: View {
                     HStack(spacing: 4) {
                         Image(systemName: "battery.25percent")
                             .font(.caption2)
-                        Text("Impacto: \(service.batteryImpact.rawValue)")
+                        Text("Impacto: \(service.batteryImpact.displayName)")
                             .font(.caption2)
                     }
                     .foregroundStyle(service.batteryImpact.color)
@@ -88,7 +88,7 @@ struct ToggleCardView: View {
         }
         .buttonStyle(CardButtonStyle())
         .accessibilityLabel("\(service.displayName), \(status.displayName)")
-        .accessibilityHint("Toque duas vezes para abrir ajustes de \(service.displayName)")
+        .accessibilityHint(Text("Toque duas vezes para abrir ajustes de \(service.displayName)"))
         .accessibilityAddTraits(isActive ? .isSelected : [])
     }
 

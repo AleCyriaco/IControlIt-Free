@@ -9,11 +9,17 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
 
     enum Tab: String, CaseIterable {
-        case toggles = "Controles"
-        case profiles = "Perfis"
-        case schedule = "Agenda"
-        case history = "Histórico"
-        case settings = "Ajustes"
+        case toggles, profiles, schedule, history, settings
+
+        var title: LocalizedStringKey {
+            switch self {
+            case .toggles: return "Controles"
+            case .profiles: return "Perfis"
+            case .schedule: return "Agenda"
+            case .history: return "Histórico"
+            case .settings: return "Ajustes"
+            }
+        }
 
         var icon: String {
             switch self {
@@ -44,7 +50,7 @@ struct ContentView: View {
                     }
                 }
                 .tabItem {
-                    Label(tab.rawValue, systemImage: tab.icon)
+                    Label(tab.title, systemImage: tab.icon)
                 }
                 .tag(tab)
             }
@@ -53,7 +59,7 @@ struct ContentView: View {
         .onOpenURL { url in
             // quicktoggle://tab/profiles, quicktoggle://tab/schedule, etc.
             if url.host == "tab", let tabName = url.pathComponents.last,
-               let tab = Tab.allCases.first(where: { $0.rawValue.lowercased() == tabName || "\($0)".lowercased() == tabName }) {
+               let tab = Tab.allCases.first(where: { "\($0)".lowercased() == tabName }) {
                 selectedTab = tab
             }
             // quicktoggle://profile/economia, quicktoggle://profile/aviao-plus, etc.

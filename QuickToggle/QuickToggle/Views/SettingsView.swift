@@ -5,6 +5,8 @@ struct SettingsView: View {
     @StateObject private var batteryService = BatteryMonitorService.shared
     @StateObject private var notificationService = NotificationService.shared
     @AppStorage("lowBatteryAlert") private var lowBatteryAlert = true
+    @AppStorage("shortcutsInstalled") private var shortcutsInstalled = true
+    @State private var showShortcutSetup = false
     @AppStorage("lowBatteryThreshold") private var lowBatteryThreshold = 20.0
     @AppStorage("hapticFeedback") private var hapticFeedback = true
     @AppStorage("autoOpenSettings") private var autoOpenSettings = true
@@ -49,7 +51,8 @@ struct SettingsView: View {
                         icon: "safari",
                         color: .blue,
                         service: nil,
-                        customURL: "App-prefs:SAFARI&path=CLEAR_HISTORY_AND_DATA"
+                        customURL: "prefs:roo=SAFARI&path=CLEAR_HISTORY_AND_DATA",
+                        shortcutName: "Safari"
                     )
                     settingsShortcut(
                         title: "Bateria",
@@ -57,7 +60,7 @@ struct SettingsView: View {
                         icon: "battery.100percent",
                         color: .green,
                         service: nil,
-                        customURL: "App-prefs:BATTERY_USAGE"
+                        customURL: "prefs:root=BATTERY_USAGE"
                     )
                     settingsShortcut(
                         title: "Dados Celulares",
@@ -65,7 +68,7 @@ struct SettingsView: View {
                         icon: "antenna.radiowaves.left.and.right",
                         color: Color.teal,
                         service: nil,
-                        customURL: "App-prefs:MOBILE_DATA_SETTINGS_ID"
+                        customURL: "prefs:root=MOBILE_DATA_SETTINGS_ID"
                     )
                     settingsShortcut(
                         title: "Foco",
@@ -73,7 +76,7 @@ struct SettingsView: View {
                         icon: "moon.fill",
                         color: .indigo,
                         service: nil,
-                        customURL: "App-prefs:DO_NOT_DISTURB"
+                        customURL: "prefs:root=DO_NOT_DISTURB"
                     )
                     settingsShortcut(
                         title: "Notificações",
@@ -81,7 +84,7 @@ struct SettingsView: View {
                         icon: "bell.badge.fill",
                         color: .red,
                         service: nil,
-                        customURL: "App-prefs:NOTIFICATIONS_ID"
+                        customURL: "prefs:root=NOTIFICATIONS_ID"
                     )
                     settingsShortcut(
                         title: "Tela e Brilho",
@@ -89,7 +92,7 @@ struct SettingsView: View {
                         icon: "sun.max.fill",
                         color: .orange,
                         service: nil,
-                        customURL: "App-prefs:DISPLAY"
+                        customURL: "prefs:root=DISPLAY"
                     )
                     settingsShortcut(
                         title: "Sons e Hápticos",
@@ -97,7 +100,7 @@ struct SettingsView: View {
                         icon: "speaker.wave.3.fill",
                         color: .pink,
                         service: nil,
-                        customURL: "App-prefs:Sounds"
+                        customURL: "prefs:root=Sounds"
                     )
                     settingsShortcut(
                         title: "VPN",
@@ -105,7 +108,7 @@ struct SettingsView: View {
                         icon: "lock.shield.fill",
                         color: .purple,
                         service: nil,
-                        customURL: "App-prefs:VPN"
+                        customURL: "prefs:root=VPN"
                     )
                     settingsShortcut(
                         title: "Armazenamento",
@@ -113,7 +116,7 @@ struct SettingsView: View {
                         icon: "internaldrive.fill",
                         color: .gray,
                         service: nil,
-                        customURL: "App-prefs:General&path=STORAGE_MGMT"
+                        customURL: "prefs:root=General&path=STORAGE_MGMT"
                     )
                     settingsShortcut(
                         title: "Senhas",
@@ -121,7 +124,7 @@ struct SettingsView: View {
                         icon: "key.fill",
                         color: .gray,
                         service: nil,
-                        customURL: "App-prefs:PASSWORDS"
+                        customURL: "prefs:root=PASSWORDS"
                     )
                     settingsShortcut(
                         title: "Ajustes gerais",
@@ -154,7 +157,7 @@ struct SettingsView: View {
 
                     if lowBatteryAlert {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("Alertar quando bateria atingir \(Int(lowBatteryThreshold))%")
+                            Text(String(format: String(localized: "Alertar quando bateria atingir %d%%"), Int(lowBatteryThreshold)))
                                 .font(.subheadline)
 
                             Slider(value: $lowBatteryThreshold, in: 5...50, step: 5) {
@@ -277,6 +280,56 @@ struct SettingsView: View {
                     Text("Siri e Atalhos")
                 }
 
+                // Configurar Atalhos (deep link no iOS 26+)
+                Section {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("No iOS 26+, apps não conseguem abrir seções específicas dos Ajustes diretamente. A solução é criar Atalhos no app Atalhos da Apple.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+
+                        Text("Crie um atalho para cada serviço com a ação \"Abrir URL\":")
+                            .font(.caption.weight(.medium))
+                    }
+                    .padding(.vertical, 4)
+
+                    ForEach(shortcutConfigs, id: \.name) { config in
+                        HStack(spacing: 12) {
+                            Image(systemName: config.icon)
+                                .foregroundStyle(config.color)
+                                .frame(width: 24)
+
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(config.name)
+                                    .font(.body.weight(.medium))
+                                Text(config.url)
+                                    .font(.caption2)
+                                    .foregroundStyle(.secondary)
+                                    .lineLimit(1)
+                            }
+
+                            Spacer()
+
+                            Button {
+                                UIPasteboard.general.string = config.url
+                            } label: {
+                                Image(systemName: "doc.on.doc")
+                                    .font(.caption)
+                                    .foregroundStyle(.blue)
+                            }
+                        }
+                    }
+
+                    Button {
+                        showShortcutSetup = true
+                    } label: {
+                        Label("Reinstalar Atalhos", systemImage: "arrow.triangle.2.circlepath")
+                    }
+                } header: {
+                    Text("Configurar Deep Links")
+                } footer: {
+                    Text("Toque no ícone de copiar para copiar a URL. No app Atalhos, crie um atalho com o nome exato e adicione a ação \"Abrir URL\" com a URL copiada.")
+                }
+
                 // Sobre
                 Section("Sobre") {
                     HStack {
@@ -294,7 +347,21 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Ajustes")
+            .sheet(isPresented: $showShortcutSetup) {
+                ShortcutSetupView()
+            }
         }
+    }
+
+    // MARK: - Shortcut Configs
+
+    private var shortcutConfigs: [(name: String, url: String, icon: String, color: Color)] {
+        [
+            ("WiFi", "prefs:root=WIFI", "wifi", .green),
+            ("Bluetooth", "prefs:root=Bluetooth", "dot.radiowaves.left.and.right", .blue),
+            ("GPS", "prefs:root=Privacy&path=LOCATION", "location.fill", .red),
+            ("Safari", "prefs:roo=SAFARI&path=CLEAR_HISTORY_AND_DATA", "safari", .blue),
+        ]
     }
 
     // MARK: - Settings Shortcut Row
@@ -305,10 +372,13 @@ struct SettingsView: View {
         icon: String,
         color: Color,
         service: RadioServiceType?,
-        customURL: String? = nil
+        customURL: String? = nil,
+        shortcutName: String? = nil
     ) -> some View {
         Button {
-            if let customURL = customURL, let url = URL(string: customURL) {
+            if let shortcutName = shortcutName, let customURL = customURL {
+                RadioControlService.shared.openViaShortcut(name: shortcutName, fallbackURL: customURL)
+            } else if let customURL = customURL, let url = URL(string: customURL) {
                 UIApplication.shared.open(url)
             } else if let service = service {
                 RadioControlService.shared.openSettings(for: service)

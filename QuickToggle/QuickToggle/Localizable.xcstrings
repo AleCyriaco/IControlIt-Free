@@ -1,0 +1,1134 @@
+{
+  "sourceLanguage" : "pt-BR",
+  "version" : "1.0",
+  "strings" : {
+    "Controles" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Controls" } }
+      }
+    },
+    "Perfis" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Profiles" } }
+      }
+    },
+    "Agenda" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Schedule" } }
+      }
+    },
+    "Histórico" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "History" } }
+      }
+    },
+    "Ajustes" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Settings" } }
+      }
+    },
+    "Fechar" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Close" } }
+      }
+    },
+    "Localização" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Location" } }
+      }
+    },
+    "Alternar Wi-Fi" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Toggle Wi-Fi" } }
+      }
+    },
+    "Alternar Bluetooth" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Toggle Bluetooth" } }
+      }
+    },
+    "Alternar Localização" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Toggle Location" } }
+      }
+    },
+    "Baixo" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Low" } }
+      }
+    },
+    "Médio" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Medium" } }
+      }
+    },
+    "Alto" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "High" } }
+      }
+    },
+    "Ligado" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "On" } }
+      }
+    },
+    "Desligado" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Off" } }
+      }
+    },
+    "Manual" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Manual" } }
+      }
+    },
+    "Perfil" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Profile" } }
+      }
+    },
+    "Agendado" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Scheduled" } }
+      }
+    },
+    "Atalho" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Shortcut" } }
+      }
+    },
+    "Uma vez" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Once" } }
+      }
+    },
+    "Todos os dias" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Every day" } }
+      }
+    },
+    "Bateria" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Battery" } }
+      }
+    },
+    "Modo Economia ativo" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Low Power Mode active" } }
+      }
+    },
+    "Carregando" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Charging" } }
+      }
+    },
+    "Desligar Tudo" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Turn All Off" } }
+      }
+    },
+    "Ligar Tudo" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Turn All On" } }
+      }
+    },
+    "Bateria baixa" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Low Battery" } }
+      }
+    },
+    "Desligar serviços não essenciais pode economizar bateria." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Turning off non-essential services can save battery." } }
+      }
+    },
+    "Limpar Histórico de Internet" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear Internet History" } }
+      }
+    },
+    "Abrir Safari nos Ajustes para limpar dados" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Safari in Settings to clear data" } }
+      }
+    },
+    "Atalhos Rápidos" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Quick Shortcuts" } }
+      }
+    },
+    "Use Siri ou o app Atalhos para controlar rapidamente:" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Use Siri or the Shortcuts app for quick control:" } }
+      }
+    },
+    "\"Hey Siri, desliga tudo\"" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "\"Hey Siri, turn off everything\"" } }
+      }
+    },
+    "Desliga Wi-Fi, Bluetooth e GPS" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Turns off Wi-Fi, Bluetooth and GPS" } }
+      }
+    },
+    "\"Hey Siri, modo privacidade\"" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "\"Hey Siri, privacy mode\"" } }
+      }
+    },
+    "Aplica perfil de privacidade" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Applies privacy profile" } }
+      }
+    },
+    "\"Hey Siri, economia de bateria\"" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "\"Hey Siri, battery saving\"" } }
+      }
+    },
+    "Desliga serviços não essenciais" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Turns off non-essential services" } }
+      }
+    },
+    "Economia Estimada" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Estimated Savings" } }
+      }
+    },
+    "por hora" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "per hour" } }
+      }
+    },
+    "extra por dia" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "extra per day" } }
+      }
+    },
+    "* Estimativa ao desligar todos os serviços. Valores reais podem variar." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "* Estimate when all services are off. Actual values may vary." } }
+      }
+    },
+    "Impacto" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Impact" } }
+      }
+    },
+    "Toque duas vezes para abrir ajustes de %@" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Double tap to open %@ settings" } }
+      }
+    },
+    "Toque em um perfil para aplicá-lo. O app abrirá os Ajustes para cada serviço." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap a profile to apply it. The app will open Settings for each service." } }
+      }
+    },
+    "Como funciona" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "How it works" } }
+      }
+    },
+    "Ao aplicar um perfil, o app redirecionará você aos Ajustes do iOS para alterar cada serviço. Isso é necessário por questões de segurança do iOS." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "When applying a profile, the app will redirect you to iOS Settings to change each service. This is required by iOS security." } }
+      }
+    },
+    "Padrão" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Default" } }
+      }
+    },
+    "ligado" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "on" } }
+      }
+    },
+    "desligado" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "off" } }
+      }
+    },
+    "Informações" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Information" } }
+      }
+    },
+    "Nome do perfil" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Profile name" } }
+      }
+    },
+    "Serviços" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Services" } }
+      }
+    },
+    "Editar Perfil" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit Profile" } }
+      }
+    },
+    "Novo Perfil" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "New Profile" } }
+      }
+    },
+    "Cancelar" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancel" } }
+      }
+    },
+    "Salvar" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Save" } }
+      }
+    },
+    "Nenhuma ação agendada" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No scheduled actions" } }
+      }
+    },
+    "Agende horários para ligar ou desligar serviços automaticamente." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Schedule times to automatically turn services on or off." } }
+      }
+    },
+    "Sugestões" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Suggestions" } }
+      }
+    },
+    "Ligar" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Turn on" } }
+      }
+    },
+    "Desligar" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Turn off" } }
+      }
+    },
+    "Agendamentos" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Schedules" } }
+      }
+    },
+    "No horário agendado, você receberá uma notificação com atalho para abrir os Ajustes e alterar o serviço. Também é possível criar automações no app Atalhos para mais controle." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "At the scheduled time, you'll receive a notification with a shortcut to open Settings and change the service. You can also create automations in the Shortcuts app for more control." } }
+      }
+    },
+    "ativo" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "active" } }
+      }
+    },
+    "inativo" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "inactive" } }
+      }
+    },
+    "Detalhes" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Details" } }
+      }
+    },
+    "Nome" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Name" } }
+      }
+    },
+    "Serviço" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Service" } }
+      }
+    },
+    "Ação" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Action" } }
+      }
+    },
+    "Horário" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Time" } }
+      }
+    },
+    "Hora" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Hour" } }
+      }
+    },
+    "Repetir" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Repeat" } }
+      }
+    },
+    "Dias úteis" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Weekdays" } }
+      }
+    },
+    "Fim de semana" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Weekends" } }
+      }
+    },
+    "Todos" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Every day" } }
+      }
+    },
+    "Editar" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit" } }
+      }
+    },
+    "Novo Agendamento" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "New Schedule" } }
+      }
+    },
+    "Limpar tudo" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear all" } }
+      }
+    },
+    "Limpar Histórico" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear History" } }
+      }
+    },
+    "Limpar" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear" } }
+      }
+    },
+    "Tem certeza que deseja apagar todo o histórico?" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Are you sure you want to delete all history?" } }
+      }
+    },
+    "Ligados" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "On" } }
+      }
+    },
+    "Desligados" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Off" } }
+      }
+    },
+    "Total" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Total" } }
+      }
+    },
+    "Nenhuma ação registrada" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No actions recorded" } }
+      }
+    },
+    "Seu histórico de alterações aparecerá aqui." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Your change history will appear here." } }
+      }
+    },
+    "Hoje" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Today" } }
+      }
+    },
+    "Ontem" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Yesterday" } }
+      }
+    },
+    "Modo Economia de Energia ativo" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Low Power Mode active" } }
+      }
+    },
+    "Consumo por Serviço" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Consumption by Service" } }
+      }
+    },
+    "Selecione serviços acima para ver a economia estimada" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Select services above to see estimated savings" } }
+      }
+    },
+    "economia/hora" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "savings/hour" } }
+      }
+    },
+    "extra/dia" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "extra/day" } }
+      }
+    },
+    "mAh/hora" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "mAh/hour" } }
+      }
+    },
+    "Desligando:" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Turning off:" } }
+      }
+    },
+    "Abrir Ajustes para desligar" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Settings to turn off" } }
+      }
+    },
+    "* Valores são estimativas baseadas em consumo médio. O consumo real pode variar conforme uso, intensidade de sinal e outros fatores." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "* Values are estimates based on average consumption. Actual consumption may vary based on usage, signal strength and other factors." } }
+      }
+    },
+    "Dicas de Economia" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Saving Tips" } }
+      }
+    },
+    "Desligar Wi-Fi quando não usar" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Turn off Wi-Fi when not in use" } }
+      }
+    },
+    "O Wi-Fi consome energia buscando redes disponíveis" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Wi-Fi uses power searching for available networks" } }
+      }
+    },
+    "GPS é o maior consumidor" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "GPS is the biggest consumer" } }
+      }
+    },
+    "Desligue quando não precisar de navegação ou rastreamento" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Turn off when you don't need navigation or tracking" } }
+      }
+    },
+    "Agende desligamentos à noite" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Schedule turn-offs at night" } }
+      }
+    },
+    "Use a aba Agenda para desligar serviços automaticamente ao dormir" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Use the Schedule tab to turn off services when going to sleep" } }
+      }
+    },
+    "Modo Economia do iOS" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "iOS Low Power Mode" } }
+      }
+    },
+    "Combine com o Modo Economia de Energia do iOS para melhor resultado" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Combine with iOS Low Power Mode for better results" } }
+      }
+    },
+    "Economia de Bateria" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Battery Savings" } }
+      }
+    },
+    "Abrir ajustes de Wi-Fi" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Wi-Fi settings" } }
+      }
+    },
+    "Abrir ajustes de Bluetooth" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Bluetooth settings" } }
+      }
+    },
+    "Abrir ajustes de Privacidade" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Privacy settings" } }
+      }
+    },
+    "Acesse diretamente a seção exata nos Ajustes do iOS para cada serviço." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Access the exact section in iOS Settings for each service." } }
+      }
+    },
+    "Limpar Safari" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear Safari" } }
+      }
+    },
+    "Limpar histórico e dados do Safari" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear Safari history and data" } }
+      }
+    },
+    "Saúde e uso da bateria" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Battery health and usage" } }
+      }
+    },
+    "Dados Celulares" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cellular Data" } }
+      }
+    },
+    "Configurações de dados móveis" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Mobile data settings" } }
+      }
+    },
+    "Foco" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Focus" } }
+      }
+    },
+    "Modo Não Perturbe e Focus" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Do Not Disturb and Focus" } }
+      }
+    },
+    "Notificações" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Notifications" } }
+      }
+    },
+    "Gerenciar notificações de apps" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Manage app notifications" } }
+      }
+    },
+    "Tela e Brilho" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Display & Brightness" } }
+      }
+    },
+    "Brilho, Night Shift, Auto-Lock" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Brightness, Night Shift, Auto-Lock" } }
+      }
+    },
+    "Sons e Hápticos" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sounds & Haptics" } }
+      }
+    },
+    "Volume, toques e vibrações" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Volume, ringtones and vibrations" } }
+      }
+    },
+    "Configurações de VPN" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "VPN settings" } }
+      }
+    },
+    "Armazenamento" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Storage" } }
+      }
+    },
+    "Espaço do iPhone" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "iPhone storage" } }
+      }
+    },
+    "Senhas" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Passwords" } }
+      }
+    },
+    "Senhas salvas e preenchimento" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Saved passwords and autofill" } }
+      }
+    },
+    "Ajustes gerais" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "General settings" } }
+      }
+    },
+    "Abrir Ajustes do iOS" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open iOS Settings" } }
+      }
+    },
+    "Mais Atalhos" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "More Shortcuts" } }
+      }
+    },
+    "Atalhos para seções específicas dos Ajustes do iOS. No iOS 26+, alguns podem abrir na página principal." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Shortcuts to specific iOS Settings sections. On iOS 26+, some may open on the main page." } }
+      }
+    },
+    "Alerta de bateria baixa" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Low battery alert" } }
+      }
+    },
+    "Sugere desligar serviços quando a bateria estiver baixa" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Suggests turning off services when battery is low" } }
+      }
+    },
+    "Limite" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Threshold" } }
+      }
+    },
+    "Detalhes de economia" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Savings details" } }
+      }
+    },
+    "Comportamento" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Behavior" } }
+      }
+    },
+    "Feedback háptico" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Haptic feedback" } }
+      }
+    },
+    "Vibração ao tocar nos controles" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Vibration when tapping controls" } }
+      }
+    },
+    "Abrir Ajustes automaticamente" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Auto-open Settings" } }
+      }
+    },
+    "Redirecionar aos Ajustes ao tocar nos toggles" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Redirect to Settings when tapping toggles" } }
+      }
+    },
+    "Status" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Status" } }
+      }
+    },
+    "Ativadas" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enabled" } }
+      }
+    },
+    "Desativadas" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Disabled" } }
+      }
+    },
+    "Permitir notificações" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Allow notifications" } }
+      }
+    },
+    "Siri e Atalhos" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Siri & Shortcuts" } }
+      }
+    },
+    "Abrir app Atalhos" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Shortcuts app" } }
+      }
+    },
+    "Crie automações avançadas com Siri" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Create advanced automations with Siri" } }
+      }
+    },
+    "Comandos de Siri disponíveis:" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Available Siri commands:" } }
+      }
+    },
+    "\"Hey Siri, Desligar Tudo\"" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "\"Hey Siri, Turn Off Everything\"" } }
+      }
+    },
+    "Configurar Deep Links" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Configure Deep Links" } }
+      }
+    },
+    "No iOS 26+, apps não conseguem abrir seções específicas dos Ajustes diretamente. A solução é criar Atalhos no app Atalhos da Apple." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "On iOS 26+, apps can't open specific Settings sections directly. The solution is to create Shortcuts in Apple's Shortcuts app." } }
+      }
+    },
+    "Crie um atalho para cada serviço com a ação \"Abrir URL\":" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Create a shortcut for each service with the \"Open URL\" action:" } }
+      }
+    },
+    "Reinstalar Atalhos" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reinstall Shortcuts" } }
+      }
+    },
+    "Toque no ícone de copiar para copiar a URL. No app Atalhos, crie um atalho com o nome exato e adicione a ação \"Abrir URL\" com a URL copiada." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap the copy icon to copy the URL. In the Shortcuts app, create a shortcut with the exact name and add the \"Open URL\" action with the copied URL." } }
+      }
+    },
+    "Sobre" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "About" } }
+      }
+    },
+    "Versão" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Version" } }
+      }
+    },
+    "Limitações conhecidas" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Known limitations" } }
+      }
+    },
+    "Limitações" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Limitations" } }
+      }
+    },
+    "Controle de Rádios no iOS" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Radio Control on iOS" } }
+      }
+    },
+    "Apps não podem desligar Wi-Fi diretamente. O iOS permite apenas usar NEHotspotConfiguration para configurar redes específicas." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Apps cannot turn off Wi-Fi directly. iOS only allows using NEHotspotConfiguration to configure specific networks." } }
+      }
+    },
+    "Abrimos os Ajustes do iOS. Em iOS 17-25, ia direto para Wi-Fi. No iOS 26+, abre na página principal." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "We open iOS Settings. On iOS 17-25, it went directly to Wi-Fi. On iOS 26+, it opens on the main page." } }
+      }
+    },
+    "CoreBluetooth permite detectar o estado, mas não ligar/desligar globalmente." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "CoreBluetooth can detect the state, but not turn it on/off globally." } }
+      }
+    },
+    "Abrimos os Ajustes do iOS. Em iOS 17-25, ia direto para Bluetooth. No iOS 26+, abre na página principal." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "We open iOS Settings. On iOS 17-25, it went directly to Bluetooth. On iOS 26+, it opens on the main page." } }
+      }
+    },
+    "Localização / GPS" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Location / GPS" } }
+      }
+    },
+    "CLLocationManager controla apenas a permissão do próprio app, não o GPS global." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "CLLocationManager only controls the app's own permission, not the global GPS." } }
+      }
+    },
+    "Abrimos os Ajustes do iOS. Em iOS 17-25, ia direto para Privacidade > Localização. No iOS 26+, abre na página principal." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "We open iOS Settings. On iOS 17-25, it went directly to Privacy > Location. On iOS 26+, it opens on the main page." } }
+      }
+    },
+    "URL Schemes e iOS 26" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "URL Schemes and iOS 26" } }
+      }
+    },
+    "A partir do iOS 26, a Apple removeu a possibilidade de deep linking para seções específicas dos Ajustes via URL Schemes (App-prefs:root=WIFI, etc)." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Starting with iOS 26, Apple removed the ability to deep link to specific Settings sections via URL Schemes (App-prefs:root=WIFI, etc)." } }
+      }
+    },
+    "O app abre os Ajustes do iOS, mas navegar até Wi-Fi/Bluetooth/Localização requer toques manuais do usuário." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "The app opens iOS Settings, but navigating to Wi-Fi/Bluetooth/Location requires manual taps from the user." } }
+      }
+    },
+    "A melhor alternativa no iOS 26 é usar Shortcuts (Atalhos) e Siri para criar automações." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "The best alternative on iOS 26 is to use Shortcuts and Siri to create automations." } }
+      }
+    },
+    "Melhor Abordagem" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Best Approach" } }
+      }
+    },
+    "URL Schemes para Ajustes" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "URL Schemes for Settings" } }
+      }
+    },
+    "Redireciona ao painel exato com mínimo de toques" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Redirects to the exact panel with minimal taps" } }
+      }
+    },
+    "Shortcuts/Automações" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Shortcuts/Automations" } }
+      }
+    },
+    "App Intents permite criar ações no app Atalhos" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "App Intents allows creating actions in the Shortcuts app" } }
+      }
+    },
+    "Widget Interativo" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Interactive Widget" } }
+      }
+    },
+    "Acesso rápido pela tela inicial sem abrir o app" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Quick access from the home screen without opening the app" } }
+      }
+    },
+    "Notificações Agendadas" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Scheduled Notifications" } }
+      }
+    },
+    "Lembretes para alterar serviços em horários específicos" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reminders to change services at specific times" } }
+      }
+    },
+    "Este app não usa APIs privadas e segue as App Store Review Guidelines. O uso de App-prefs: é uma área cinza - a Apple pode aceitar ou rejeitar dependendo da revisão." : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "This app does not use private APIs and follows the App Store Review Guidelines. The use of App-prefs: is a gray area - Apple may accept or reject depending on the review." } }
+      }
+    },
+    "Setup Atalhos" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Shortcut Setup" } }
+      }
+    },
+    "Pular" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Skip" } }
+      }
+    },
+    "Concluir" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Done" } }
+      }
+    },
+    "Essenciais" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Essentials" } }
+      }
+    },
+    "Extras" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Extras" } }
+      }
+    },
+    "Copiado!" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Copied!" } }
+      }
+    },
+    "Copiar e Criar" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Copy & Create" } }
+      }
+    },
+    "Localização nos Ajustes" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Location in Settings" } }
+      }
+    },
+    "Wi-Fi nos Ajustes" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Wi-Fi in Settings" } }
+      }
+    },
+    "Bluetooth nos Ajustes" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Bluetooth in Settings" } }
+      }
+    },
+    "Limpar histórico Safari" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear Safari history" } }
+      }
+    },
+    "Saúde da bateria" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Battery health" } }
+      }
+    },
+    "Dados móveis" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Mobile data" } }
+      }
+    },
+    "Não Perturbe" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Do Not Disturb" } }
+      }
+    },
+    "Toque para abrir Ajustes" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap to open Settings" } }
+      }
+    },
+    "Controle rápido de Wi-Fi, Bluetooth e GPS" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Quick control of Wi-Fi, Bluetooth and GPS" } }
+      }
+    },
+    "ativos" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "active" } }
+      }
+    },
+    "Abrir Ajustes" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Settings" } }
+      }
+    },
+    "Dispensar" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Dismiss" } }
+      }
+    },
+    "ligar" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "turn on" } }
+      }
+    },
+    "desligar" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "turn off" } }
+      }
+    },
+    "Hora de %@ %@" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Time to %@ %@" } }
+      }
+    },
+    "Avião Plus" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Airplane Plus" } }
+      }
+    },
+    "Privacidade" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Privacy" } }
+      }
+    },
+    "Economia" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Economy" } }
+      }
+    },
+    "Tudo Ligado" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "All On" } }
+      }
+    },
+    "GPS à noite" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "GPS at night" } }
+      }
+    },
+    "Bluetooth no trabalho" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Bluetooth at work" } }
+      }
+    },
+    "Wi-Fi ao dormir" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Wi-Fi at bedtime" } }
+      }
+    },
+    "Tudo ligado de manhã" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "All on in the morning" } }
+      }
+    },
+    "Abrir ajustes de Wi-Fi" : {
+      "comment" : "Widget intent description",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Wi-Fi settings" } }
+      }
+    },
+    "Abrir ajustes de Bluetooth" : {
+      "comment" : "Widget intent description",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Bluetooth settings" } }
+      }
+    },
+    "Abrir ajustes de Localização" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Location settings" } }
+      }
+    },
+    "step_1" : {
+      "localizations" : {
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Toque \"Copiar e Criar\" no atalho desejado" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap \"Copy & Create\" on the desired shortcut" } }
+      }
+    },
+    "step_2" : {
+      "localizations" : {
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "O app Atalhos vai abrir automaticamente" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "The Shortcuts app will open automatically" } }
+      }
+    },
+    "step_3" : {
+      "localizations" : {
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Toque em (+) para adicionar ação" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap (+) to add an action" } }
+      }
+    },
+    "step_4" : {
+      "localizations" : {
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Busque \"Abrir URL\" e adicione" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Search for \"Open URL\" and add it" } }
+      }
+    },
+    "step_5" : {
+      "localizations" : {
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Cole a URL (já está copiada)" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Paste the URL (already copied)" } }
+      }
+    },
+    "step_6" : {
+      "localizations" : {
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Renomeie o atalho com o nome indicado" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Rename the shortcut with the indicated name" } }
+      }
+    },
+    "Alertar quando bateria atingir %lld%%" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Alert when battery reaches %lld%%" } }
+      }
+    },
+    "Impacto: %@" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Impact: %@" } }
+      }
+    }
+  }
+}

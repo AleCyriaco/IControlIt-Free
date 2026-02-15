@@ -16,10 +16,13 @@ final class ScheduleViewModel: ObservableObject {
     @Published var selectedTime = Date()
     @Published var selectedDays: Set<Int> = []
 
-    let dayNames = [
-        (1, "Dom"), (2, "Seg"), (3, "Ter"),
-        (4, "Qua"), (5, "Qui"), (6, "Sex"), (7, "Sáb")
-    ]
+    let dayNames: [(Int, String)] = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        let symbols = formatter.shortWeekdaySymbols ?? ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+        // Calendar weekday: 1=Sunday, 2=Monday, ..., 7=Saturday
+        return (1...7).map { ($0, symbols[$0 - 1]) }
+    }()
 
     // MARK: - Create
 
@@ -206,7 +209,7 @@ struct SchedulePreset: Identifiable {
 
     static let presets: [SchedulePreset] = [
         SchedulePreset(
-            name: "GPS à noite",
+            name: String(localized: "GPS à noite"),
             service: .location,
             action: .off,
             hour: 23,
@@ -214,7 +217,7 @@ struct SchedulePreset: Identifiable {
             days: ScheduledAction.allDays
         ),
         SchedulePreset(
-            name: "Bluetooth no trabalho",
+            name: String(localized: "Bluetooth no trabalho"),
             service: .bluetooth,
             action: .off,
             hour: 9,
@@ -222,7 +225,7 @@ struct SchedulePreset: Identifiable {
             days: ScheduledAction.weekdays
         ),
         SchedulePreset(
-            name: "Wi-Fi ao dormir",
+            name: String(localized: "Wi-Fi ao dormir"),
             service: .wifi,
             action: .off,
             hour: 23,
@@ -230,7 +233,7 @@ struct SchedulePreset: Identifiable {
             days: ScheduledAction.allDays
         ),
         SchedulePreset(
-            name: "Tudo ligado de manhã",
+            name: String(localized: "Tudo ligado de manhã"),
             service: .wifi,
             action: .on,
             hour: 7,

@@ -78,7 +78,7 @@ struct BatterySavingView: View {
                                 }
                                 .frame(height: 6)
 
-                                Text(service.batteryImpact.rawValue)
+                                Text(service.batteryImpact.displayName)
                                     .font(.caption2)
                                     .foregroundStyle(service.batteryImpact.color)
                                     .frame(width: 40, alignment: .trailing)

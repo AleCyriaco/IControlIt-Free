@@ -36,6 +36,9 @@ struct MainToggleView: View {
                         batterySuggestionCard
                     }
 
+                    // Atalho limpar histórico
+                    clearHistoryButton
+
                     // Atalhos rápidos
                     shortcutsSection
 
@@ -71,7 +74,7 @@ struct MainToggleView: View {
                 .foregroundStyle(Color(batteryService.batteryColor))
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("Bateria: \(batteryService.batteryPercentage)%")
+                Text("\(String(localized: "Bateria")): \(batteryService.batteryPercentage)%")
                     .font(.subheadline.weight(.semibold))
 
                 if batteryService.isLowPowerMode {
@@ -159,6 +162,43 @@ struct MainToggleView: View {
         }
         .padding()
         .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
+        .padding(.horizontal)
+    }
+
+    // MARK: - Clear History Button
+
+    private var clearHistoryButton: some View {
+        Button {
+            RadioControlService.shared.openViaShortcut(
+                name: "Safari",
+                fallbackURL: "prefs:roo=SAFARI&path=CLEAR_HISTORY_AND_DATA"
+            )
+        } label: {
+            HStack(spacing: 12) {
+                Image(systemName: "safari")
+                    .font(.title3)
+                    .foregroundStyle(.blue)
+                    .frame(width: 36, height: 36)
+                    .background(.blue.opacity(0.12), in: RoundedRectangle(cornerRadius: 10))
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Limpar Histórico de Internet")
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(.primary)
+                    Text("Abrir Safari nos Ajustes para limpar dados")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+
+                Spacer()
+
+                Image(systemName: "arrow.up.right.square")
+                    .font(.subheadline)
+                    .foregroundStyle(.blue)
+            }
+            .padding()
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
+        }
         .padding(.horizontal)
     }
 

@@ -54,7 +54,7 @@ struct QuickToggleEntry: TimelineEntry {
 
 struct WidgetToggleWiFiIntent: AppIntent {
     static var title: LocalizedStringResource = "Wi-Fi"
-    static var description = IntentDescription("Abrir ajustes de Wi-Fi")
+    static var description = IntentDescription("Open Wi-Fi settings")
     static var openAppWhenRun: Bool { true }
 
     func perform() async throws -> some IntentResult {
@@ -67,7 +67,7 @@ struct WidgetToggleWiFiIntent: AppIntent {
 
 struct WidgetToggleBluetoothIntent: AppIntent {
     static var title: LocalizedStringResource = "Bluetooth"
-    static var description = IntentDescription("Abrir ajustes de Bluetooth")
+    static var description = IntentDescription("Open Bluetooth settings")
     static var openAppWhenRun: Bool { true }
 
     func perform() async throws -> some IntentResult {
@@ -78,8 +78,8 @@ struct WidgetToggleBluetoothIntent: AppIntent {
 }
 
 struct WidgetToggleLocationIntent: AppIntent {
-    static var title: LocalizedStringResource = "Localização"
-    static var description = IntentDescription("Abrir ajustes de Localização")
+    static var title: LocalizedStringResource = "Location"
+    static var description = IntentDescription("Open Location settings")
     static var openAppWhenRun: Bool { true }
 
     func perform() async throws -> some IntentResult {
@@ -208,7 +208,7 @@ struct QuickToggleWidgetEntryView: View {
                     name: "Wi-Fi",
                     isOn: entry.wifiOn,
                     color: .green,
-                    impact: "Impacto: Médio"
+                    impact: "\(String(localized: "Impacto")): \(String(localized: "Médio"))"
                 )
             }
             .buttonStyle(.plain)
@@ -220,7 +220,7 @@ struct QuickToggleWidgetEntryView: View {
                     name: "Bluetooth",
                     isOn: entry.bluetoothOn,
                     color: .blue,
-                    impact: "Impacto: Baixo"
+                    impact: "\(String(localized: "Impacto")): \(String(localized: "Baixo"))"
                 )
             }
             .buttonStyle(.plain)
@@ -229,10 +229,10 @@ struct QuickToggleWidgetEntryView: View {
             Button(intent: WidgetToggleLocationIntent()) {
                 widgetRow(
                     icon: "location.fill",
-                    name: "Localização",
+                    name: String(localized: "Localização"),
                     isOn: entry.locationOn,
                     color: .red,
-                    impact: "Impacto: Alto"
+                    impact: "\(String(localized: "Impacto")): \(String(localized: "Alto"))"
                 )
             }
             .buttonStyle(.plain)
@@ -276,7 +276,7 @@ struct QuickToggleWidgetEntryView: View {
                     statusDot(isOn: entry.wifiOn, color: .green)
                     statusDot(isOn: entry.bluetoothOn, color: .blue)
                     statusDot(isOn: entry.locationOn, color: .red)
-                    Text("\(activeCount)/3 ativos")
+                    Text("\(activeCount)/3 \(String(localized: "ativos"))")
                         .font(.caption2)
                 }
             }
@@ -342,7 +342,7 @@ struct QuickToggleWidgetEntryView: View {
                 Circle()
                     .fill(isOn ? color : .gray)
                     .frame(width: 8, height: 8)
-                Text(isOn ? "Ligado" : "Desligado")
+                Text(isOn ? String(localized: "Ligado") : String(localized: "Desligado"))
                     .font(.caption)
                     .foregroundStyle(isOn ? color : .secondary)
             }
@@ -373,7 +373,7 @@ struct QuickToggleWidget: Widget {
             QuickToggleWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("QuickToggle")
-        .description("Controle rápido de Wi-Fi, Bluetooth e GPS")
+        .description("Quick control of Wi-Fi, Bluetooth and GPS")
         .supportedFamilies([
             .systemSmall,
             .systemMedium,

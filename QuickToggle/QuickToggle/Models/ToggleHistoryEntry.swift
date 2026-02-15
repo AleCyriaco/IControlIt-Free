@@ -40,8 +40,8 @@ enum ToggleAction: String, Codable {
 
     var displayName: String {
         switch self {
-        case .on: return "Ligado"
-        case .off: return "Desligado"
+        case .on: return String(localized: "Ligado")
+        case .off: return String(localized: "Desligado")
         }
     }
 
@@ -62,10 +62,10 @@ enum ToggleSource: String, Codable, CaseIterable {
 
     var displayName: String {
         switch self {
-        case .manual: return "Manual"
-        case .profile: return "Perfil"
-        case .schedule: return "Agendado"
-        case .shortcut: return "Atalho"
+        case .manual: return String(localized: "Manual")
+        case .profile: return String(localized: "Perfil")
+        case .schedule: return String(localized: "Agendado")
+        case .shortcut: return String(localized: "Atalho")
         case .widget: return "Widget"
         }
     }

@@ -114,34 +114,46 @@ final class RadioControlService: NSObject, ObservableObject {
 
     /// Abre os Ajustes do iOS para o serviço especificado.
     ///
-    /// NOTA iOS 26+: Apple removeu deep linking para seções específicas dos Ajustes.
-    /// Os URL Schemes (App-prefs:root=WIFI, etc) agora abrem a raiz dos Ajustes.
-    /// Mantemos a tentativa por compatibilidade com iOS 17-25 onde funcionava.
+    /// Estratégia (iOS 26+):
+    /// 1. Tenta via Apple Shortcuts (run-shortcut) - funciona com deep link
+    /// 2. Fallback: abre URL diretamente (vai para raiz dos Ajustes no iOS 26)
     ///
-    /// Estratégia:
-    /// 1. Tenta URL Schemes específicos (funciona em iOS 17-25)
-    /// 2. Fallback: abre Ajustes do próprio app (permissões)
+    /// O app Atalhos tem permissão especial do sistema para deep linking.
+    /// Atalhos devem ser criados pelo usuário com nomes padrão: QT_WiFi, QT_Bluetooth, QT_GPS
     func openSettings(for service: RadioServiceType) {
-        let allURLs = [service.settingsURLScheme] + service.settingsURLFallbacks
-        tryOpenURL(from: allURLs, index: 0)
+        openViaShortcut(name: service.shortcutName, fallbackURL: service.settingsURLScheme)
     }
 
-    /// Tenta abrir URLs em sequência até uma funcionar
-    private func tryOpenURL(from urls: [String], index: Int) {
-        guard index < urls.count else {
-            openSettingsFallback()
-            return
-        }
+    /// Abre uma URL de Ajustes via Apple Shortcuts para garantir deep linking no iOS 26+
+    func openViaShortcut(name: String, fallbackURL: String) {
+        let shortcutURL = "shortcuts://run-shortcut?name=\(name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? name)"
 
-        guard let url = URL(string: urls[index]) else {
-            tryOpenURL(from: urls, index: index + 1)
+        guard let url = URL(string: shortcutURL) else {
+            openDirectURL(fallbackURL)
             return
         }
 
         DispatchQueue.main.async {
             UIApplication.shared.open(url, options: [:]) { success in
                 if !success {
-                    self.tryOpenURL(from: urls, index: index + 1)
+                    // Shortcut não existe, abre URL direto (vai pra raiz no iOS 26)
+                    self.openDirectURL(fallbackURL)
+                }
+            }
+        }
+    }
+
+    /// Abre URL diretamente (funciona em iOS 17-25, vai pra raiz no iOS 26+)
+    func openDirectURL(_ urlString: String) {
+        let allURLs = [urlString]
+        guard let url = URL(string: allURLs[0]) else {
+            openSettingsFallback()
+            return
+        }
+        DispatchQueue.main.async {
+            UIApplication.shared.open(url, options: [:]) { success in
+                if !success {
+                    self.openSettingsFallback()
                 }
             }
         }

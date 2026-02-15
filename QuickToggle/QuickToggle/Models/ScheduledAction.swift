@@ -48,12 +48,15 @@ final class ScheduledAction {
     }
 
     var repeatDaysString: String {
-        if repeatDays.isEmpty { return "Uma vez" }
-        if repeatDays.count == 7 { return "Todos os dias" }
+        if repeatDays.isEmpty { return String(localized: "Uma vez") }
+        if repeatDays.count == 7 { return String(localized: "Todos os dias") }
 
-        let dayNames = ["", "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"]
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        let symbols = formatter.shortWeekdaySymbols ?? ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+        // Calendar weekday: 1=Sunday, 2=Monday, ..., 7=Saturday
         let sorted = repeatDays.sorted()
-        return sorted.compactMap { $0 >= 1 && $0 <= 7 ? dayNames[$0] : nil }.joined(separator: ", ")
+        return sorted.compactMap { $0 >= 1 && $0 <= 7 ? symbols[$0 - 1] : nil }.joined(separator: ", ")
     }
 
     static var weekdays: [Int] { [2, 3, 4, 5, 6] }

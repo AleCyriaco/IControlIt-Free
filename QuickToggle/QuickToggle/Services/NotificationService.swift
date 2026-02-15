@@ -37,12 +37,12 @@ final class NotificationService: ObservableObject {
     private func registerCategories() {
         let openAction = UNNotificationAction(
             identifier: "OPEN_SETTINGS",
-            title: "Abrir Ajustes",
+            title: String(localized: "Abrir Ajustes"),
             options: .foreground
         )
         let dismissAction = UNNotificationAction(
             identifier: "DISMISS",
-            title: "Dispensar",
+            title: String(localized: "Dispensar"),
             options: .destructive
         )
 
@@ -69,9 +69,9 @@ final class NotificationService: ObservableObject {
     ) {
         let content = UNMutableNotificationContent()
 
-        let actionText = action == .on ? "ligar" : "desligar"
+        let actionText = action == .on ? String(localized: "ligar") : String(localized: "desligar")
         content.title = "QuickToggle"
-        content.body = "Hora de \(actionText) \(service.displayName)"
+        content.body = String(localized: "Hora de \(actionText) \(service.displayName)")
         content.sound = .default
         content.categoryIdentifier = "TOGGLE_REMINDER"
         content.userInfo = [
