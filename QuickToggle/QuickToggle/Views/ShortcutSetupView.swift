@@ -11,7 +11,7 @@ struct ShortcutSetupView: View {
     private let shortcuts: [(name: String, iCloudURL: String, icon: String, color: Color, description: String)] = [
         ("WiFiOnOff", "https://www.icloud.com/shortcuts/92ef83ae8e9c4962b837a587f53d16cb", "wifi", .green, String(localized: "Wi-Fi nos Ajustes")),
         ("BluetoothOnOff", "https://www.icloud.com/shortcuts/1abe7e495e7144d5b6756fa2be930f58", "dot.radiowaves.left.and.right", .blue, String(localized: "Bluetooth nos Ajustes")),
-        ("LocationOnOff", "https://www.icloud.com/shortcuts/10cea02805c543109aade06064aa8156", "location.fill", .red, String(localized: "Localização nos Ajustes")),
+        ("LocationOnOff", "https://www.icloud.com/shortcuts/10cea02805c543109aade06064aa8156", "location.fill", .red, String(localized: "Privacidade e Segurança")),
         ("ClearHistoryOnOff", "https://www.icloud.com/shortcuts/78aad47b390a4f80990bd62f40ead9dc", "safari", .blue, String(localized: "Limpar histórico Safari")),
     ]
 

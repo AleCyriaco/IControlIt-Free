@@ -7,6 +7,9 @@ struct SettingsView: View {
     @AppStorage("lowBatteryAlert") private var lowBatteryAlert = true
     @AppStorage("shortcutsInstalled") private var shortcutsInstalled = true
     @State private var showShortcutSetup = false
+    @State private var showCatalog = false
+    @State private var showAddShortcut = false
+    @State private var pendingEntry: SettingsURLEntry?
     @AppStorage("lowBatteryThreshold") private var lowBatteryThreshold = 20.0
     @AppStorage("hapticFeedback") private var hapticFeedback = true
     @AppStorage("autoOpenSettings") private var autoOpenSettings = true
@@ -14,6 +17,15 @@ struct SettingsView: View {
     @AppStorage("shortcutName_bluetooth") private var shortcutNameBluetooth = "BluetoothOnOff"
     @AppStorage("shortcutName_location") private var shortcutNameGPS = "LocationOnOff"
     @AppStorage("shortcutName_safari") private var shortcutNameSafari = "ClearHistoryOnOff"
+    @AppStorage("customShortcuts") private var customShortcutsData: Data = Data()
+
+    private var customShortcuts: [CustomShortcut] {
+        (try? JSONDecoder().decode([CustomShortcut].self, from: customShortcutsData)) ?? []
+    }
+
+    private func saveCustomShortcuts(_ shortcuts: [CustomShortcut]) {
+        customShortcutsData = (try? JSONEncoder().encode(shortcuts)) ?? Data()
+    }
 
     var body: some View {
         NavigationStack {
@@ -47,93 +59,54 @@ struct SettingsView: View {
                     Text("Abre via Apple Shortcuts. Configure os atalhos em Setup Atalhos.")
                 }
 
-                // Mais atalhos via Shortcuts
+                // Mais atalhos (customizáveis pelo usuário)
                 Section {
-                    settingsShortcut(
-                        title: "Limpar Safari",
-                        subtitle: "Limpar histórico e dados do Safari",
-                        icon: "safari",
-                        color: .blue,
-                        service: nil,
-                        shortcutStorageKey: "shortcutName_safari",
-                        defaultShortcutName: "Safari"
-                    )
-                    settingsShortcut(
-                        title: "Bateria",
-                        subtitle: "Saúde e uso da bateria",
-                        icon: "battery.100percent",
-                        color: .green,
-                        service: nil,
-                        shortcutStorageKey: "shortcutName_bateria",
-                        defaultShortcutName: "Bateria"
-                    )
-                    settingsShortcut(
-                        title: "Dados Celulares",
-                        subtitle: "Configurações de dados móveis",
-                        icon: "antenna.radiowaves.left.and.right",
-                        color: Color.teal,
-                        service: nil,
-                        shortcutStorageKey: "shortcutName_dadoscelulares",
-                        defaultShortcutName: "DadosCelulares"
-                    )
-                    settingsShortcut(
-                        title: "Foco",
-                        subtitle: "Modo Não Perturbe e Focus",
-                        icon: "moon.fill",
-                        color: .indigo,
-                        service: nil,
-                        shortcutStorageKey: "shortcutName_foco",
-                        defaultShortcutName: "Foco"
-                    )
-                    settingsShortcut(
-                        title: "Notificações",
-                        subtitle: "Gerenciar notificações de apps",
-                        icon: "bell.badge.fill",
-                        color: .red,
-                        service: nil,
-                        shortcutStorageKey: "shortcutName_notificacoes",
-                        defaultShortcutName: "Notificacoes"
-                    )
-                    settingsShortcut(
-                        title: "Tela e Brilho",
-                        subtitle: "Brilho, Night Shift, Auto-Lock",
-                        icon: "sun.max.fill",
-                        color: .orange,
-                        service: nil,
-                        shortcutStorageKey: "shortcutName_telaebrilho",
-                        defaultShortcutName: "TelaeBrilho"
-                    )
-                    settingsShortcut(
-                        title: "VPN",
-                        subtitle: "Configurações de VPN",
-                        icon: "lock.shield.fill",
-                        color: .purple,
-                        service: nil,
-                        shortcutStorageKey: "shortcutName_vpn",
-                        defaultShortcutName: "VPN"
-                    )
-                    settingsShortcut(
-                        title: "Armazenamento",
-                        subtitle: "Espaço do iPhone",
-                        icon: "internaldrive.fill",
-                        color: .gray,
-                        service: nil,
-                        shortcutStorageKey: "shortcutName_armazenamento",
-                        defaultShortcutName: "Armazenamento"
-                    )
-                    settingsShortcut(
-                        title: "Senhas",
-                        subtitle: "Senhas salvas e preenchimento",
-                        icon: "key.fill",
-                        color: .gray,
-                        service: nil,
-                        shortcutStorageKey: "shortcutName_senhas",
-                        defaultShortcutName: "Senhas"
-                    )
+                    ForEach(customShortcuts) { shortcut in
+                        Button {
+                            RadioControlService.shared.openViaShortcut(
+                                name: shortcut.shortcutName,
+                                fallbackURL: shortcut.settingsURL
+                            )
+                        } label: {
+                            HStack(spacing: 12) {
+                                Image(systemName: shortcut.icon)
+                                    .foregroundStyle(.blue)
+                                    .frame(width: 24)
+
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(shortcut.title)
+                                        .font(.body)
+                                        .foregroundStyle(.primary)
+                                    Text(shortcut.shortcutName)
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+
+                                Spacer()
+
+                                Image(systemName: "arrow.up.right.square")
+                                    .font(.caption)
+                                    .foregroundStyle(.blue)
+                            }
+                        }
+                    }
+                    .onDelete { indexSet in
+                        var shortcuts = customShortcuts
+                        shortcuts.remove(atOffsets: indexSet)
+                        saveCustomShortcuts(shortcuts)
+                    }
+
+                    // Botão adicionar do catálogo
+                    Button {
+                        showCatalog = true
+                    } label: {
+                        Label(String(localized: "Adicionar do Catálogo"), systemImage: "plus.circle")
+                            .foregroundStyle(.blue)
+                    }
                 } header: {
                     Text("Mais Atalhos")
                 } footer: {
-                    Text("Abre via Apple Shortcuts. Crie os atalhos no Setup Atalhos.")
+                    Text("Adicione atalhos do catálogo e vincule a um Shortcut da Apple. Deslize para remover.")
                 }
 
                 // Economia de bateria
@@ -329,6 +302,26 @@ struct SettingsView: View {
             .navigationTitle("Ajustes")
             .sheet(isPresented: $showShortcutSetup) {
                 ShortcutSetupView()
+            }
+            .sheet(isPresented: $showCatalog) {
+                SettingsURLCatalogView { entry in
+                    pendingEntry = entry
+                    showCatalog = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        showAddShortcut = true
+                    }
+                }
+            }
+            .sheet(isPresented: $showAddShortcut) {
+                if let entry = pendingEntry {
+                    AddCustomShortcutView(entry: entry) { newShortcut in
+                        var shortcuts = customShortcuts
+                        shortcuts.append(newShortcut)
+                        saveCustomShortcuts(shortcuts)
+                        showAddShortcut = false
+                        pendingEntry = nil
+                    }
+                }
             }
         }
     }

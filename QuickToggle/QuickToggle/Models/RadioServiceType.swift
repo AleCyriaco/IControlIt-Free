@@ -47,7 +47,7 @@ enum RadioServiceType: String, CaseIterable, Codable, Identifiable {
         switch self {
         case .wifi: return "settings-navigation://com.apple.Settings.WiFi"
         case .bluetooth: return "settings-navigation://com.apple.Settings.Bluetooth"
-        case .location: return "settings-navigation://com.apple.Settings.General/LOCAL_CAPTURE"
+        case .location: return "settings-navigation://com.apple.Settings.PrivacyAndSecurity"
         }
     }
 

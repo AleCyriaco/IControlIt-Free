@@ -47,6 +47,9 @@
 		B8DD19D693F9B0FAC43B95EF /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856AE95E8E28648465CB2743 /* ScheduleViewModel.swift */; };
 		D7832DC83C8E5C79D1CEB7A2 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCECF6A612B5639CB4C869C /* NotificationService.swift */; };
 		E914362EF4CD280119C88157 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D638EAAAA9812A300BF2DBAB /* ScheduleView.swift */; };
+		CCF0F95559A119B46B7B19B7 /* SettingsURLCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0577B38D4F6AF9A9F7503E9 /* SettingsURLCatalog.swift */; };
+		41A4CDE366B34E0A40F0F4A1 /* SettingsURLCatalogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A9FBED7673D1FDEE0716B4 /* SettingsURLCatalogView.swift */; };
+		AC4BF394D9BBDB6B5D24FC5F /* AddCustomShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D489644A9DEB5DEC2CF37048 /* AddCustomShortcutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +122,9 @@
 		ECCECF6A612B5639CB4C869C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		EE23004AC4E6BC4F0763ACCB /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		F3588D5A3429F77EC2A680D9 /* ServiceProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProfile.swift; sourceTree = "<group>"; };
+		B0577B38D4F6AF9A9F7503E9 /* SettingsURLCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsURLCatalog.swift; sourceTree = "<group>"; };
+		42A9FBED7673D1FDEE0716B4 /* SettingsURLCatalogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsURLCatalogView.swift; sourceTree = "<group>"; };
+		D489644A9DEB5DEC2CF37048 /* AddCustomShortcutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomShortcutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -165,6 +171,7 @@
 				19E4BB78603A395E73842447 /* RadioServiceType.swift */,
 				DAD7BDA81D5FA853B0BD737C /* ScheduledAction.swift */,
 				F3588D5A3429F77EC2A680D9 /* ServiceProfile.swift */,
+				B0577B38D4F6AF9A9F7503E9 /* SettingsURLCatalog.swift */,
 				E88244E352DCE593CBE87467 /* ToggleHistoryEntry.swift */,
 			);
 			path = Models;
@@ -224,12 +231,14 @@
 		DD0CE857E093C1CBF057EB94 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D489644A9DEB5DEC2CF37048 /* AddCustomShortcutView.swift */,
 				693D616367CEEACF8043129B /* BatterySavingView.swift */,
 				C9F70AF1A4713AF2F0FAE7DD /* HistoryView.swift */,
 				CC5792663BFDEA63B2945189 /* MainToggleView.swift */,
 				934F190AB7107D6B24662F7E /* ProfilesView.swift */,
 				D638EAAAA9812A300BF2DBAB /* ScheduleView.swift */,
 				63F903E37DF19A5477693F34 /* SettingsView.swift */,
+				42A9FBED7673D1FDEE0716B4 /* SettingsURLCatalogView.swift */,
 				A7F5C2E1B8D4A9F6 /* ShortcutSetupView.swift */,
 				1AF83F695442A10A960B042A /* Components */,
 			);
@@ -368,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC4BF394D9BBDB6B5D24FC5F /* AddCustomShortcutView.swift in Sources */,
 				896CD9E38A8E807E259D3DA2 /* BatteryMonitorService.swift in Sources */,
 				71F22E5D36493D6F4FD11398 /* BatterySavingView.swift in Sources */,
 				B5A3042A5ED994C3CB6EB5D6 /* Color+Extensions.swift in Sources */,
@@ -384,8 +394,10 @@
 				E914362EF4CD280119C88157 /* ScheduleView.swift in Sources */,
 				B8DD19D693F9B0FAC43B95EF /* ScheduleViewModel.swift in Sources */,
 				6BFCCE32B157A2362CE8CB98 /* ScheduledAction.swift in Sources */,
+				CCF0F95559A119B46B7B19B7 /* SettingsURLCatalog.swift in Sources */,
 				733C4083EA6546C3375B178E /* ServiceProfile.swift in Sources */,
 				930D85B61BCC8DE34A48829D /* SettingsView.swift in Sources */,
+				41A4CDE366B34E0A40F0F4A1 /* SettingsURLCatalogView.swift in Sources */,
 				A7F5C2E1B8D4A9F3 /* ShortcutSetupView.swift in Sources */,
 				13833666A8D80AC34B6EE26F /* ToggleCardView.swift in Sources */,
 				5B32769C5318C5D4DC7F7F0D /* ToggleHistoryEntry.swift in Sources */,

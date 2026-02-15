@@ -187,7 +187,7 @@ struct ContentView: View {
         case "safari": urlString = "settings-navigation://com.apple.Settings.Apps/com.apple.mobilesafari#CLEAR_HISTORY_AND_DATA"
         case "wifi": urlString = "settings-navigation://com.apple.Settings.WiFi"
         case "bluetooth": urlString = "settings-navigation://com.apple.Settings.Bluetooth"
-        case "location": urlString = "settings-navigation://com.apple.Settings.General/LOCAL_CAPTURE"
+        case "location": urlString = "settings-navigation://com.apple.Settings.PrivacyAndSecurity"
         default: urlString = "settings-navigation://com.apple.Settings"
         }
         if let url = URL(string: urlString) {
