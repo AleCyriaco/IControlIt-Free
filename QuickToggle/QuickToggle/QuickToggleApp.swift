@@ -22,6 +22,8 @@ struct QuickToggleApp: App {
 
     @AppStorage("shortcutsInstalled") private var shortcutsInstalled = false
 
+    @Environment(\.scenePhase) private var scenePhase
+
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -34,6 +36,11 @@ struct QuickToggleApp: App {
                         .interactiveDismissDisabled(false)
                 }
         }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                appDelegate.handlePendingToggleAction()
+            }
+        }
     }
 }
 
@@ -44,8 +51,20 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
     ) -> Bool {
         UNUserNotificationCenter.current().delegate = self
         NotificationService.shared.requestPermission()
+        syncShortcutNamesToAppGroup()
         handlePendingToggleAction()
         return true
+    }
+
+    /// Sincroniza nomes dos shortcuts para o App Group (usado pelo Widget)
+    private func syncShortcutNamesToAppGroup() {
+        guard let groupDefaults = UserDefaults(suiteName: "group.com.quicktoggle.shared") else { return }
+        let standard = UserDefaults.standard
+        for key in ["shortcutName_wifi", "shortcutName_bluetooth", "shortcutName_location", "shortcutName_safari"] {
+            if let value = standard.string(forKey: key) {
+                groupDefaults.set(value, forKey: key)
+            }
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -53,7 +72,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
     }
 
     /// Verifica se há ação pendente do Widget e redireciona aos Ajustes
-    private func handlePendingToggleAction() {
+    func handlePendingToggleAction() {
         guard let defaults = UserDefaults(suiteName: "group.com.quicktoggle.shared"),
               let action = defaults.string(forKey: "pending_toggle_action"),
               let service = RadioServiceType(rawValue: action) else { return }

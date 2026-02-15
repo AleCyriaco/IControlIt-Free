@@ -4,6 +4,7 @@ import CoreLocation
 import Network
 import UIKit
 import Combine
+import WidgetKit
 
 /// Serviço central para controle dos rádios do dispositivo.
 ///
@@ -65,6 +66,7 @@ final class RadioControlService: NSObject, ObservableObject {
             let usesWifi = path.usesInterfaceType(.wifi)
             DispatchQueue.main.async {
                 self?.wifiStatus = usesWifi ? .on : .off
+                self?.syncToWidget(.wifi, isOn: usesWifi)
             }
         }
         pathMonitor.start(queue: monitorQueue)
@@ -85,6 +87,7 @@ final class RadioControlService: NSObject, ObservableObject {
         let globalEnabled = CLLocationManager.locationServicesEnabled()
         if !globalEnabled {
             locationStatus = .off
+            syncToWidget(.location, isOn: false)
             return
         }
 
@@ -104,6 +107,7 @@ final class RadioControlService: NSObject, ObservableObject {
         @unknown default:
             locationStatus = .on
         }
+        syncToWidget(.location, isOn: locationStatus == .on)
     }
 
     // MARK: - Persistence
@@ -123,11 +127,22 @@ final class RadioControlService: NSObject, ObservableObject {
         case .location: key = locationStateKey
         }
         UserDefaults.standard.set(isOn, forKey: key)
+        syncToWidget(service, isOn: isOn)
+    }
 
-        // Atualizar App Group para Widget
+    /// Sincroniza estado do serviço com o App Group para o Widget
+    private func syncToWidget(_ service: RadioServiceType, isOn: Bool) {
+        let key: String
+        switch service {
+        case .wifi: key = wifiStateKey
+        case .bluetooth: key = bluetoothStateKey
+        case .location: key = locationStateKey
+        }
         if let groupDefaults = UserDefaults(suiteName: "group.com.quicktoggle.shared") {
             groupDefaults.set(isOn, forKey: key)
         }
+        // Pedir ao widget para atualizar
+        WidgetCenter.shared.reloadAllTimelines()
     }
 
     // MARK: - Open Settings (Principal método de controle)
@@ -239,12 +254,16 @@ extension RadioControlService: CBCentralManagerDelegate {
             switch central.state {
             case .poweredOn:
                 self?.bluetoothStatus = .on
+                self?.syncToWidget(.bluetooth, isOn: true)
             case .poweredOff:
                 self?.bluetoothStatus = .off
+                self?.syncToWidget(.bluetooth, isOn: false)
             case .unauthorized:
                 self?.bluetoothStatus = .restricted
+                self?.syncToWidget(.bluetooth, isOn: false)
             case .unsupported:
                 self?.bluetoothStatus = .unsupported
+                self?.syncToWidget(.bluetooth, isOn: false)
             default:
                 self?.bluetoothStatus = .unknown
             }

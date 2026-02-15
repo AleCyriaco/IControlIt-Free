@@ -7,6 +7,11 @@ struct MainToggleView: View {
     @StateObject private var batteryService = BatteryMonitorService.shared
     @Environment(\.modelContext) private var modelContext
     @Environment(\.colorScheme) private var colorScheme
+    @AppStorage("customShortcuts") private var customShortcutsData: Data = Data()
+
+    private var customShortcuts: [CustomShortcut] {
+        (try? JSONDecoder().decode([CustomShortcut].self, from: customShortcutsData)) ?? []
+    }
 
     var body: some View {
         NavigationStack {
@@ -38,6 +43,11 @@ struct MainToggleView: View {
 
                     // Atalho limpar histórico
                     clearHistoryButton
+
+                    // Atalhos customizados do catálogo
+                    if !customShortcuts.isEmpty {
+                        customShortcutsSection
+                    }
 
                     // Atalhos rápidos
                     shortcutsSection
@@ -204,6 +214,64 @@ struct MainToggleView: View {
             .padding()
             .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
         }
+        .padding(.horizontal)
+    }
+
+    // MARK: - Custom Shortcuts Section
+
+    private var customShortcutsSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Image(systemName: "square.grid.2x2")
+                    .foregroundStyle(.blue)
+                Text(String(localized: "Meus Atalhos"))
+                    .font(.subheadline.weight(.semibold))
+                Spacer()
+            }
+
+            VStack(spacing: 8) {
+                ForEach(customShortcuts) { shortcut in
+                    Button {
+                        if !shortcut.shortcutName.isEmpty {
+                            RadioControlService.shared.openViaShortcut(
+                                name: shortcut.shortcutName,
+                                fallbackURL: shortcut.settingsURL
+                            )
+                        } else {
+                            RadioControlService.shared.openDirectURL(shortcut.settingsURL)
+                        }
+                    } label: {
+                        HStack(spacing: 12) {
+                            Image(systemName: shortcut.icon)
+                                .font(.title3)
+                                .foregroundStyle(.blue)
+                                .frame(width: 36, height: 36)
+                                .background(.blue.opacity(0.12), in: RoundedRectangle(cornerRadius: 10))
+
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(shortcut.title)
+                                    .font(.subheadline.weight(.medium))
+                                    .foregroundStyle(.primary)
+                                if !shortcut.shortcutName.isEmpty {
+                                    Text(shortcut.shortcutName)
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+
+                            Spacer()
+
+                            Image(systemName: "arrow.up.right.square")
+                                .font(.subheadline)
+                                .foregroundStyle(.blue)
+                        }
+                        .padding(.vertical, 4)
+                    }
+                }
+            }
+        }
+        .padding()
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
         .padding(.horizontal)
     }
 

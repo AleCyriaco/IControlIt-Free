@@ -58,7 +58,6 @@ struct WidgetToggleWiFiIntent: AppIntent {
     static var openAppWhenRun: Bool { true }
 
     func perform() async throws -> some IntentResult {
-        // openAppWhenRun abre o app, que tratará a navegação para Ajustes
         UserDefaults(suiteName: "group.com.quicktoggle.shared")?
             .set("wifi", forKey: "pending_toggle_action")
         return .result()

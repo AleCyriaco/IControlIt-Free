@@ -6,8 +6,8 @@ struct SettingsURLCatalogView: View {
     @State private var searchText = ""
     @State private var expandedCategories: Set<String> = []
 
-    /// Callback quando o usuário seleciona uma entry para adicionar como shortcut
-    var onAddShortcut: ((SettingsURLEntry) -> Void)?
+    /// Callback quando o usuário salva um novo shortcut
+    var onSaveShortcut: ((CustomShortcut) -> Void)?
 
     private var filteredCategories: [SettingsURLCategory] {
         if searchText.isEmpty {
@@ -70,7 +70,14 @@ struct SettingsURLCatalogView: View {
                         // Entries (visíveis quando expandido ou buscando)
                         if expandedCategories.contains(category.name) || !searchText.isEmpty {
                             ForEach(category.entries) { entry in
-                                entryRow(entry)
+                                NavigationLink {
+                                    AddCustomShortcutView(entry: entry) { newShortcut in
+                                        onSaveShortcut?(newShortcut)
+                                        dismiss()
+                                    }
+                                } label: {
+                                    entryRow(entry)
+                                }
                             }
                         }
                     }
@@ -103,14 +110,9 @@ struct SettingsURLCatalogView: View {
 
             Spacer()
 
-            if let onAddShortcut {
-                Button {
-                    onAddShortcut(entry)
-                } label: {
-                    Image(systemName: "plus.circle.fill")
-                        .foregroundStyle(.green)
-                }
-            }
+            Image(systemName: "plus.circle.fill")
+                .foregroundStyle(.green)
+                .font(.title3)
         }
         .padding(.leading, 16)
     }

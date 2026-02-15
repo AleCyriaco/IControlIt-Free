@@ -8,8 +8,6 @@ struct SettingsView: View {
     @AppStorage("shortcutsInstalled") private var shortcutsInstalled = true
     @State private var showShortcutSetup = false
     @State private var showCatalog = false
-    @State private var showAddShortcut = false
-    @State private var pendingEntry: SettingsURLEntry?
     @AppStorage("lowBatteryThreshold") private var lowBatteryThreshold = 20.0
     @AppStorage("hapticFeedback") private var hapticFeedback = true
     @AppStorage("autoOpenSettings") private var autoOpenSettings = true
@@ -63,10 +61,7 @@ struct SettingsView: View {
                 Section {
                     ForEach(customShortcuts) { shortcut in
                         Button {
-                            RadioControlService.shared.openViaShortcut(
-                                name: shortcut.shortcutName,
-                                fallbackURL: shortcut.settingsURL
-                            )
+                            executeCustomShortcut(shortcut)
                         } label: {
                             HStack(spacing: 12) {
                                 Image(systemName: shortcut.icon)
@@ -77,9 +72,15 @@ struct SettingsView: View {
                                     Text(shortcut.title)
                                         .font(.body)
                                         .foregroundStyle(.primary)
-                                    Text(shortcut.shortcutName)
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
+                                    if !shortcut.shortcutName.isEmpty {
+                                        Text(String(localized: "Atalho: \(shortcut.shortcutName)"))
+                                            .font(.caption)
+                                            .foregroundStyle(.secondary)
+                                    } else {
+                                        Text(String(localized: "Abre via URL direta"))
+                                            .font(.caption)
+                                            .foregroundStyle(.secondary)
+                                    }
                                 }
 
                                 Spacer()
@@ -304,23 +305,10 @@ struct SettingsView: View {
                 ShortcutSetupView()
             }
             .sheet(isPresented: $showCatalog) {
-                SettingsURLCatalogView { entry in
-                    pendingEntry = entry
-                    showCatalog = false
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        showAddShortcut = true
-                    }
-                }
-            }
-            .sheet(isPresented: $showAddShortcut) {
-                if let entry = pendingEntry {
-                    AddCustomShortcutView(entry: entry) { newShortcut in
-                        var shortcuts = customShortcuts
-                        shortcuts.append(newShortcut)
-                        saveCustomShortcuts(shortcuts)
-                        showAddShortcut = false
-                        pendingEntry = nil
-                    }
+                SettingsURLCatalogView { newShortcut in
+                    var shortcuts = customShortcuts
+                    shortcuts.append(newShortcut)
+                    saveCustomShortcuts(shortcuts)
                 }
             }
         }
@@ -378,6 +366,18 @@ struct SettingsView: View {
                 .multilineTextAlignment(.trailing)
                 .foregroundStyle(.blue)
                 .frame(maxWidth: 150)
+        }
+    }
+
+    /// Executa um custom shortcut: se tem nome de shortcut, roda via Atalhos; senão, abre URL direta
+    private func executeCustomShortcut(_ shortcut: CustomShortcut) {
+        if !shortcut.shortcutName.isEmpty {
+            RadioControlService.shared.openViaShortcut(
+                name: shortcut.shortcutName,
+                fallbackURL: shortcut.settingsURL
+            )
+        } else {
+            RadioControlService.shared.openDirectURL(shortcut.settingsURL)
         }
     }
 
