@@ -169,9 +169,8 @@ struct MainToggleView: View {
 
     private var clearHistoryButton: some View {
         Button {
-            RadioControlService.shared.openViaShortcut(
-                name: "Safari",
-                fallbackURL: "prefs:roo=SAFARI&path=CLEAR_HISTORY_AND_DATA"
+            RadioControlService.shared.openDirectURL(
+                "settings-navigation://com.apple.Settings.Apps/com.apple.mobilesafari#CLEAR_HISTORY_AND_DATA"
             )
         } label: {
             HStack(spacing: 12) {

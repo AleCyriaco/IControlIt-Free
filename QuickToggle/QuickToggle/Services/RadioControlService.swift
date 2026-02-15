@@ -114,14 +114,10 @@ final class RadioControlService: NSObject, ObservableObject {
 
     /// Abre os Ajustes do iOS para o serviço especificado.
     ///
-    /// Estratégia (iOS 26+):
-    /// 1. Tenta via Apple Shortcuts (run-shortcut) - funciona com deep link
-    /// 2. Fallback: abre URL diretamente (vai para raiz dos Ajustes no iOS 26)
-    ///
-    /// O app Atalhos tem permissão especial do sistema para deep linking.
-    /// Atalhos devem ser criados pelo usuário com nomes padrão: QT_WiFi, QT_Bluetooth, QT_GPS
+    /// Usa settings-navigation:// (iOS 26+) que funciona diretamente de apps.
+    /// Ref: https://github.com/paralevel/ios-settings-urls
     func openSettings(for service: RadioServiceType) {
-        openViaShortcut(name: service.shortcutName, fallbackURL: service.settingsURLScheme)
+        openDirectURL(service.settingsURLScheme)
     }
 
     /// Abre uma URL de Ajustes via Apple Shortcuts para garantir deep linking no iOS 26+

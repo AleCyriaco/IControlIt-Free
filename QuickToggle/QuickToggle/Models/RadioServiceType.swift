@@ -41,30 +41,14 @@ enum RadioServiceType: String, CaseIterable, Codable, Identifiable {
     }
 
     /// URL Schemes para abrir a seção exata dos Ajustes do iOS.
-    /// Usa prefs:root= como primário (mesmo formato do app Atalhos da Apple).
+    /// Usa settings-navigation:// (iOS 26+) como formato principal.
+    /// Ref: https://github.com/paralevel/ios-settings-urls
     var settingsURLScheme: String {
         switch self {
-        case .wifi: return "prefs:root=WIFI"
-        case .bluetooth: return "prefs:root=Bluetooth"
-        case .location: return "prefs:root=Privacy&path=LOCATION"
+        case .wifi: return "settings-navigation://com.apple.Settings.WiFi"
+        case .bluetooth: return "settings-navigation://com.apple.Settings.Bluetooth"
+        case .location: return "settings-navigation://com.apple.Settings.PrivacyAndSecurity/LOCATION"
         }
-    }
-
-    /// Fallbacks caso o scheme principal não funcione
-    var settingsURLFallbacks: [String] {
-        switch self {
-        case .wifi:
-            return ["App-prefs:WIFI", "App-prefs:root=WIFI"]
-        case .bluetooth:
-            return ["App-prefs:Bluetooth", "App-prefs:root=Bluetooth"]
-        case .location:
-            return ["App-prefs:Privacy&path=LOCATION", "App-prefs:root=Privacy&path=LOCATION"]
-        }
-    }
-
-    /// URL alternativa usando o scheme padrão de Ajustes
-    var settingsURLFallback: String {
-        return "App-prefs:root"
     }
 
     /// Nome do Apple Shortcut que faz deep link para esta seção dos Ajustes

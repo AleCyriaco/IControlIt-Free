@@ -184,11 +184,11 @@ struct ContentView: View {
     private func openSettingsTarget(_ target: String) {
         let urlString: String
         switch target {
-        case "safari": urlString = "App-prefs:SAFARI&path=CLEAR_HISTORY_AND_DATA"
-        case "wifi": urlString = "App-prefs:WIFI"
-        case "bluetooth": urlString = "App-prefs:Bluetooth"
-        case "location": urlString = "App-prefs:Privacy&path=LOCATION"
-        default: urlString = UIApplication.openSettingsURLString
+        case "safari": urlString = "settings-navigation://com.apple.Settings.Apps/com.apple.mobilesafari#CLEAR_HISTORY_AND_DATA"
+        case "wifi": urlString = "settings-navigation://com.apple.Settings.WiFi"
+        case "bluetooth": urlString = "settings-navigation://com.apple.Settings.Bluetooth"
+        case "location": urlString = "settings-navigation://com.apple.Settings.PrivacyAndSecurity/LOCATION"
+        default: urlString = "settings-navigation://com.apple.Settings"
         }
         if let url = URL(string: urlString) {
             UIApplication.shared.open(url)

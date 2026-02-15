@@ -51,8 +51,7 @@ struct SettingsView: View {
                         icon: "safari",
                         color: .blue,
                         service: nil,
-                        customURL: "prefs:roo=SAFARI&path=CLEAR_HISTORY_AND_DATA",
-                        shortcutName: "Safari"
+                        customURL: "settings-navigation://com.apple.Settings.Apps/com.apple.mobilesafari#CLEAR_HISTORY_AND_DATA"
                     )
                     settingsShortcut(
                         title: "Bateria",
@@ -60,7 +59,7 @@ struct SettingsView: View {
                         icon: "battery.100percent",
                         color: .green,
                         service: nil,
-                        customURL: "prefs:root=BATTERY_USAGE"
+                        customURL: "settings-navigation://com.apple.Settings.Battery"
                     )
                     settingsShortcut(
                         title: "Dados Celulares",
@@ -68,7 +67,7 @@ struct SettingsView: View {
                         icon: "antenna.radiowaves.left.and.right",
                         color: Color.teal,
                         service: nil,
-                        customURL: "prefs:root=MOBILE_DATA_SETTINGS_ID"
+                        customURL: "settings-navigation://com.apple.Settings.Cellular"
                     )
                     settingsShortcut(
                         title: "Foco",
@@ -76,7 +75,7 @@ struct SettingsView: View {
                         icon: "moon.fill",
                         color: .indigo,
                         service: nil,
-                        customURL: "prefs:root=DO_NOT_DISTURB"
+                        customURL: "settings-navigation://com.apple.Settings.Focus"
                     )
                     settingsShortcut(
                         title: "Notificações",
@@ -84,7 +83,7 @@ struct SettingsView: View {
                         icon: "bell.badge.fill",
                         color: .red,
                         service: nil,
-                        customURL: "prefs:root=NOTIFICATIONS_ID"
+                        customURL: "settings-navigation://com.apple.Settings.Notifications"
                     )
                     settingsShortcut(
                         title: "Tela e Brilho",
@@ -92,7 +91,7 @@ struct SettingsView: View {
                         icon: "sun.max.fill",
                         color: .orange,
                         service: nil,
-                        customURL: "prefs:root=DISPLAY"
+                        customURL: "settings-navigation://com.apple.Settings.Display"
                     )
                     settingsShortcut(
                         title: "Sons e Hápticos",
@@ -100,7 +99,7 @@ struct SettingsView: View {
                         icon: "speaker.wave.3.fill",
                         color: .pink,
                         service: nil,
-                        customURL: "prefs:root=Sounds"
+                        customURL: "settings-navigation://com.apple.Settings.Sounds"
                     )
                     settingsShortcut(
                         title: "VPN",
@@ -108,7 +107,7 @@ struct SettingsView: View {
                         icon: "lock.shield.fill",
                         color: .purple,
                         service: nil,
-                        customURL: "prefs:root=VPN"
+                        customURL: "settings-navigation://com.apple.Settings#com.apple.Settings.VPN"
                     )
                     settingsShortcut(
                         title: "Armazenamento",
@@ -116,7 +115,7 @@ struct SettingsView: View {
                         icon: "internaldrive.fill",
                         color: .gray,
                         service: nil,
-                        customURL: "prefs:root=General&path=STORAGE_MGMT"
+                        customURL: "settings-navigation://com.apple.Settings.General/STORAGE_MGMT"
                     )
                     settingsShortcut(
                         title: "Senhas",
@@ -124,14 +123,15 @@ struct SettingsView: View {
                         icon: "key.fill",
                         color: .gray,
                         service: nil,
-                        customURL: "prefs:root=PASSWORDS"
+                        customURL: "settings-navigation://com.apple.Settings.Apps/com.apple.Passwords"
                     )
                     settingsShortcut(
                         title: "Ajustes gerais",
                         subtitle: "Abrir Ajustes do iOS",
                         icon: "gear",
                         color: .gray,
-                        service: nil
+                        service: nil,
+                        customURL: "settings-navigation://com.apple.Settings"
                     )
                 } header: {
                     Text("Mais Atalhos")
@@ -357,10 +357,10 @@ struct SettingsView: View {
 
     private var shortcutConfigs: [(name: String, url: String, icon: String, color: Color)] {
         [
-            ("WiFi", "prefs:root=WIFI", "wifi", .green),
-            ("Bluetooth", "prefs:root=Bluetooth", "dot.radiowaves.left.and.right", .blue),
-            ("GPS", "prefs:root=Privacy&path=LOCATION", "location.fill", .red),
-            ("Safari", "prefs:roo=SAFARI&path=CLEAR_HISTORY_AND_DATA", "safari", .blue),
+            ("WiFi", "settings-navigation://com.apple.Settings.WiFi", "wifi", .green),
+            ("Bluetooth", "settings-navigation://com.apple.Settings.Bluetooth", "dot.radiowaves.left.and.right", .blue),
+            ("GPS", "settings-navigation://com.apple.Settings.PrivacyAndSecurity/LOCATION", "location.fill", .red),
+            ("Safari", "settings-navigation://com.apple.Settings.Apps/com.apple.mobilesafari#CLEAR_HISTORY_AND_DATA", "safari", .blue),
         ]
     }
 

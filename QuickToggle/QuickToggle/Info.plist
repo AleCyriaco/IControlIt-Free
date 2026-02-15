@@ -67,6 +67,7 @@
 	<string>QuickToggle verifica a conectividade de rede para detectar o estado do Wi-Fi.</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>settings-navigation</string>
 		<string>prefs</string>
 		<string>App-prefs</string>
 		<string>shortcuts</string>

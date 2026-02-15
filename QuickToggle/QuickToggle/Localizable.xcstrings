@@ -1084,40 +1084,47 @@
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Location settings" } }
       }
     },
-    "step_1" : {
+    "step_1_install" : {
       "localizations" : {
-        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Toque \"Copiar e Criar\" no atalho desejado" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap \"Copy & Create\" on the desired shortcut" } }
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Toque \"Instalar\" no atalho desejado" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap \"Install\" on the desired shortcut" } }
       }
     },
-    "step_2" : {
+    "step_2_install" : {
       "localizations" : {
-        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "O app Atalhos vai abrir automaticamente" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "The Shortcuts app will open automatically" } }
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "O app Atalhos vai abrir para adicionar o atalho" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "The Shortcuts app will open to add the shortcut" } }
       }
     },
-    "step_3" : {
+    "step_3_install" : {
       "localizations" : {
-        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Toque em (+) para adicionar ação" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap (+) to add an action" } }
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Confirme a instalação e pronto!" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Confirm the installation and you're done!" } }
       }
     },
-    "step_4" : {
+    "Instalado!" : {
       "localizations" : {
-        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Busque \"Abrir URL\" e adicione" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Search for \"Open URL\" and add it" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Installed!" } }
       }
     },
-    "step_5" : {
+    "Instalar" : {
       "localizations" : {
-        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Cole a URL (já está copiada)" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Paste the URL (already copied)" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Install" } }
       }
     },
-    "step_6" : {
+    "Arquivo não encontrado: %@" : {
       "localizations" : {
-        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Renomeie o atalho com o nome indicado" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Rename the shortcut with the indicated name" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "File not found: %@" } }
+      }
+    },
+    "Erro ao preparar arquivo" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Error preparing file" } }
+      }
+    },
+    "Erro" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Error" } }
       }
     },
     "Alertar quando bateria atingir %lld%%" : {
