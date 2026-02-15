@@ -304,11 +304,19 @@ struct SettingsView: View {
 
                 // Sobre
                 Section("Sobre") {
-                    HStack {
-                        Text("Versão")
-                        Spacer()
-                        Text("1.0.0")
-                            .foregroundStyle(.secondary)
+                    Button {
+                        if let url = URL(string: "https://virttus.com") {
+                            UIApplication.shared.open(url)
+                        }
+                    } label: {
+                        HStack {
+                            Text("Versão 1.0.0")
+                                .foregroundStyle(.primary)
+                            Spacer()
+                            Text("Build by virttus.com")
+                                .font(.caption)
+                                .foregroundStyle(.blue)
+                        }
                     }
 
                     NavigationLink {
