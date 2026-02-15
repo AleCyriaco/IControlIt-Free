@@ -144,12 +144,16 @@ struct ShortcutSetupView: View {
 
     private func installShortcut(_ shortcut: (name: String, fileName: String, icon: String, color: Color, description: String)) {
         let fileURL = "\(baseURL)/\(shortcut.fileName).shortcut"
-        guard let encodedURL = fileURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-              let encodedName = shortcut.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
 
-        let importURLString = "shortcuts://import-shortcut/?url=\(encodedURL)&name=\(encodedName)"
+        var components = URLComponents()
+        components.scheme = "shortcuts"
+        components.host = "import-shortcut"
+        components.queryItems = [
+            URLQueryItem(name: "url", value: fileURL),
+            URLQueryItem(name: "name", value: shortcut.name)
+        ]
 
-        if let url = URL(string: importURLString) {
+        if let url = components.url {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
 
