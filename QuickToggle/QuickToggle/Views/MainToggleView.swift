@@ -44,10 +44,12 @@ struct MainToggleView: View {
                     // Atalho limpar histórico
                     clearHistoryButton
 
+                    #if PREMIUM
                     // Atalhos customizados do catálogo
                     if !customShortcuts.isEmpty {
                         customShortcutsSection
                     }
+                    #endif
 
                     // Atalhos rápidos
                     shortcutsSection
@@ -58,7 +60,7 @@ struct MainToggleView: View {
                 .padding(.vertical)
             }
             .background(backgroundGradient)
-            .navigationTitle("QuickToggle")
+            .navigationTitle("IControlIt")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -84,11 +86,11 @@ struct MainToggleView: View {
                 .foregroundStyle(Color(batteryService.batteryColor))
 
             VStack(alignment: .leading, spacing: 2) {
-                Text("\(String(localized: "Bateria")): \(batteryService.batteryPercentage)%")
+                Text(String(localized: "Battery: \(batteryService.batteryPercentage)%"))
                     .font(.subheadline.weight(.semibold))
 
                 if batteryService.isLowPowerMode {
-                    Text("Modo Economia ativo")
+                    Text("Low Power Mode active", comment: "Battery status label")
                         .font(.caption)
                         .foregroundStyle(.yellow)
                 }
@@ -97,7 +99,7 @@ struct MainToggleView: View {
             Spacer()
 
             if batteryService.batteryState == .charging {
-                Label("Carregando", systemImage: "bolt.fill")
+                Label(String(localized: "Charging"), systemImage: "bolt.fill")
                     .font(.caption)
                     .foregroundStyle(.green)
             }
@@ -114,7 +116,7 @@ struct MainToggleView: View {
             Button {
                 viewModel.turnAllOff()
             } label: {
-                Label("Desligar Tudo", systemImage: "power")
+                Label(String(localized: "Turn Off All"), systemImage: "power")
                     .font(.subheadline.weight(.semibold))
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
@@ -125,7 +127,7 @@ struct MainToggleView: View {
             Button {
                 viewModel.turnAllOn()
             } label: {
-                Label("Ligar Tudo", systemImage: "bolt.fill")
+                Label(String(localized: "Turn On All"), systemImage: "bolt.fill")
                     .font(.subheadline.weight(.semibold))
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
@@ -143,12 +145,12 @@ struct MainToggleView: View {
             HStack {
                 Image(systemName: "exclamationmark.triangle.fill")
                     .foregroundStyle(.yellow)
-                Text("Bateria baixa")
+                Text("Low battery", comment: "Battery warning title")
                     .font(.subheadline.weight(.semibold))
                 Spacer()
             }
 
-            Text("Desligar serviços não essenciais pode economizar bateria.")
+            Text("Turning off non-essential services can save battery.", comment: "Battery warning description")
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
@@ -197,10 +199,10 @@ struct MainToggleView: View {
                     .background(.blue.opacity(0.12), in: RoundedRectangle(cornerRadius: 10))
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Limpar Histórico de Internet")
+                    Text("Clear Browsing History", comment: "Safari clear history button")
                         .font(.subheadline.weight(.semibold))
                         .foregroundStyle(.primary)
-                    Text("Abrir Safari nos Ajustes para limpar dados")
+                    Text("Open Safari in Settings to clear data", comment: "Safari clear history description")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -224,7 +226,7 @@ struct MainToggleView: View {
             HStack {
                 Image(systemName: "square.grid.2x2")
                     .foregroundStyle(.blue)
-                Text(String(localized: "Meus Atalhos"))
+                Text("My Shortcuts", comment: "Custom shortcuts section title")
                     .font(.subheadline.weight(.semibold))
                 Spacer()
             }
@@ -282,27 +284,27 @@ struct MainToggleView: View {
             HStack {
                 Image(systemName: "command")
                     .foregroundStyle(.blue)
-                Text("Atalhos Rápidos")
+                Text("Quick Shortcuts", comment: "Shortcuts section title")
                     .font(.subheadline.weight(.semibold))
                 Spacer()
             }
 
-            Text("Use Siri ou o app Atalhos para controlar rapidamente:")
+            Text("Use Siri or the Shortcuts app for quick control:", comment: "Shortcuts section description")
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
             VStack(spacing: 8) {
                 shortcutRow(
-                    phrase: "\"Hey Siri, desliga tudo\"",
-                    description: "Desliga Wi-Fi, Bluetooth e GPS"
+                    phrase: String(localized: "\"Hey Siri, turn off all\""),
+                    description: String(localized: "Turns off Wi-Fi, Bluetooth and GPS")
                 )
                 shortcutRow(
-                    phrase: "\"Hey Siri, modo privacidade\"",
-                    description: "Aplica perfil de privacidade"
+                    phrase: String(localized: "\"Hey Siri, privacy mode\""),
+                    description: String(localized: "Applies privacy profile")
                 )
                 shortcutRow(
-                    phrase: "\"Hey Siri, economia de bateria\"",
-                    description: "Desliga serviços não essenciais"
+                    phrase: String(localized: "\"Hey Siri, save battery\""),
+                    description: String(localized: "Turns off non-essential services")
                 )
             }
         }
@@ -338,7 +340,7 @@ struct MainToggleView: View {
             HStack {
                 Image(systemName: "leaf.fill")
                     .foregroundStyle(.green)
-                Text("Economia Estimada")
+                Text("Estimated Savings", comment: "Savings card title")
                     .font(.subheadline.weight(.semibold))
                 Spacer()
             }
@@ -348,7 +350,7 @@ struct MainToggleView: View {
                     Text(estimate.formattedPercent)
                         .font(.title2.weight(.bold))
                         .foregroundStyle(.green)
-                    Text("por hora")
+                    Text("per hour", comment: "Savings unit")
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
@@ -360,14 +362,14 @@ struct MainToggleView: View {
                     Text(estimate.formattedMinutes)
                         .font(.title2.weight(.bold))
                         .foregroundStyle(.green)
-                    Text("extra por dia")
+                    Text("extra per day", comment: "Savings unit")
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
             }
             .frame(maxWidth: .infinity)
 
-            Text("* Estimativa ao desligar todos os serviços. Valores reais podem variar.")
+            Text("* Estimate when turning off all services. Actual values may vary.", comment: "Savings disclaimer")
                 .font(.caption2)
                 .foregroundStyle(.tertiary)
         }

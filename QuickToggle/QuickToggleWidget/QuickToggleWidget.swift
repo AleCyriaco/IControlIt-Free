@@ -4,9 +4,9 @@ import AppIntents
 
 // MARK: - Timeline Provider
 
-struct QuickToggleProvider: TimelineProvider {
-    func placeholder(in context: Context) -> QuickToggleEntry {
-        QuickToggleEntry(
+struct IControlItProvider: TimelineProvider {
+    func placeholder(in context: Context) -> IControlItEntry {
+        IControlItEntry(
             date: Date(),
             wifiOn: true,
             bluetoothOn: true,
@@ -15,12 +15,12 @@ struct QuickToggleProvider: TimelineProvider {
         )
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (QuickToggleEntry) -> Void) {
+    func getSnapshot(in context: Context, completion: @escaping (IControlItEntry) -> Void) {
         let entry = readCurrentState()
         completion(entry)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<QuickToggleEntry>) -> Void) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<IControlItEntry>) -> Void) {
         let entry = readCurrentState()
         // Atualizar a cada 15 minutos
         let nextUpdate = Calendar.current.date(byAdding: .minute, value: 15, to: Date())!
@@ -28,21 +28,21 @@ struct QuickToggleProvider: TimelineProvider {
         completion(timeline)
     }
 
-    private func readCurrentState() -> QuickToggleEntry {
-        let defaults = UserDefaults(suiteName: "group.com.quicktoggle.shared")
-        return QuickToggleEntry(
+    private func readCurrentState() -> IControlItEntry {
+        let defaults = UserDefaults(suiteName: "group.com.icontrolit.shared")
+        return IControlItEntry(
             date: Date(),
-            wifiOn: defaults?.bool(forKey: "quicktoggle_wifi_state") ?? true,
-            bluetoothOn: defaults?.bool(forKey: "quicktoggle_bluetooth_state") ?? true,
-            locationOn: defaults?.bool(forKey: "quicktoggle_location_state") ?? true,
-            batteryLevel: defaults?.integer(forKey: "quicktoggle_battery_level") ?? 100
+            wifiOn: defaults?.bool(forKey: "icontrolit_wifi_state") ?? true,
+            bluetoothOn: defaults?.bool(forKey: "icontrolit_bluetooth_state") ?? true,
+            locationOn: defaults?.bool(forKey: "icontrolit_location_state") ?? true,
+            batteryLevel: defaults?.integer(forKey: "icontrolit_battery_level") ?? 100
         )
     }
 }
 
 // MARK: - Timeline Entry
 
-struct QuickToggleEntry: TimelineEntry {
+struct IControlItEntry: TimelineEntry {
     let date: Date
     let wifiOn: Bool
     let bluetoothOn: Bool
@@ -58,7 +58,7 @@ struct WidgetToggleWiFiIntent: AppIntent {
     static var openAppWhenRun: Bool { true }
 
     func perform() async throws -> some IntentResult {
-        UserDefaults(suiteName: "group.com.quicktoggle.shared")?
+        UserDefaults(suiteName: "group.com.icontrolit.shared")?
             .set("wifi", forKey: "pending_toggle_action")
         return .result()
     }
@@ -70,7 +70,7 @@ struct WidgetToggleBluetoothIntent: AppIntent {
     static var openAppWhenRun: Bool { true }
 
     func perform() async throws -> some IntentResult {
-        UserDefaults(suiteName: "group.com.quicktoggle.shared")?
+        UserDefaults(suiteName: "group.com.icontrolit.shared")?
             .set("bluetooth", forKey: "pending_toggle_action")
         return .result()
     }
@@ -82,7 +82,7 @@ struct WidgetToggleLocationIntent: AppIntent {
     static var openAppWhenRun: Bool { true }
 
     func perform() async throws -> some IntentResult {
-        UserDefaults(suiteName: "group.com.quicktoggle.shared")?
+        UserDefaults(suiteName: "group.com.icontrolit.shared")?
             .set("location", forKey: "pending_toggle_action")
         return .result()
     }
@@ -90,8 +90,8 @@ struct WidgetToggleLocationIntent: AppIntent {
 
 // MARK: - Widget Views
 
-struct QuickToggleWidgetEntryView: View {
-    var entry: QuickToggleProvider.Entry
+struct IControlItWidgetEntryView: View {
+    var entry: IControlItProvider.Entry
     @Environment(\.widgetFamily) var family
 
     var body: some View {
@@ -115,7 +115,7 @@ struct QuickToggleWidgetEntryView: View {
 
     private var smallWidget: some View {
         VStack(spacing: 8) {
-            Text("QuickToggle")
+            Text("IControlIt")
                 .font(.caption2.weight(.semibold))
                 .foregroundStyle(.secondary)
 
@@ -187,7 +187,7 @@ struct QuickToggleWidgetEntryView: View {
     private var largeWidget: some View {
         VStack(spacing: 12) {
             HStack {
-                Text("QuickToggle")
+                Text("IControlIt")
                     .font(.headline)
                 Spacer()
                 HStack(spacing: 4) {
@@ -207,7 +207,7 @@ struct QuickToggleWidgetEntryView: View {
                     name: "Wi-Fi",
                     isOn: entry.wifiOn,
                     color: .green,
-                    impact: "\(String(localized: "Impacto")): \(String(localized: "Médio"))"
+                    impact: "\(String(localized: "Impact")): \(String(localized: "Medium"))"
                 )
             }
             .buttonStyle(.plain)
@@ -219,7 +219,7 @@ struct QuickToggleWidgetEntryView: View {
                     name: "Bluetooth",
                     isOn: entry.bluetoothOn,
                     color: .blue,
-                    impact: "\(String(localized: "Impacto")): \(String(localized: "Baixo"))"
+                    impact: "\(String(localized: "Impact")): \(String(localized: "Low"))"
                 )
             }
             .buttonStyle(.plain)
@@ -228,10 +228,10 @@ struct QuickToggleWidgetEntryView: View {
             Button(intent: WidgetToggleLocationIntent()) {
                 widgetRow(
                     icon: "location.fill",
-                    name: String(localized: "Localização"),
+                    name: String(localized: "Location"),
                     isOn: entry.locationOn,
                     color: .red,
-                    impact: "\(String(localized: "Impacto")): \(String(localized: "Alto"))"
+                    impact: "\(String(localized: "Impact")): \(String(localized: "High"))"
                 )
             }
             .buttonStyle(.plain)
@@ -239,7 +239,7 @@ struct QuickToggleWidgetEntryView: View {
             Divider()
 
             HStack(spacing: 8) {
-                Text("Toque para abrir Ajustes")
+                Text("Tap to open Settings", comment: "Widget hint text")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
                 Spacer()
@@ -268,14 +268,14 @@ struct QuickToggleWidgetEntryView: View {
     private var accessoryRectangularWidget: some View {
         HStack(spacing: 8) {
             VStack(alignment: .leading, spacing: 2) {
-                Text("QuickToggle")
+                Text("IControlIt")
                     .font(.headline)
 
                 HStack(spacing: 4) {
                     statusDot(isOn: entry.wifiOn, color: .green)
                     statusDot(isOn: entry.bluetoothOn, color: .blue)
                     statusDot(isOn: entry.locationOn, color: .red)
-                    Text("\(activeCount)/3 \(String(localized: "ativos"))")
+                    Text("\(activeCount)/3 \(String(localized: "active"))")
                         .font(.caption2)
                 }
             }
@@ -341,7 +341,7 @@ struct QuickToggleWidgetEntryView: View {
                 Circle()
                     .fill(isOn ? color : .gray)
                     .frame(width: 8, height: 8)
-                Text(isOn ? String(localized: "Ligado") : String(localized: "Desligado"))
+                Text(isOn ? String(localized: "On") : String(localized: "Off"))
                     .font(.caption)
                     .foregroundStyle(isOn ? color : .secondary)
             }
@@ -364,14 +364,14 @@ struct QuickToggleWidgetEntryView: View {
 
 // MARK: - Widget Configuration
 
-struct QuickToggleWidget: Widget {
-    let kind: String = "QuickToggleWidget"
+struct IControlItWidget: Widget {
+    let kind: String = "IControlItWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: QuickToggleProvider()) { entry in
-            QuickToggleWidgetEntryView(entry: entry)
+        StaticConfiguration(kind: kind, provider: IControlItProvider()) { entry in
+            IControlItWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("QuickToggle")
+        .configurationDisplayName("IControlIt")
         .description("Quick control of Wi-Fi, Bluetooth and GPS")
         .supportedFamilies([
             .systemSmall,
@@ -386,19 +386,19 @@ struct QuickToggleWidget: Widget {
 // MARK: - Previews
 
 #Preview("Small", as: .systemSmall) {
-    QuickToggleWidget()
+    IControlItWidget()
 } timeline: {
-    QuickToggleEntry(date: .now, wifiOn: true, bluetoothOn: true, locationOn: false, batteryLevel: 85)
+    IControlItEntry(date: .now, wifiOn: true, bluetoothOn: true, locationOn: false, batteryLevel: 85)
 }
 
 #Preview("Medium", as: .systemMedium) {
-    QuickToggleWidget()
+    IControlItWidget()
 } timeline: {
-    QuickToggleEntry(date: .now, wifiOn: true, bluetoothOn: false, locationOn: true, batteryLevel: 62)
+    IControlItEntry(date: .now, wifiOn: true, bluetoothOn: false, locationOn: true, batteryLevel: 62)
 }
 
 #Preview("Large", as: .systemLarge) {
-    QuickToggleWidget()
+    IControlItWidget()
 } timeline: {
-    QuickToggleEntry(date: .now, wifiOn: true, bluetoothOn: true, locationOn: true, batteryLevel: 45)
+    IControlItEntry(date: .now, wifiOn: true, bluetoothOn: true, locationOn: true, batteryLevel: 45)
 }

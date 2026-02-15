@@ -38,7 +38,7 @@ struct BatterySavingView: View {
                     .padding(.vertical, 8)
 
                     if batteryService.isLowPowerMode {
-                        Label("Modo Economia de Energia ativo", systemImage: "bolt.fill")
+                        Label(String(localized: "Low Power Mode active"), systemImage: "bolt.fill")
                             .font(.caption)
                             .foregroundStyle(.yellow)
                             .padding(.horizontal, 12)
@@ -49,7 +49,7 @@ struct BatterySavingView: View {
             }
 
             // Impacto por serviço
-            Section("Consumo por Serviço") {
+            Section(String(localized: "Consumption per Service")) {
                 ForEach(RadioServiceType.allCases) { service in
                     HStack(spacing: 14) {
                         Image(systemName: service.icon)
@@ -108,7 +108,7 @@ struct BatterySavingView: View {
                     HStack {
                         Image(systemName: "hand.tap")
                             .foregroundStyle(.secondary)
-                        Text("Selecione serviços acima para ver a economia estimada")
+                        Text("Select services above to see estimated savings", comment: "Battery savings empty state")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
@@ -123,26 +123,26 @@ struct BatterySavingView: View {
                         HStack(spacing: 24) {
                             savingsMetric(
                                 value: estimate.formattedPercent,
-                                label: "economia/hora",
+                                label: String(localized: "savings/hour"),
                                 icon: "percent"
                             )
 
                             savingsMetric(
                                 value: estimate.formattedMinutes,
-                                label: "extra/dia",
+                                label: String(localized: "extra/day"),
                                 icon: "clock"
                             )
 
                             savingsMetric(
                                 value: String(format: "%.0f", estimate.mahPerHour),
-                                label: "mAh/hora",
+                                label: String(localized: "mAh/hour"),
                                 icon: "bolt"
                             )
                         }
 
                         // Serviços selecionados
                         HStack(spacing: 8) {
-                            Text("Desligando:")
+                            Text("Turning off:", comment: "Label before list of services to disable")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
 
@@ -160,7 +160,7 @@ struct BatterySavingView: View {
                         Button {
                             applyBatterySaving()
                         } label: {
-                            Label("Abrir Ajustes para desligar", systemImage: "arrow.right")
+                            Label(String(localized: "Open Settings to turn off"), systemImage: "arrow.right")
                                 .font(.subheadline.weight(.medium))
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 12)
@@ -171,36 +171,36 @@ struct BatterySavingView: View {
                     .padding(.vertical, 4)
                 }
             } header: {
-                Text("Economia Estimada")
+                Text("Estimated Savings", comment: "Battery estimated savings section header")
             } footer: {
-                Text("* Valores são estimativas baseadas em consumo médio. O consumo real pode variar conforme uso, intensidade de sinal e outros fatores.")
+                Text("* Values are estimates based on average consumption. Actual consumption may vary depending on usage, signal strength, and other factors.", comment: "Battery savings disclaimer")
             }
 
             // Dicas
-            Section("Dicas de Economia") {
+            Section(String(localized: "Battery Saving Tips")) {
                 tipRow(
                     icon: "wifi.slash",
-                    title: "Desligar Wi-Fi quando não usar",
-                    description: "O Wi-Fi consome energia buscando redes disponíveis"
+                    title: String(localized: "Turn off Wi-Fi when not in use"),
+                    description: String(localized: "Wi-Fi consumes power searching for available networks")
                 )
                 tipRow(
                     icon: "location.slash",
-                    title: "GPS é o maior consumidor",
-                    description: "Desligue quando não precisar de navegação ou rastreamento"
+                    title: String(localized: "GPS is the biggest consumer"),
+                    description: String(localized: "Turn it off when you don't need navigation or tracking")
                 )
                 tipRow(
                     icon: "moon.fill",
-                    title: "Agende desligamentos à noite",
-                    description: "Use a aba Agenda para desligar serviços automaticamente ao dormir"
+                    title: String(localized: "Schedule shutdowns at night"),
+                    description: String(localized: "Use the Schedule tab to automatically turn off services at bedtime")
                 )
                 tipRow(
                     icon: "battery.75percent",
-                    title: "Modo Economia do iOS",
-                    description: "Combine com o Modo Economia de Energia do iOS para melhor resultado"
+                    title: String(localized: "iOS Low Power Mode"),
+                    description: String(localized: "Combine with iOS Low Power Mode for best results")
                 )
             }
         }
-        .navigationTitle("Economia de Bateria")
+        .navigationTitle(String(localized: "Battery Saving"))
         .navigationBarTitleDisplayMode(.inline)
     }
 

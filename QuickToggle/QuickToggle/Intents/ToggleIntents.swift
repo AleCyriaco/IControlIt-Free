@@ -170,7 +170,7 @@ struct ToggleLocationIntent: AppIntent {
 
 // MARK: - App Shortcuts Provider
 
-struct QuickToggleShortcuts: AppShortcutsProvider {
+struct IControlItShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
             intent: TurnAllOffIntent(),

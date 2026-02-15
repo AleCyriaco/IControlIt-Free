@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>pt-BR</string>
 	<key>CFBundleDisplayName</key>
-	<string>QuickToggle</string>
+	<string>IControlIt</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -33,10 +33,10 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>com.quicktoggle.app</string>
+			<string>com.icontrolit.app</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>quicktoggle</string>
+				<string>icontrolit</string>
 			</array>
 		</dict>
 	</array>
@@ -58,13 +58,13 @@
 		<string>armv7</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>QuickToggle precisa de acesso à localização para monitorar o estado do GPS e fornecer controle rápido.</string>
+	<string>IControlIt precisa de acesso à localização para monitorar o estado do GPS e fornecer controle rápido.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>QuickToggle precisa de acesso à localização para monitorar o estado do GPS em segundo plano.</string>
+	<string>IControlIt precisa de acesso à localização para monitorar o estado do GPS em segundo plano.</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>QuickToggle precisa de acesso ao Bluetooth para detectar se o Bluetooth está ligado ou desligado.</string>
+	<string>IControlIt precisa de acesso ao Bluetooth para detectar se o Bluetooth está ligado ou desligado.</string>
 	<key>NSLocalNetworkUsageDescription</key>
-	<string>QuickToggle verifica a conectividade de rede para detectar o estado do Wi-Fi.</string>
+	<string>IControlIt verifica a conectividade de rede para detectar o estado do Wi-Fi.</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>settings-navigation</string>

@@ -28,14 +28,14 @@ final class RadioControlService: NSObject, ObservableObject {
     private var bluetoothManager: CBCentralManager?
     private let locationManager = CLLocationManager()
     private let pathMonitor = NWPathMonitor()
-    private let monitorQueue = DispatchQueue(label: "com.quicktoggle.networkmonitor")
+    private let monitorQueue = DispatchQueue(label: "com.icontrolit.networkmonitor")
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - UserDefaults Keys
 
-    private let wifiStateKey = "quicktoggle_wifi_state"
-    private let bluetoothStateKey = "quicktoggle_bluetooth_state"
-    private let locationStateKey = "quicktoggle_location_state"
+    private let wifiStateKey = "icontrolit_wifi_state"
+    private let bluetoothStateKey = "icontrolit_bluetooth_state"
+    private let locationStateKey = "icontrolit_location_state"
 
     override init() {
         super.init()
@@ -138,7 +138,7 @@ final class RadioControlService: NSObject, ObservableObject {
         case .bluetooth: key = bluetoothStateKey
         case .location: key = locationStateKey
         }
-        if let groupDefaults = UserDefaults(suiteName: "group.com.quicktoggle.shared") {
+        if let groupDefaults = UserDefaults(suiteName: "group.com.icontrolit.shared") {
             groupDefaults.set(isOn, forKey: key)
         }
         // Pedir ao widget para atualizar
@@ -296,11 +296,11 @@ enum ServiceStatus: String, Codable {
 
     var displayName: String {
         switch self {
-        case .on: return "Ligado"
-        case .off: return "Desligado"
-        case .unknown: return "Desconhecido"
-        case .restricted: return "Restrito"
-        case .unsupported: return "Não suportado"
+        case .on: return String(localized: "On")
+        case .off: return String(localized: "Off")
+        case .unknown: return String(localized: "Unknown")
+        case .restricted: return String(localized: "Restricted")
+        case .unsupported: return String(localized: "Not supported")
         }
     }
 

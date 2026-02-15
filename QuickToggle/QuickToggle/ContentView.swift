@@ -13,11 +13,11 @@ struct ContentView: View {
 
         var title: LocalizedStringKey {
             switch self {
-            case .toggles: return "Controles"
-            case .profiles: return "Perfis"
-            case .schedule: return "Agenda"
-            case .history: return "Histórico"
-            case .settings: return "Ajustes"
+            case .toggles: return "Controls"
+            case .profiles: return "Profiles"
+            case .schedule: return "Schedule"
+            case .history: return "History"
+            case .settings: return "Settings"
             }
         }
 
@@ -57,43 +57,43 @@ struct ContentView: View {
         }
         .tint(.blue)
         .onOpenURL { url in
-            // quicktoggle://tab/profiles, quicktoggle://tab/schedule, etc.
+            // icontrolit://tab/profiles, icontrolit://tab/schedule, etc.
             if url.host == "tab", let tabName = url.pathComponents.last,
                let tab = Tab.allCases.first(where: { "\($0)".lowercased() == tabName }) {
                 selectedTab = tab
             }
-            // quicktoggle://profile/economia, quicktoggle://profile/aviao-plus, etc.
+            // icontrolit://profile/economia, icontrolit://profile/aviao-plus, etc.
             else if url.host == "profile", let profileSlug = url.pathComponents.last {
                 selectedTab = .profiles
                 applyProfileBySlug(profileSlug)
             }
-            // quicktoggle://create-profile?name=Trabalho&wifi=on&bt=off&gps=off&icon=briefcase.fill
+            // icontrolit://create-profile?name=Trabalho&wifi=on&bt=off&gps=off&icon=briefcase.fill
             else if url.host == "create-profile" {
                 selectedTab = .profiles
                 createProfileFromURL(url)
             }
-            // quicktoggle://create-schedule?name=GPS+noite&service=location&action=off&hour=23&minute=0&days=1,2,3,4,5,6,7
+            // icontrolit://create-schedule?name=GPS+noite&service=location&action=off&hour=23&minute=0&days=1,2,3,4,5,6,7
             else if url.host == "create-schedule" {
                 selectedTab = .schedule
                 createScheduleFromURL(url)
             }
-            // quicktoggle://preset/0, quicktoggle://preset/1, etc.
+            // icontrolit://preset/0, icontrolit://preset/1, etc.
             else if url.host == "preset", let indexStr = url.pathComponents.last, let index = Int(indexStr) {
                 selectedTab = .schedule
                 applyPreset(index: index)
             }
-            // quicktoggle://open-settings/safari, quicktoggle://open-settings/wifi, etc.
+            // icontrolit://open-settings/safari, icontrolit://open-settings/wifi, etc.
             else if url.host == "open-settings", let target = url.pathComponents.last {
                 openSettingsTarget(target)
             }
-            // quicktoggle://battery
+            // icontrolit://battery
             else if url.host == "battery" {
                 selectedTab = .settings
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                     showBatterySaving = true
                 }
             }
-            // quicktoggle://limitations
+            // icontrolit://limitations
             else if url.host == "limitations" {
                 selectedTab = .settings
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -106,7 +106,7 @@ struct ContentView: View {
                 BatterySavingView()
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
-                            Button("Fechar") { showBatterySaving = false }
+                            Button(String(localized: "Close")) { showBatterySaving = false }
                         }
                     }
             }
@@ -116,7 +116,7 @@ struct ContentView: View {
                 LimitationsView()
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
-                            Button("Fechar") { showLimitations = false }
+                            Button(String(localized: "Close")) { showLimitations = false }
                         }
                     }
             }
@@ -127,7 +127,7 @@ struct ContentView: View {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
               let queryItems = components.queryItems else { return }
 
-        let name = queryItems.first(where: { $0.name == "name" })?.value ?? "Novo Perfil"
+        let name = queryItems.first(where: { $0.name == "name" })?.value ?? String(localized: "New Profile")
         let wifi = queryItems.first(where: { $0.name == "wifi" })?.value == "on"
         let bt = queryItems.first(where: { $0.name == "bt" })?.value == "on"
         let gps = queryItems.first(where: { $0.name == "gps" })?.value == "on"
@@ -148,7 +148,7 @@ struct ContentView: View {
         guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
               let queryItems = components.queryItems else { return }
 
-        let name = queryItems.first(where: { $0.name == "name" })?.value ?? "Agendamento"
+        let name = queryItems.first(where: { $0.name == "name" })?.value ?? String(localized: "Schedule")
         let serviceStr = queryItems.first(where: { $0.name == "service" })?.value ?? "wifi"
         let actionStr = queryItems.first(where: { $0.name == "action" })?.value ?? "off"
         let hour = Int(queryItems.first(where: { $0.name == "hour" })?.value ?? "22") ?? 22

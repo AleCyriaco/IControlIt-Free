@@ -2,8 +2,8 @@ import WidgetKit
 import SwiftUI
 
 @main
-struct QuickToggleWidgetBundle: WidgetBundle {
+struct IControlItWidgetBundle: WidgetBundle {
     var body: some Widget {
-        QuickToggleWidget()
+        IControlItWidget()
     }
 }

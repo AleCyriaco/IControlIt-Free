@@ -36,9 +36,9 @@ struct ProfilesView: View {
                         }
                     }
                 } header: {
-                    Text("Perfis")
+                    Text("Profiles", comment: "Profiles section header")
                 } footer: {
-                    Text("Toque em um perfil para aplicá-lo. O app abrirá os Ajustes para cada serviço.")
+                    Text("Tap a profile to apply it. The app will open Settings for each service.", comment: "Profiles section footer")
                 }
 
                 // Info sobre limitações
@@ -49,9 +49,9 @@ struct ProfilesView: View {
                             .font(.title3)
 
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("Como funciona")
+                            Text("How it works", comment: "Profiles info title")
                                 .font(.subheadline.weight(.semibold))
-                            Text("Ao aplicar um perfil, o app redirecionará você aos Ajustes do iOS para alterar cada serviço. Isso é necessário por questões de segurança do iOS.")
+                            Text("When applying a profile, the app will redirect you to iOS Settings to change each service. This is required due to iOS security restrictions.", comment: "Profiles info description")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }
@@ -59,7 +59,7 @@ struct ProfilesView: View {
                     .padding(.vertical, 4)
                 }
             }
-            .navigationTitle("Perfis")
+            .navigationTitle(String(localized: "Profiles"))
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -106,7 +106,7 @@ struct ProfileRow: View {
                             .foregroundStyle(.primary)
 
                         if profile.isBuiltIn {
-                            Text("Padrão")
+                            Text("Default", comment: "Built-in profile badge")
                                 .font(.caption2)
                                 .padding(.horizontal, 6)
                                 .padding(.vertical, 2)
@@ -139,7 +139,7 @@ struct ProfileRow: View {
             }
             .padding(.vertical, 4)
         }
-        .accessibilityLabel("\(profile.name): Wi-Fi \(profile.wifiEnabled ? "ligado" : "desligado"), Bluetooth \(profile.bluetoothEnabled ? "ligado" : "desligado"), GPS \(profile.locationEnabled ? "ligado" : "desligado")")
+        .accessibilityLabel("\(profile.name): Wi-Fi \(profile.wifiEnabled ? String(localized: "on") : String(localized: "off")), Bluetooth \(profile.bluetoothEnabled ? String(localized: "on") : String(localized: "off")), GPS \(profile.locationEnabled ? String(localized: "on") : String(localized: "off"))")
     }
 
     private func serviceIndicator(_ name: String, isOn: Bool, color: Color) -> some View {
@@ -165,8 +165,8 @@ struct ProfileFormSheet: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Informações") {
-                    TextField("Nome do perfil", text: $viewModel.profileName)
+                Section(String(localized: "Information")) {
+                    TextField(String(localized: "Profile name"), text: $viewModel.profileName)
 
                     // Seletor de ícone
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -194,7 +194,7 @@ struct ProfileFormSheet: View {
                     }
                 }
 
-                Section("Serviços") {
+                Section(String(localized: "Services")) {
                     Toggle(isOn: $viewModel.wifiEnabled) {
                         Label("Wi-Fi", systemImage: "wifi")
                     }
@@ -206,21 +206,21 @@ struct ProfileFormSheet: View {
                     .tint(.blue)
 
                     Toggle(isOn: $viewModel.locationEnabled) {
-                        Label("Localização", systemImage: "location.fill")
+                        Label(String(localized: "Location"), systemImage: "location.fill")
                     }
                     .tint(.red)
                 }
             }
-            .navigationTitle(isEditing ? "Editar Perfil" : "Novo Perfil")
+            .navigationTitle(isEditing ? String(localized: "Edit Profile") : String(localized: "New Profile"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancelar") {
+                    Button(String(localized: "Cancel")) {
                         viewModel.resetForm()
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Salvar") {
+                    Button(String(localized: "Save")) {
                         if isEditing {
                             viewModel.updateProfile(context: modelContext)
                         } else {

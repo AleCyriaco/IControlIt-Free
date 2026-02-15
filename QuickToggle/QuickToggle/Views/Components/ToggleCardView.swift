@@ -40,7 +40,7 @@ struct ToggleCardView: View {
                     HStack(spacing: 4) {
                         Image(systemName: "battery.25percent")
                             .font(.caption2)
-                        Text("Impacto: \(service.batteryImpact.displayName)")
+                        Text("Impact: \(service.batteryImpact.displayName)", comment: "Battery impact label")
                             .font(.caption2)
                     }
                     .foregroundStyle(service.batteryImpact.color)
@@ -70,7 +70,7 @@ struct ToggleCardView: View {
                     } label: {
                         HStack(spacing: 2) {
                             Image(systemName: "gear")
-                            Text("Ajustes")
+                            Text("Settings", comment: "Open settings button label")
                         }
                         .font(.caption2)
                         .foregroundStyle(.blue)
@@ -88,7 +88,7 @@ struct ToggleCardView: View {
         }
         .buttonStyle(CardButtonStyle())
         .accessibilityLabel("\(service.displayName), \(status.displayName)")
-        .accessibilityHint(Text("Toque duas vezes para abrir ajustes de \(service.displayName)"))
+        .accessibilityHint(Text("Double tap to open settings for \(service.displayName)"))
         .accessibilityAddTraits(isActive ? .isSelected : [])
     }
 

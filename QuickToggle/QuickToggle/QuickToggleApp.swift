@@ -3,7 +3,7 @@ import SwiftData
 import UserNotifications
 
 @main
-struct QuickToggleApp: App {
+struct IControlItApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     var sharedModelContainer: ModelContainer = {
@@ -58,7 +58,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
 
     /// Sincroniza nomes dos shortcuts para o App Group (usado pelo Widget)
     private func syncShortcutNamesToAppGroup() {
-        guard let groupDefaults = UserDefaults(suiteName: "group.com.quicktoggle.shared") else { return }
+        guard let groupDefaults = UserDefaults(suiteName: "group.com.icontrolit.shared") else { return }
         let standard = UserDefaults.standard
         for key in ["shortcutName_wifi", "shortcutName_bluetooth", "shortcutName_location", "shortcutName_safari"] {
             if let value = standard.string(forKey: key) {
@@ -73,7 +73,7 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
 
     /// Verifica se há ação pendente do Widget e redireciona aos Ajustes
     func handlePendingToggleAction() {
-        guard let defaults = UserDefaults(suiteName: "group.com.quicktoggle.shared"),
+        guard let defaults = UserDefaults(suiteName: "group.com.icontrolit.shared"),
               let action = defaults.string(forKey: "pending_toggle_action"),
               let service = RadioServiceType(rawValue: action) else { return }
 

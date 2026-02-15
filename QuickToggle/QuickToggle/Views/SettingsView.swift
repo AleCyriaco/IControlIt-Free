@@ -32,31 +32,32 @@ struct SettingsView: View {
                 Section {
                     settingsShortcut(
                         title: "Wi-Fi",
-                        subtitle: "Abrir ajustes de Wi-Fi",
+                        subtitle: String(localized: "Open Wi-Fi settings"),
                         icon: "wifi",
                         color: .green,
                         service: .wifi
                     )
                     settingsShortcut(
                         title: "Bluetooth",
-                        subtitle: "Abrir ajustes de Bluetooth",
+                        subtitle: String(localized: "Open Bluetooth settings"),
                         icon: "dot.radiowaves.left.and.right",
                         color: .blue,
                         service: .bluetooth
                     )
                     settingsShortcut(
-                        title: "Localização",
-                        subtitle: "Abrir ajustes de Privacidade",
+                        title: String(localized: "Location"),
+                        subtitle: String(localized: "Open Privacy settings"),
                         icon: "location.fill",
                         color: .red,
                         service: .location
                     )
                 } header: {
-                    Text("Atalhos Rápidos")
+                    Text("Quick Shortcuts", comment: "Section header for quick shortcuts")
                 } footer: {
-                    Text("Abre via Apple Shortcuts. Configure os atalhos em Setup Atalhos.")
+                    Text("Opens via Apple Shortcuts. Configure shortcuts in Shortcut Setup.", comment: "Footer explaining shortcuts")
                 }
 
+                #if PREMIUM
                 // Mais atalhos (customizáveis pelo usuário)
                 Section {
                     ForEach(customShortcuts) { shortcut in
@@ -73,11 +74,11 @@ struct SettingsView: View {
                                         .font(.body)
                                         .foregroundStyle(.primary)
                                     if !shortcut.shortcutName.isEmpty {
-                                        Text(String(localized: "Atalho: \(shortcut.shortcutName)"))
+                                        Text(String(localized: "Shortcut: \(shortcut.shortcutName)"))
                                             .font(.caption)
                                             .foregroundStyle(.secondary)
                                     } else {
-                                        Text(String(localized: "Abre via URL direta"))
+                                        Text(String(localized: "Opens via direct URL"))
                                             .font(.caption)
                                             .foregroundStyle(.secondary)
                                     }
@@ -101,22 +102,55 @@ struct SettingsView: View {
                     Button {
                         showCatalog = true
                     } label: {
-                        Label(String(localized: "Adicionar do Catálogo"), systemImage: "plus.circle")
+                        Label(String(localized: "Add from Catalog"), systemImage: "plus.circle")
                             .foregroundStyle(.blue)
                     }
                 } header: {
-                    Text("Mais Atalhos")
+                    Text("More Shortcuts", comment: "Section header for custom shortcuts")
                 } footer: {
-                    Text("Adicione atalhos do catálogo e vincule a um Shortcut da Apple. Deslize para remover.")
+                    Text("Add shortcuts from the catalog and link to an Apple Shortcut. Swipe to remove.", comment: "Footer for custom shortcuts section")
                 }
+                #else
+                // Teaser para versão Full
+                Section {
+                    Button {
+                        openFullVersionOnAppStore()
+                    } label: {
+                        HStack(spacing: 12) {
+                            Image(systemName: "plus.circle")
+                                .foregroundStyle(.blue)
+                                .frame(width: 24)
+
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Add from Catalog", comment: "Teaser button for catalog")
+                                    .font(.body)
+                                    .foregroundStyle(.primary)
+                                Text("Available in IControlIt Full", comment: "Teaser subtitle pointing to full version")
+                                    .font(.caption)
+                                    .foregroundStyle(.orange)
+                            }
+
+                            Spacer()
+
+                            Image(systemName: "star.fill")
+                                .font(.caption)
+                                .foregroundStyle(.orange)
+                        }
+                    }
+                } header: {
+                    Text("More Shortcuts", comment: "Section header")
+                } footer: {
+                    Text("Custom shortcuts from the Settings catalog are available in IControlIt Full.", comment: "Teaser footer for full version")
+                }
+                #endif
 
                 // Economia de bateria
-                Section("Economia de Bateria") {
+                Section(String(localized: "Battery Saving")) {
                     Toggle(isOn: $lowBatteryAlert) {
                         Label {
                             VStack(alignment: .leading, spacing: 2) {
-                                Text("Alerta de bateria baixa")
-                                Text("Sugere desligar serviços quando a bateria estiver baixa")
+                                Text("Low battery alert", comment: "Toggle label")
+                                Text("Suggests turning off services when battery is low", comment: "Toggle description")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
@@ -128,11 +162,11 @@ struct SettingsView: View {
 
                     if lowBatteryAlert {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text(String(format: String(localized: "Alertar quando bateria atingir %d%%"), Int(lowBatteryThreshold)))
+                            Text(String(localized: "Alert when battery reaches \(Int(lowBatteryThreshold))%"))
                                 .font(.subheadline)
 
                             Slider(value: $lowBatteryThreshold, in: 5...50, step: 5) {
-                                Text("Limite")
+                                Text("Threshold", comment: "Slider label")
                             } minimumValueLabel: {
                                 Text("5%")
                                     .font(.caption2)
@@ -148,7 +182,7 @@ struct SettingsView: View {
                         BatterySavingView()
                     } label: {
                         Label {
-                            Text("Detalhes de economia")
+                            Text("Saving details", comment: "Navigation link to battery saving details")
                         } icon: {
                             Image(systemName: "leaf.fill")
                                 .foregroundStyle(.green)
@@ -157,12 +191,12 @@ struct SettingsView: View {
                 }
 
                 // Comportamento
-                Section("Comportamento") {
+                Section(String(localized: "Behavior")) {
                     Toggle(isOn: $hapticFeedback) {
                         Label {
                             VStack(alignment: .leading, spacing: 2) {
-                                Text("Feedback háptico")
-                                Text("Vibração ao tocar nos controles")
+                                Text("Haptic feedback", comment: "Toggle label")
+                                Text("Vibrate when tapping controls", comment: "Toggle description")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
@@ -174,8 +208,8 @@ struct SettingsView: View {
                     Toggle(isOn: $autoOpenSettings) {
                         Label {
                             VStack(alignment: .leading, spacing: 2) {
-                                Text("Abrir Ajustes automaticamente")
-                                Text("Redirecionar aos Ajustes ao tocar nos toggles")
+                                Text("Open Settings automatically", comment: "Toggle label")
+                                Text("Redirect to Settings when tapping toggles", comment: "Toggle description")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
@@ -186,11 +220,13 @@ struct SettingsView: View {
                 }
 
                 // Notificações
-                Section("Notificações") {
+                Section(String(localized: "Notifications")) {
                     HStack {
                         Label("Status", systemImage: "bell.fill")
                         Spacer()
-                        Text(notificationService.isAuthorized ? "Ativadas" : "Desativadas")
+                        Text(notificationService.isAuthorized
+                             ? String(localized: "Enabled")
+                             : String(localized: "Disabled"))
                             .foregroundStyle(notificationService.isAuthorized ? .green : .red)
                     }
 
@@ -198,7 +234,7 @@ struct SettingsView: View {
                         Button {
                             notificationService.requestPermission()
                         } label: {
-                            Label("Permitir notificações", systemImage: "bell.badge")
+                            Label(String(localized: "Allow notifications"), systemImage: "bell.badge")
                         }
                     }
                 }
@@ -210,9 +246,9 @@ struct SettingsView: View {
                     } label: {
                         Label {
                             VStack(alignment: .leading, spacing: 2) {
-                                Text("Abrir app Atalhos")
+                                Text("Open Shortcuts app", comment: "Button label")
                                     .foregroundStyle(.primary)
-                                Text("Crie automações avançadas com Siri")
+                                Text("Create advanced automations with Siri", comment: "Button description")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
@@ -223,7 +259,7 @@ struct SettingsView: View {
                     }
 
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Comandos de Siri disponíveis:")
+                        Text("Available Siri commands:", comment: "Siri commands header")
                             .font(.subheadline.weight(.medium))
 
                         ForEach(RadioServiceType.allCases) { service in
@@ -241,26 +277,26 @@ struct SettingsView: View {
                             Image(systemName: "mic.fill")
                                 .font(.caption)
                                 .foregroundStyle(.blue)
-                            Text("\"Hey Siri, Desligar Tudo\"")
+                            Text("\"Hey Siri, Turn Off All\"", comment: "Siri command example")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }
                     }
                     .padding(.vertical, 4)
                 } header: {
-                    Text("Siri e Atalhos")
+                    Text("Siri & Shortcuts", comment: "Section header")
                 }
 
-                // Nomes dos Atalhos (renomear para casar com Shortcuts do usuário)
+                // Nomes dos Atalhos
                 Section {
                     shortcutNameRow(label: "Wi-Fi", binding: $shortcutNameWifi)
                     shortcutNameRow(label: "Bluetooth", binding: $shortcutNameBluetooth)
                     shortcutNameRow(label: "GPS", binding: $shortcutNameGPS)
                     shortcutNameRow(label: "Safari", binding: $shortcutNameSafari)
                 } header: {
-                    Text("Nomes dos Atalhos")
+                    Text("Shortcut Names", comment: "Section header")
                 } footer: {
-                    Text("Os nomes devem corresponder exatamente aos atalhos criados no app Atalhos da Apple.")
+                    Text("Names must match exactly the shortcuts created in the Apple Shortcuts app.", comment: "Section footer")
                 }
 
                 // Configurar Atalhos
@@ -268,26 +304,26 @@ struct SettingsView: View {
                     Button {
                         showShortcutSetup = true
                     } label: {
-                        Label("Configurar Atalhos", systemImage: "square.and.arrow.down")
+                        Label(String(localized: "Configure Shortcuts"), systemImage: "square.and.arrow.down")
                     }
                 } header: {
-                    Text("Configurar Deep Links")
+                    Text("Configure Deep Links", comment: "Section header")
                 } footer: {
-                    Text("Crie atalhos no app Atalhos da Apple com a ação \"Abrir URL\" para acessar seções dos Ajustes.")
+                    Text("Create shortcuts in the Apple Shortcuts app with the \"Open URL\" action to access Settings sections.", comment: "Section footer")
                 }
 
                 // Sobre
-                Section("Sobre") {
+                Section(String(localized: "About")) {
                     Button {
                         if let url = URL(string: "https://virttus.com") {
                             UIApplication.shared.open(url)
                         }
                     } label: {
                         HStack {
-                            Text("Versão 1.0.0")
+                            Text(String(localized: "Version 1.0.0"))
                                 .foregroundStyle(.primary)
                             Spacer()
-                            Text("Build by virttus.com")
+                            Text("Built by virttus.com")
                                 .font(.caption)
                                 .foregroundStyle(.blue)
                         }
@@ -296,14 +332,15 @@ struct SettingsView: View {
                     NavigationLink {
                         LimitationsView()
                     } label: {
-                        Label("Limitações conhecidas", systemImage: "info.circle")
+                        Label(String(localized: "Known limitations"), systemImage: "info.circle")
                     }
                 }
             }
-            .navigationTitle("Ajustes")
+            .navigationTitle(String(localized: "Settings"))
             .sheet(isPresented: $showShortcutSetup) {
                 ShortcutSetupView()
             }
+            #if PREMIUM
             .sheet(isPresented: $showCatalog) {
                 SettingsURLCatalogView { newShortcut in
                     var shortcuts = customShortcuts
@@ -311,6 +348,7 @@ struct SettingsView: View {
                     saveCustomShortcuts(shortcuts)
                 }
             }
+            #endif
         }
     }
 
@@ -386,6 +424,13 @@ struct SettingsView: View {
             UIApplication.shared.open(url)
         }
     }
+
+    private func openFullVersionOnAppStore() {
+        // TODO: Replace with actual App Store URL after publishing
+        if let url = URL(string: "https://apps.apple.com/app/icontrolit/id0000000000") {
+            UIApplication.shared.open(url)
+        }
+    }
 }
 
 // MARK: - Limitations View
@@ -393,64 +438,64 @@ struct SettingsView: View {
 struct LimitationsView: View {
     var body: some View {
         List {
-            Section("Controle de Rádios no iOS") {
+            Section(String(localized: "Radio Control on iOS")) {
                 limitationRow(
                     title: "Wi-Fi",
-                    limitation: "Apps não podem desligar Wi-Fi diretamente. O iOS permite apenas usar NEHotspotConfiguration para configurar redes específicas.",
-                    workaround: "Abrimos os Ajustes do iOS. Em iOS 17-25, ia direto para Wi-Fi. No iOS 26+, abre na página principal."
+                    limitation: String(localized: "Apps cannot turn off Wi-Fi directly. iOS only allows using NEHotspotConfiguration to configure specific networks."),
+                    workaround: String(localized: "We open iOS Settings. On iOS 17-25, it went directly to Wi-Fi. On iOS 26+, it opens the main page.")
                 )
 
                 limitationRow(
                     title: "Bluetooth",
-                    limitation: "CoreBluetooth permite detectar o estado, mas não ligar/desligar globalmente.",
-                    workaround: "Abrimos os Ajustes do iOS. Em iOS 17-25, ia direto para Bluetooth. No iOS 26+, abre na página principal."
+                    limitation: String(localized: "CoreBluetooth can detect the state but cannot turn it on/off globally."),
+                    workaround: String(localized: "We open iOS Settings. On iOS 17-25, it went directly to Bluetooth. On iOS 26+, it opens the main page.")
                 )
 
                 limitationRow(
-                    title: "Localização / GPS",
-                    limitation: "CLLocationManager controla apenas a permissão do próprio app, não o GPS global.",
-                    workaround: "Abrimos os Ajustes do iOS. Em iOS 17-25, ia direto para Privacidade > Localização. No iOS 26+, abre na página principal."
+                    title: String(localized: "Location / GPS"),
+                    limitation: String(localized: "CLLocationManager only controls the app's own permission, not global GPS."),
+                    workaround: String(localized: "We open iOS Settings. On iOS 17-25, it went directly to Privacy > Location. On iOS 26+, it opens the main page.")
                 )
             }
 
-            Section("URL Schemes e iOS 26") {
+            Section("URL Schemes & iOS 26") {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("A partir do iOS 26, a Apple removeu a possibilidade de deep linking para seções específicas dos Ajustes via URL Schemes (App-prefs:root=WIFI, etc).")
+                    Text("Starting with iOS 26, Apple removed the ability to deep link to specific Settings sections via URL Schemes (App-prefs:root=WIFI, etc).", comment: "iOS 26 limitation")
                         .font(.caption)
                         .foregroundStyle(.secondary)
 
-                    Text("O app abre os Ajustes do iOS, mas navegar até Wi-Fi/Bluetooth/Localização requer toques manuais do usuário.")
+                    Text("The app opens iOS Settings, but navigating to Wi-Fi/Bluetooth/Location requires manual taps from the user.", comment: "iOS 26 limitation detail")
                         .font(.caption)
                         .foregroundStyle(.secondary)
 
-                    Text("A melhor alternativa no iOS 26 é usar Shortcuts (Atalhos) e Siri para criar automações.")
+                    Text("The best alternative on iOS 26 is using Shortcuts and Siri to create automations.", comment: "iOS 26 recommendation")
                         .font(.caption)
                         .foregroundStyle(.blue)
                 }
                 .padding(.vertical, 4)
             }
 
-            Section("Melhor Abordagem") {
+            Section(String(localized: "Best Approach")) {
                 VStack(alignment: .leading, spacing: 8) {
                     approachRow(
                         number: "1",
-                        title: "URL Schemes para Ajustes",
-                        description: "Redireciona ao painel exato com mínimo de toques"
+                        title: String(localized: "URL Schemes for Settings"),
+                        description: String(localized: "Redirects to the exact panel with minimum taps")
                     )
                     approachRow(
                         number: "2",
-                        title: "Shortcuts/Automações",
-                        description: "App Intents permite criar ações no app Atalhos"
+                        title: String(localized: "Shortcuts/Automations"),
+                        description: String(localized: "App Intents allows creating actions in the Shortcuts app")
                     )
                     approachRow(
                         number: "3",
-                        title: "Widget Interativo",
-                        description: "Acesso rápido pela tela inicial sem abrir o app"
+                        title: String(localized: "Interactive Widget"),
+                        description: String(localized: "Quick access from the home screen without opening the app")
                     )
                     approachRow(
                         number: "4",
-                        title: "Notificações Agendadas",
-                        description: "Lembretes para alterar serviços em horários específicos"
+                        title: String(localized: "Scheduled Notifications"),
+                        description: String(localized: "Reminders to change services at specific times")
                     )
                 }
                 .padding(.vertical, 4)
@@ -458,14 +503,14 @@ struct LimitationsView: View {
 
             Section("App Store") {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Este app não usa APIs privadas e segue as App Store Review Guidelines. O uso de App-prefs: é uma área cinza - a Apple pode aceitar ou rejeitar dependendo da revisão.")
+                    Text("This app does not use private APIs and follows the App Store Review Guidelines.", comment: "App Store compliance note")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
                 .padding(.vertical, 4)
             }
         }
-        .navigationTitle("Limitações")
+        .navigationTitle(String(localized: "Limitations"))
         .navigationBarTitleDisplayMode(.inline)
     }
 

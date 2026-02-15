@@ -18,12 +18,12 @@ struct HistoryView: View {
                     historyList
                 }
             }
-            .navigationTitle("Histórico")
+            .navigationTitle(String(localized: "History"))
             .toolbar {
                 if !entries.isEmpty {
                     ToolbarItem(placement: .topBarTrailing) {
                         Menu {
-                            Button("Limpar tudo", systemImage: "trash", role: .destructive) {
+                            Button(String(localized: "Clear all"), systemImage: "trash", role: .destructive) {
                                 showingClearConfirmation = true
                             }
                         } label: {
@@ -36,13 +36,13 @@ struct HistoryView: View {
                     }
                 }
             }
-            .alert("Limpar Histórico", isPresented: $showingClearConfirmation) {
-                Button("Cancelar", role: .cancel) {}
-                Button("Limpar", role: .destructive) {
+            .alert(String(localized: "Clear History"), isPresented: $showingClearConfirmation) {
+                Button(String(localized: "Cancel"), role: .cancel) {}
+                Button(String(localized: "Clear"), role: .destructive) {
                     clearHistory()
                 }
             } message: {
-                Text("Tem certeza que deseja apagar todo o histórico?")
+                Text("Are you sure you want to delete all history?", comment: "Clear history confirmation message")
             }
         }
     }
@@ -55,7 +55,7 @@ struct HistoryView: View {
                 selectedFilter = nil
             } label: {
                 HStack {
-                    Text("Todos")
+                    Text("All", comment: "Filter: show all entries")
                     if selectedFilter == nil {
                         Image(systemName: "checkmark")
                     }
@@ -96,19 +96,19 @@ struct HistoryView: View {
                 HStack(spacing: 16) {
                     statBubble(
                         count: filteredEntries.filter { $0.action == "on" }.count,
-                        label: "Ligados",
+                        label: String(localized: "Turned On"),
                         color: .green,
                         icon: "power"
                     )
                     statBubble(
                         count: filteredEntries.filter { $0.action == "off" }.count,
-                        label: "Desligados",
+                        label: String(localized: "Turned Off"),
                         color: .red,
                         icon: "power.circle"
                     )
                     statBubble(
                         count: filteredEntries.count,
-                        label: "Total",
+                        label: String(localized: "Total"),
                         color: .blue,
                         icon: "number"
                     )
@@ -137,10 +137,10 @@ struct HistoryView: View {
                 .font(.system(size: 50))
                 .foregroundStyle(.secondary)
 
-            Text("Nenhuma ação registrada")
+            Text("No actions recorded", comment: "Empty history state title")
                 .font(.headline)
 
-            Text("Seu histórico de alterações aparecerá aqui.")
+            Text("Your change history will appear here.", comment: "Empty history state subtitle")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -165,9 +165,9 @@ struct HistoryView: View {
 
     private func formatDate(_ date: Date) -> String {
         if Calendar.current.isDateInToday(date) {
-            return String(localized: "Hoje")
+            return String(localized: "Today")
         } else if Calendar.current.isDateInYesterday(date) {
-            return String(localized: "Ontem")
+            return String(localized: "Yesterday")
         }
 
         let formatter = DateFormatter()
@@ -249,7 +249,7 @@ struct HistoryEntryRow: View {
                 .foregroundStyle(.secondary)
         }
         .padding(.vertical, 2)
-        .accessibilityLabel("\(entry.service?.displayName ?? "") \(entry.toggleAction?.displayName ?? "") às \(formatTime(entry.timestamp))")
+        .accessibilityLabel("\(entry.service?.displayName ?? "") \(entry.toggleAction?.displayName ?? "") at \(formatTime(entry.timestamp))")
     }
 
     private func formatTime(_ date: Date) -> String {

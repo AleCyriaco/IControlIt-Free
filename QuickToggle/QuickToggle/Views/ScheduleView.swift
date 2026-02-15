@@ -18,10 +18,10 @@ struct ScheduleView: View {
                                 .font(.system(size: 40))
                                 .foregroundStyle(.secondary)
 
-                            Text("Nenhuma ação agendada")
+                            Text("No scheduled actions", comment: "Empty schedule state title")
                                 .font(.headline)
 
-                            Text("Agende horários para ligar ou desligar serviços automaticamente.")
+                            Text("Schedule times to automatically turn services on or off.", comment: "Empty schedule state subtitle")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                                 .multilineTextAlignment(.center)
@@ -32,7 +32,7 @@ struct ScheduleView: View {
                 }
 
                 // Sugestões rápidas
-                Section("Sugestões") {
+                Section(String(localized: "Suggestions")) {
                     ForEach(SchedulePreset.presets) { preset in
                         Button {
                             viewModel.createQuickPreset(preset, context: modelContext)
@@ -46,7 +46,7 @@ struct ScheduleView: View {
                                     Text(preset.name)
                                         .font(.subheadline.weight(.medium))
                                         .foregroundStyle(.primary)
-                                    Text("\(preset.action == .on ? String(localized: "Ligar") : String(localized: "Desligar")) \(preset.service.displayName) \(String(format: "%02d:%02d", preset.hour, preset.minute))")
+                                    Text("\(preset.action == .on ? String(localized: "Turn on") : String(localized: "Turn off")) \(preset.service.displayName) \(String(format: "%02d:%02d", preset.hour, preset.minute))")
                                         .font(.caption)
                                         .foregroundStyle(.secondary)
                                 }
@@ -62,7 +62,7 @@ struct ScheduleView: View {
 
                 // Agendamentos ativos
                 if !schedules.isEmpty {
-                    Section("Agendamentos") {
+                    Section(String(localized: "Schedules")) {
                         ForEach(schedules) { schedule in
                             ScheduleRow(
                                 schedule: schedule,
@@ -90,9 +90,9 @@ struct ScheduleView: View {
                             .font(.title3)
 
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("Como funciona")
+                            Text("How it works", comment: "Schedule info title")
                                 .font(.subheadline.weight(.semibold))
-                            Text("No horário agendado, você receberá uma notificação com atalho para abrir os Ajustes e alterar o serviço. Também é possível criar automações no app Atalhos para mais controle.")
+                            Text("At the scheduled time, you will receive a notification with a shortcut to open Settings and change the service. You can also create automations in the Shortcuts app for more control.", comment: "Schedule info description")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }
@@ -100,7 +100,7 @@ struct ScheduleView: View {
                     .padding(.vertical, 4)
                 }
             }
-            .navigationTitle("Agenda")
+            .navigationTitle(String(localized: "Schedule"))
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -177,7 +177,7 @@ struct ScheduleRow: View {
         .padding(.vertical, 4)
         .contentShape(Rectangle())
         .onTapGesture { onEdit() }
-        .accessibilityLabel("\(schedule.name), \(schedule.timeString), \(schedule.isEnabled ? "ativo" : "inativo")")
+        .accessibilityLabel("\(schedule.name), \(schedule.timeString), \(schedule.isEnabled ? String(localized: "active") : String(localized: "inactive"))")
     }
 }
 
@@ -192,26 +192,26 @@ struct ScheduleFormSheet: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Detalhes") {
-                    TextField("Nome", text: $viewModel.scheduleName)
+                Section(String(localized: "Details")) {
+                    TextField(String(localized: "Name"), text: $viewModel.scheduleName)
 
-                    Picker("Serviço", selection: $viewModel.selectedService) {
+                    Picker(String(localized: "Service"), selection: $viewModel.selectedService) {
                         ForEach(RadioServiceType.allCases) { service in
                             Label(service.displayName, systemImage: service.icon)
                                 .tag(service)
                         }
                     }
 
-                    Picker("Ação", selection: $viewModel.selectedAction) {
-                        Text("Desligar").tag(ToggleAction.off)
-                        Text("Ligar").tag(ToggleAction.on)
+                    Picker(String(localized: "Action"), selection: $viewModel.selectedAction) {
+                        Text("Turn Off", comment: "Toggle action off").tag(ToggleAction.off)
+                        Text("Turn On", comment: "Toggle action on").tag(ToggleAction.on)
                     }
                     .pickerStyle(.segmented)
                 }
 
-                Section("Horário") {
+                Section(String(localized: "Time")) {
                     DatePicker(
-                        "Hora",
+                        String(localized: "Hour"),
                         selection: $viewModel.selectedTime,
                         displayedComponents: .hourAndMinute
                     )
@@ -220,12 +220,12 @@ struct ScheduleFormSheet: View {
                     .frame(maxWidth: .infinity)
                 }
 
-                Section("Repetir") {
+                Section(String(localized: "Repeat")) {
                     // Botões de preset
                     HStack(spacing: 8) {
-                        quickDayButton("Dias úteis") { viewModel.selectWeekdays() }
-                        quickDayButton("Fim de semana") { viewModel.selectWeekends() }
-                        quickDayButton("Todos") { viewModel.selectAllDays() }
+                        quickDayButton(String(localized: "Weekdays")) { viewModel.selectWeekdays() }
+                        quickDayButton(String(localized: "Weekend")) { viewModel.selectWeekends() }
+                        quickDayButton(String(localized: "Every day")) { viewModel.selectAllDays() }
                     }
 
                     // Dias individuais
@@ -254,14 +254,14 @@ struct ScheduleFormSheet: View {
                     .frame(maxWidth: .infinity)
                 }
             }
-            .navigationTitle(isEditing ? "Editar" : "Novo Agendamento")
+            .navigationTitle(isEditing ? String(localized: "Edit") : String(localized: "New Schedule"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancelar") { viewModel.resetForm() }
+                    Button(String(localized: "Cancel")) { viewModel.resetForm() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Salvar") {
+                    Button(String(localized: "Save")) {
                         if isEditing {
                             viewModel.updateSchedule(context: modelContext)
                         } else {

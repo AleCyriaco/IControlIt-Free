@@ -7,7 +7,7 @@ import SwiftUI
 @available(iOS 18.0, *)
 struct WiFiControlWidget: ControlWidget {
     var body: some ControlWidgetConfiguration {
-        StaticControlConfiguration(kind: "com.quicktoggle.wifi-control") {
+        StaticControlConfiguration(kind: "com.icontrolit.wifi-control") {
             ControlWidgetButton(action: ToggleWiFiIntent()) {
                 Label("Wi-Fi", systemImage: "wifi")
             }
@@ -21,7 +21,7 @@ struct WiFiControlWidget: ControlWidget {
 @available(iOS 18.0, *)
 struct BluetoothControlWidget: ControlWidget {
     var body: some ControlWidgetConfiguration {
-        StaticControlConfiguration(kind: "com.quicktoggle.bluetooth-control") {
+        StaticControlConfiguration(kind: "com.icontrolit.bluetooth-control") {
             ControlWidgetButton(action: ToggleBluetoothIntent()) {
                 Label("Bluetooth", systemImage: "dot.radiowaves.left.and.right")
             }
@@ -35,7 +35,7 @@ struct BluetoothControlWidget: ControlWidget {
 @available(iOS 18.0, *)
 struct LocationControlWidget: ControlWidget {
     var body: some ControlWidgetConfiguration {
-        StaticControlConfiguration(kind: "com.quicktoggle.location-control") {
+        StaticControlConfiguration(kind: "com.icontrolit.location-control") {
             ControlWidgetButton(action: ToggleLocationIntent()) {
                 Label("GPS", systemImage: "location.fill")
             }
