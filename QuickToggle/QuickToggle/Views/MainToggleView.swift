@@ -169,8 +169,15 @@ struct MainToggleView: View {
 
     private var clearHistoryButton: some View {
         Button {
-            let safariName = UserDefaults.standard.string(forKey: "shortcutName_safari") ?? "Safari"
-            RadioControlService.shared.openViaShortcut(name: safariName, fallbackURL: "settings-navigation://com.apple.Settings.Apps/com.apple.mobilesafari")
+            let safariURL = "settings-navigation://com.apple.Settings.Apps/com.apple.mobilesafari#CLEAR_HISTORY_AND_DATA"
+            if let url = URL(string: safariURL) {
+                UIApplication.shared.open(url, options: [:]) { success in
+                    if !success {
+                        let safariName = UserDefaults.standard.string(forKey: "shortcutName_safari") ?? "ClearHistoryOnOff"
+                        RadioControlService.shared.openViaShortcut(name: safariName, fallbackURL: safariURL)
+                    }
+                }
+            }
         } label: {
             HStack(spacing: 12) {
                 Image(systemName: "safari")

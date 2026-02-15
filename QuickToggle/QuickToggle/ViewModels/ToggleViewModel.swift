@@ -17,6 +17,14 @@ final class ToggleViewModel: ObservableObject {
 
     init() {
         setupBatteryObserver()
+
+        // Propagar mudanças do RadioControlService (ObservableObject aninhado)
+        radioService.objectWillChange
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.objectWillChange.send()
+            }
+            .store(in: &cancellables)
     }
 
     func setModelContext(_ context: ModelContext) {

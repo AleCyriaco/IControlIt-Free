@@ -1,28 +1,18 @@
 import SwiftUI
 import UIKit
 
-/// Tela de configuração para instalar Apple Shortcuts automaticamente via import URL
+/// Tela de configuração para instalar Apple Shortcuts via iCloud links
 struct ShortcutSetupView: View {
     @AppStorage("shortcutsInstalled") private var shortcutsInstalled = false
     @Environment(\.dismiss) private var dismiss
     @State private var installedName: String?
 
-    /// Base URL dos arquivos .shortcut hospedados no GitHub
-    private let baseURL = "https://raw.githubusercontent.com/AleCyriaco/QuickToggle/main/QuickToggle/QuickToggle"
-
-    private let shortcuts: [(name: String, fileName: String, icon: String, color: Color, description: String)] = [
-        ("WiFi", "WiFi", "wifi", .green, String(localized: "Wi-Fi nos Ajustes")),
-        ("Bluetooth", "Bluetooth", "dot.radiowaves.left.and.right", .blue, String(localized: "Bluetooth nos Ajustes")),
-        ("GPS", "GPS", "location.fill", .red, String(localized: "Localização nos Ajustes")),
-        ("Safari", "Safari", "safari", .blue, String(localized: "Limpar histórico Safari")),
-        ("Bateria", "Bateria", "battery.100percent", .green, String(localized: "Saúde da bateria")),
-        ("DadosCelulares", "DadosCelulares", "antenna.radiowaves.left.and.right", .teal, String(localized: "Dados móveis")),
-        ("Foco", "Foco", "moon.fill", .indigo, String(localized: "Não Perturbe")),
-        ("Notificacoes", "Notificacoes", "bell.badge.fill", .red, String(localized: "Notificações")),
-        ("TelaeBrilho", "TelaeBrilho", "sun.max.fill", .orange, "Display & Brightness"),
-        ("VPN", "VPN", "lock.shield.fill", .purple, "VPN"),
-        ("Armazenamento", "Armazenamento", "internaldrive.fill", .gray, String(localized: "Armazenamento")),
-        ("Senhas", "Senhas", "key.fill", .gray, String(localized: "Senhas")),
+    /// iCloud shortcut sharing links - abrem direto no app Atalhos para adicionar
+    private let shortcuts: [(name: String, iCloudURL: String, icon: String, color: Color, description: String)] = [
+        ("WiFiOnOff", "https://www.icloud.com/shortcuts/92ef83ae8e9c4962b837a587f53d16cb", "wifi", .green, String(localized: "Wi-Fi nos Ajustes")),
+        ("BluetoothOnOff", "https://www.icloud.com/shortcuts/1abe7e495e7144d5b6756fa2be930f58", "dot.radiowaves.left.and.right", .blue, String(localized: "Bluetooth nos Ajustes")),
+        ("LocationOnOff", "https://www.icloud.com/shortcuts/10cea02805c543109aade06064aa8156", "location.fill", .red, String(localized: "Localização nos Ajustes")),
+        ("ClearHistoryOnOff", "https://www.icloud.com/shortcuts/78aad47b390a4f80990bd62f40ead9dc", "safari", .blue, String(localized: "Limpar histórico Safari")),
     ]
 
     var body: some View {
@@ -44,28 +34,10 @@ struct ShortcutSetupView: View {
                     .padding(.vertical, 4)
                 }
 
-                // Essenciais
+                // Atalhos
                 Section(String(localized: "Essenciais")) {
-                    ForEach(shortcuts.prefix(4), id: \.name) { shortcut in
+                    ForEach(shortcuts, id: \.name) { shortcut in
                         shortcutRow(shortcut)
-                    }
-                }
-
-                // Extras
-                Section("Extras") {
-                    ForEach(shortcuts.dropFirst(4), id: \.name) { shortcut in
-                        shortcutRow(shortcut)
-                    }
-                }
-
-                // Instalar todos
-                Section {
-                    Button {
-                        installAll()
-                    } label: {
-                        Label(String(localized: "Instalar Todos"), systemImage: "square.and.arrow.down.on.square")
-                            .frame(maxWidth: .infinity)
-                            .font(.headline)
                     }
                 }
 
@@ -106,7 +78,7 @@ struct ShortcutSetupView: View {
         }
     }
 
-    private func shortcutRow(_ shortcut: (name: String, fileName: String, icon: String, color: Color, description: String)) -> some View {
+    private func shortcutRow(_ shortcut: (name: String, iCloudURL: String, icon: String, color: Color, description: String)) -> some View {
         HStack(spacing: 12) {
             Image(systemName: shortcut.icon)
                 .foregroundStyle(shortcut.color)
@@ -142,42 +114,12 @@ struct ShortcutSetupView: View {
         }
     }
 
-    private func installShortcut(_ shortcut: (name: String, fileName: String, icon: String, color: Color, description: String)) {
-        let fileURL = "\(baseURL)/\(shortcut.fileName).shortcut"
-
-        var components = URLComponents()
-        components.scheme = "shortcuts"
-        components.host = "import-shortcut"
-        components.queryItems = [
-            URLQueryItem(name: "url", value: fileURL),
-            URLQueryItem(name: "name", value: shortcut.name)
-        ]
-
-        if let url = components.url {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
-
-        // Salvar nome do atalho no UserDefaults
-        let storageKey: String
-        switch shortcut.name {
-        case "WiFi": storageKey = "shortcutName_wifi"
-        case "Bluetooth": storageKey = "shortcutName_bluetooth"
-        case "GPS": storageKey = "shortcutName_location"
-        default: storageKey = "shortcutName_\(shortcut.fileName.lowercased())"
-        }
-        UserDefaults.standard.set(shortcut.name, forKey: storageKey)
+    private func installShortcut(_ shortcut: (name: String, iCloudURL: String, icon: String, color: Color, description: String)) {
+        guard let url = URL(string: shortcut.iCloudURL) else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
 
         withAnimation {
             installedName = shortcut.name
-        }
-    }
-
-    private func installAll() {
-        // Instalar o primeiro, depois os demais com delay
-        for (index, shortcut) in shortcuts.prefix(4).enumerated() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * 1.5) {
-                installShortcut(shortcut)
-            }
         }
     }
 }

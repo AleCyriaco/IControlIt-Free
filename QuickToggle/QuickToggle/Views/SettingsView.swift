@@ -10,10 +10,10 @@ struct SettingsView: View {
     @AppStorage("lowBatteryThreshold") private var lowBatteryThreshold = 20.0
     @AppStorage("hapticFeedback") private var hapticFeedback = true
     @AppStorage("autoOpenSettings") private var autoOpenSettings = true
-    @AppStorage("shortcutName_wifi") private var shortcutNameWifi = "WiFi"
-    @AppStorage("shortcutName_bluetooth") private var shortcutNameBluetooth = "Bluetooth"
-    @AppStorage("shortcutName_location") private var shortcutNameGPS = "GPS"
-    @AppStorage("shortcutName_safari") private var shortcutNameSafari = "Safari"
+    @AppStorage("shortcutName_wifi") private var shortcutNameWifi = "WiFiOnOff"
+    @AppStorage("shortcutName_bluetooth") private var shortcutNameBluetooth = "BluetoothOnOff"
+    @AppStorage("shortcutName_location") private var shortcutNameGPS = "LocationOnOff"
+    @AppStorage("shortcutName_safari") private var shortcutNameSafari = "ClearHistoryOnOff"
 
     var body: some View {
         NavigationStack {

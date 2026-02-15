@@ -1,7 +1,7 @@
 import Foundation
 import CoreBluetooth
 import CoreLocation
-import NetworkExtension
+import Network
 import UIKit
 import Combine
 
@@ -26,6 +26,8 @@ final class RadioControlService: NSObject, ObservableObject {
 
     private var bluetoothManager: CBCentralManager?
     private let locationManager = CLLocationManager()
+    private let pathMonitor = NWPathMonitor()
+    private let monitorQueue = DispatchQueue(label: "com.quicktoggle.networkmonitor")
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - UserDefaults Keys
@@ -40,8 +42,13 @@ final class RadioControlService: NSObject, ObservableObject {
             CBCentralManagerOptionShowPowerAlertKey: false
         ])
         locationManager.delegate = self
+        startWiFiMonitor()
         loadSavedStates()
         detectCurrentStates()
+    }
+
+    deinit {
+        pathMonitor.cancel()
     }
 
     // MARK: - State Detection
@@ -52,20 +59,21 @@ final class RadioControlService: NSObject, ObservableObject {
         detectWiFiState()
     }
 
-    private func detectWiFiState() {
-        // Verificar conectividade Wi-Fi via NEHotspotNetwork (iOS 14+)
-        NEHotspotNetwork.fetchCurrent { [weak self] network in
+    /// Inicia NWPathMonitor para detectar Wi-Fi em tempo real
+    private func startWiFiMonitor() {
+        pathMonitor.pathUpdateHandler = { [weak self] path in
+            let usesWifi = path.usesInterfaceType(.wifi)
             DispatchQueue.main.async {
-                if network != nil {
-                    self?.wifiStatus = .on
-                } else {
-                    // Não podemos saber com certeza se Wi-Fi está desligado
-                    // apenas que não está conectado a uma rede
-                    let saved = UserDefaults.standard.bool(forKey: self?.wifiStateKey ?? "")
-                    self?.wifiStatus = saved ? .on : .unknown
-                }
+                self?.wifiStatus = usesWifi ? .on : .off
             }
         }
+        pathMonitor.start(queue: monitorQueue)
+    }
+
+    private func detectWiFiState() {
+        // Estado é atualizado continuamente via NWPathMonitor
+        let path = pathMonitor.currentPath
+        wifiStatus = path.usesInterfaceType(.wifi) ? .on : .off
     }
 
     private func detectBluetoothState() {
@@ -73,16 +81,28 @@ final class RadioControlService: NSObject, ObservableObject {
     }
 
     private func detectLocationState() {
+        // Verificar se Serviços de Localização estão ativados globalmente
+        let globalEnabled = CLLocationManager.locationServicesEnabled()
+        if !globalEnabled {
+            locationStatus = .off
+            return
+        }
+
+        // GPS global ligado - verificar permissão do app
         let status = locationManager.authorizationStatus
         switch status {
         case .authorizedAlways, .authorizedWhenInUse:
             locationStatus = .on
-        case .denied, .restricted:
-            locationStatus = .off
+        case .denied:
+            // GPS global ligado, mas app sem permissão - mostra como ligado (estado global)
+            locationStatus = .on
+        case .restricted:
+            locationStatus = .restricted
         case .notDetermined:
-            locationStatus = .unknown
+            // GPS global ligado, permissão não solicitada ainda
+            locationStatus = .on
         @unknown default:
-            locationStatus = .unknown
+            locationStatus = .on
         }
     }
 
@@ -114,17 +134,23 @@ final class RadioControlService: NSObject, ObservableObject {
 
     /// Abre os Ajustes do iOS para o serviço especificado.
     ///
-    /// Usa Apple Shortcuts como intermediário para garantir deep linking no iOS 26+.
-    /// O nome do atalho é configurável pelo usuário em Ajustes > Nomes dos Atalhos.
+    /// Tenta settings-navigation:// primeiro, fallback para Shortcuts.
     func openSettings(for service: RadioServiceType) {
-        let storageKey = "shortcutName_\(service.rawValue)"
-        let shortcutName = UserDefaults.standard.string(forKey: storageKey) ?? service.shortcutName
-        openViaShortcut(name: shortcutName, fallbackURL: service.settingsURLScheme)
+        guard let directURL = URL(string: service.settingsURLScheme) else { return }
+
+        UIApplication.shared.open(directURL, options: [:]) { success in
+            if !success {
+                let storageKey = "shortcutName_\(service.rawValue)"
+                let shortcutName = UserDefaults.standard.string(forKey: storageKey) ?? service.shortcutName
+                self.openViaShortcut(name: shortcutName, fallbackURL: service.settingsURLScheme)
+            }
+        }
     }
 
-    /// Abre uma URL de Ajustes via Apple Shortcuts para garantir deep linking no iOS 26+
+    /// Abre uma URL de Ajustes via Apple Shortcuts
     func openViaShortcut(name: String, fallbackURL: String) {
-        let shortcutURL = "shortcuts://run-shortcut?name=\(name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? name)"
+        let encoded = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? name
+        let shortcutURL = "shortcuts://run-shortcut?name=\(encoded)"
 
         guard let url = URL(string: shortcutURL) else {
             openDirectURL(fallbackURL)
@@ -134,7 +160,6 @@ final class RadioControlService: NSObject, ObservableObject {
         DispatchQueue.main.async {
             UIApplication.shared.open(url, options: [:]) { success in
                 if !success {
-                    // Shortcut não existe, abre URL direto (vai pra raiz no iOS 26)
                     self.openDirectURL(fallbackURL)
                 }
             }

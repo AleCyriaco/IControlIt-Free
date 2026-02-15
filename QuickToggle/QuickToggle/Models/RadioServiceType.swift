@@ -47,16 +47,16 @@ enum RadioServiceType: String, CaseIterable, Codable, Identifiable {
         switch self {
         case .wifi: return "settings-navigation://com.apple.Settings.WiFi"
         case .bluetooth: return "settings-navigation://com.apple.Settings.Bluetooth"
-        case .location: return "settings-navigation://com.apple.Settings.PrivacyAndSecurity/LOCATION"
+        case .location: return "settings-navigation://com.apple.Settings.General/LOCAL_CAPTURE"
         }
     }
 
     /// Nome do Apple Shortcut que faz deep link para esta seção dos Ajustes
     var shortcutName: String {
         switch self {
-        case .wifi: return "WiFi"
-        case .bluetooth: return "Bluetooth"
-        case .location: return "GPS"
+        case .wifi: return "WiFiOnOff"
+        case .bluetooth: return "BluetoothOnOff"
+        case .location: return "LocationOnOff"
         }
     }
 
